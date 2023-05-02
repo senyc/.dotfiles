@@ -55,7 +55,6 @@ main() {
     valid_basename $(basename $file)
     # General error checking of base name and wild card file
     if [ $? = 0 ] && [ ! "$file" = "$home_path/*" ]; then
-      echo $file
       link_configuration_file_to_home $file "$(basename $file)"
     fi
   done
@@ -65,7 +64,6 @@ main() {
     valid_basename $(basename $directory)
     # General error checking of base name and wild card directory
     if [ $? = 0 ] && [ ! "$directory" = "$config_path/*" ]; then
-      echo $directory
       link_directory_to_config $directory "$(basename $directory)"
     fi
   done
