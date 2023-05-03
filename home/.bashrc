@@ -129,15 +129,17 @@ else
     fi
 fi
 unset __conda_setup
-# <<< conda initialize <<<
-
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
+
 # Create home configuration environment variable
 export XDG_CONFIG_HOME="$HOME/.config"
+
+# Path additions
+export PATH=$PATH:/usr/local/bin
 
 # Powerline setup
 export PATH="$PATH:/home/senyc/.local/bin"
@@ -149,4 +151,9 @@ source /home/senyc/.local/lib/python3.10/site-packages/powerline/bindings/bash/p
 # Starting all terminals in tmux
 if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
     tmux attach -t default || tmux new -s default
+fi
+
+# Setup aliases for ssh connections - separate to hide IPs
+if [ -f ~/.bash_connections ]; then
+    . ~/.bash_connections
 fi

@@ -1,5 +1,4 @@
 local lsp = require("lsp-zero")
-lsp.preset("recommended")
 
 lsp.ensure_installed({
   'tsserver',
@@ -32,9 +31,20 @@ lsp.set_preferences({
     sign_icons = {}
 })
 
-local on_attach = lsp.on_attach(function(client, bufnr)
+vim.lsp.handlers["textDocument/publishDiagnostics"] =
+  vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+    -- Disable underline, it's very annoying
+    underline = false,
+    virtual_text = true,
+    -- Enable virtual text, override spacing to 4
+    -- virtual_text = {spacing = 4},
+    update_in_insert = true
+  })
+
+lsp.on_attach(function(client, bufnr)
   local opts = {buffer = bufnr, remap = false}
 
+  client.server_capabilities.semanticTokensProvider = nil
   vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
   vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
   vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
@@ -45,6 +55,15 @@ local on_attach = lsp.on_attach(function(client, bufnr)
   vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
   vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
   vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+
+  -- Set sign icons
+  lsp.set_sign_icons({
+    error = '>>',
+    warn = '->',
+    hint = '>-',
+    info = '--'
+  })
+
 end)
 
 lsp.setup()
@@ -67,3 +86,4 @@ require('lspconfig').pylsp.setup{
         }
     }
 }
+
