@@ -28,6 +28,7 @@ return require('packer').startup(function(use)
   use('kylechui/nvim-surround')
   use('terrortylor/nvim-comment')
   use('mbbill/undotree')
+  use('airblade/vim-gitgutter')
   use('tpope/vim-fugitive')
   use {
     'VonHeikemen/lsp-zero.nvim',
@@ -50,4 +51,3 @@ return require('packer').startup(function(use)
   }
 }
 end)
-

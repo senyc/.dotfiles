@@ -67,7 +67,7 @@ require("nvim-tree").setup { -- BEGIN_DEFAULT_OPTS
             },
         },
         icons = {
-            webdev_colors = false,
+            webdev_colors = true,
             git_placement = "before",
             modified_placement = "after",
             padding = " ",
@@ -76,14 +76,24 @@ require("nvim-tree").setup { -- BEGIN_DEFAULT_OPTS
                 file = false,
                 folder = false,
                 folder_arrow = true,
-                git = false,
+                git = true,
                 modified = false,
             },
-            glyphs = {
-                folder = {
-                    arrow_closed = "⏵",
-                    arrow_open = "⏷",
-                },
+          glyphs = {
+            default = "",
+            symlink = "",
+            bookmark = "",
+            modified = "●",
+            folder = {
+              arrow_closed = "⏵",
+              arrow_open = "⏷",
+              default = "",
+              open = "",
+              empty = "",
+              empty_open = "",
+              symlink = "",
+              symlink_open = "",
+            },
                 git = {
                     unstaged = "✗",
                     staged = "✓",
@@ -114,7 +124,7 @@ require("nvim-tree").setup { -- BEGIN_DEFAULT_OPTS
     diagnostics = {
         enable = false,
         show_on_dirs = false,
-        show_on_open_dirs = true,
+        show_on_open_dirs = false,
         debounce_delay = 50,
         severity = {
             min = vim.diagnostic.severity.HINT,
@@ -193,7 +203,7 @@ require("nvim-tree").setup { -- BEGIN_DEFAULT_OPTS
     },
     live_filter = {
         prefix = "[FILTER]: ",
-        always_show_folders = true,
+        always_show_folders = false,
     },
     tab = {
         sync = {
@@ -213,7 +223,7 @@ require("nvim-tree").setup { -- BEGIN_DEFAULT_OPTS
     },
     experimental = {
         git = {
-            async = true,
+            async = false,
         },
     },
     log = {
@@ -230,8 +240,8 @@ require("nvim-tree").setup { -- BEGIN_DEFAULT_OPTS
             watcher = false,
         },
     },
-} 
-
+}
+-- set ctrl n to nvim tree, and keep focus on current buffer
 map('n', '<C-n>', ':NvimTreeToggle<cr><c-w>p', options)
 
 
