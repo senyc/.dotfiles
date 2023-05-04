@@ -27,9 +27,7 @@ map(
 )
 map(
   'n', '<leader>fh',
-  function() builtin.find_files({ cwd = vim.fn.expand('$HOME'),
-    hidden = true, file_ignore_patterns = media })
-  end,
+  function() builtin.find_files({ cwd = vim.fn.expand('$HOME')}) end,
   options
 )
 map('n', '<leader>fg', builtin.git_files)

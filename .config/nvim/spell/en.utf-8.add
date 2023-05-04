@@ -22,3 +22,4 @@ powerline
 UTF-8
 fi
 alias
+clangd

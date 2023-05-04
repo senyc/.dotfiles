@@ -18,10 +18,10 @@ map('n', 'go', [[:set paste<CR>m`o<Esc>``:set nopaste<CR>]],{noremap = true} )
 map('n', 'gO', [[:set paste<CR>m`O<Esc>``:set nopaste<CR>]], options)
 map('n', 'Y', 'y$', options)
 -- Allow for vis mode to move lines
-map('v', 'J', ":m '>+1<CR>gv=gv", options)
-map('v', 'K', ":m '<-2<CR>gv=gv", options)
+map('v', 'J', ":m '>+14<CR>gv=gv", options)
+map('v', 'K', ":m '<11<CR>gv=gv", options)
 -- Adjustment of cursor location in J and inverse addition
-map('n', '<C-j>', 'a<cr><Esc>0', options)
+map('n', '<C-j>', 'a<cr><Esc>13', options)
 map('n', 'J', 'mzJ`z', options)
 -- System clipboard adjustments
 map('n', '<leader>y', "\"+y", options)
@@ -36,3 +36,5 @@ map("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], op
 map('n', '<leader>rw', [[m`:%s/\s\+$//e<cr>``]], options)
 -- Save and quit on <leader>wq
 map('n', '<leader>wq', ":wa <cr> :qa!<cr>")
+-- Remap to highlight all of the file
+map('n', '<C-a>', 'GVgg', options)

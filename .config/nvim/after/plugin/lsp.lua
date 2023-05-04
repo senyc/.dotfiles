@@ -1,10 +1,11 @@
 local lsp = require("lsp-zero")
-
+local lspconfig = require("lspconfig")
 lsp.ensure_installed({
   'tsserver',
   'rust_analyzer',
   'eslint',
   'pylsp',
+  'clangd',
 })
 
 -- Fix Undefined global 'vim'
@@ -65,16 +66,17 @@ lsp.on_attach(function(client, bufnr)
   })
 
 end)
-
+lsp.setup_servers_on_start = true
 lsp.setup()
 
 ------ Server specific configuration ------
 -- bash
-require('lspconfig').bashls.setup{}
+lspconfig.bashls.setup{}
+lspconfig.html.setup{}
 --Ruby
-require('lspconfig').solargraph.setup{}
+lspconfig.solargraph.setup{}
 -- Python
-require('lspconfig').pylsp.setup{
+lspconfig.pylsp.setup{
     settings = {
         pylsp = {
             plugins = {
