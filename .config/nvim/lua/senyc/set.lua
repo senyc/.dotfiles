@@ -5,6 +5,10 @@ vim.opt.spelllang = 'en_us'
 vim.opt.spell = true
 vim.opt.number = true
 -- Denying the automatic comment extending
+
+
+vim.cmd("autocmd FileType * set formatoptions-=cro")
+vim.cmd(':set formatoptions-=cro')
 vim.opt.formatoptions = ''
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4

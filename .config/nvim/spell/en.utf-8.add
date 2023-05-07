@@ -23,3 +23,17 @@ UTF-8
 fi
 alias
 clangd
+esac
+keybinds
+cmp
+nvim
+filetype
+filetypes
+allowlist
+denylist
+overriden
+lsp
+treesitter
+NvimTree
+toggleterm
+TelescopePrompt

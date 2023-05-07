@@ -1,12 +1,11 @@
 local options = { noremap = true, silent = true }
 local map = vim.keymap.set
-QUIT_TERMINAL = function() vim.cmd("TermExec cmd='quit'") end
 
 map('i','jj', '<Esc>', options)
 -- Buffer deletion and traversal
 map('n', '<leader>l', ':bnext<CR>', options)
 map('n', '<leader>h', ':bprevious<CR>', options)
-map('n', '<leader>dd', ':w<CR> :bdelete<CR>', options)
+map('n', '<leader>dd', ':w<CR> :NvimTreeClose <cr> :bdelete<cr> :LspRestart<cr>', options)
 map('n', '<leader>d!', ':bdelete<CR>', options)
 -- Centralized navigation
 map('n', '<c-d>', '<c-d>zz', options)
@@ -18,8 +17,8 @@ map('n', 'go', [[:set paste<CR>m`o<Esc>``:set nopaste<CR>]],{noremap = true} )
 map('n', 'gO', [[:set paste<CR>m`O<Esc>``:set nopaste<CR>]], options)
 map('n', 'Y', 'y$', options)
 -- Allow for vis mode to move lines
-map('v', 'J', ":m '>+14<CR>gv=gv", options)
-map('v', 'K', ":m '<11<CR>gv=gv", options)
+map('v', 'J', ":m '>+1<CR>gv=gv", options)
+map('v', 'K', ":m '<-2<CR>gv=gv", options)
 -- Adjustment of cursor location in J and inverse addition
 map('n', '<C-j>', 'a<cr><Esc>13', options)
 map('n', 'J', 'mzJ`z', options)
