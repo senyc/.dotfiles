@@ -83,19 +83,50 @@ for _, lsp in ipairs(servers) do
   -- Actually set up the languages server
   lspconfig[lsp].setup(configurations)
 end
-lsp_zero.set_sign_icons({
+
+local signs = {
   error = '>>',
   warn = '->',
   hint = '>-',
   info = '--'
+}
+
+lsp_zero.set_sign_icons(signs)
+
+local diagnostic_signs = {
+  { name = "DiagnosticSignError", text = signs.error },
+  { name = "DiagnosticSignWarn", text = signs.warn },
+  { name = "DiagnosticSignHint", text = signs.hint },
+  { name = "DiagnosticSignInfo", text = signs.info },
+}
+
+local config = {
+  virtual_text = {spacing = 2},
+  -- show signs
+  signs = {
+    active = diagnostic_signs,
+  },
+  update_in_insert = true,
+  underline = false,
+  severity_sort = true,
+  float = {
+    focusable = false,
+    style = "minimal",
+    border = "rounded",
+    source = "always",
+    header = "",
+    prefix = "",
+    suffix = "",
+  },
+}
+
+vim.diagnostic.config(config)
+
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+  border = "rounded",
 })
 
--- Enable general hints and warnings
-vim.lsp.handlers["textDocument/publishDiagnostics"] =
-  vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-    -- Disable underline, it's very annoying
-    underline = false,
-    virtual_text = {spacing = 2},
-    update_in_insert = true
-  })
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+  border = "rounded",
+})
 

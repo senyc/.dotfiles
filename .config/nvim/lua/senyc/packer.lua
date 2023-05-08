@@ -50,5 +50,6 @@ return require('packer').startup(function(use)
   use 'RRethy/vim-illuminate'
   use 'f-person/git-blame.nvim'
   use 'ThePrimeagen/vim-be-good'
+  use 'windwp/nvim-ts-autotag'
 end)
 
