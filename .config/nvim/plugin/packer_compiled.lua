@@ -89,10 +89,25 @@ _G.packer_plugins = {
     path = "/home/senyc/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
   },
+  ["git-blame.nvim"] = {
+    loaded = true,
+    path = "/home/senyc/.local/share/nvim/site/pack/packer/start/git-blame.nvim",
+    url = "https://github.com/f-person/git-blame.nvim"
+  },
   ["gitsigns.nvim"] = {
     loaded = true,
     path = "/home/senyc/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
+  },
+  ["hop-extensions"] = {
+    loaded = true,
+    path = "/home/senyc/.local/share/nvim/site/pack/packer/start/hop-extensions",
+    url = "https://github.com/indianboy42/hop-extensions"
+  },
+  ["hop.nvim"] = {
+    loaded = true,
+    path = "/home/senyc/.local/share/nvim/site/pack/packer/start/hop.nvim",
+    url = "https://github.com/phaazon/hop.nvim"
   },
   ["lsp-zero.nvim"] = {
     loaded = true,
@@ -144,6 +159,11 @@ _G.packer_plugins = {
     path = "/home/senyc/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
+  ["nvim-ts-autotag"] = {
+    loaded = true,
+    path = "/home/senyc/.local/share/nvim/site/pack/packer/start/nvim-ts-autotag",
+    url = "https://github.com/windwp/nvim-ts-autotag"
+  },
   ["nvim-web-devicons"] = {
     loaded = true,
     path = "/home/senyc/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
@@ -184,10 +204,20 @@ _G.packer_plugins = {
     path = "/home/senyc/.local/share/nvim/site/pack/packer/start/undotree",
     url = "https://github.com/mbbill/undotree"
   },
+  ["vim-be-good"] = {
+    loaded = true,
+    path = "/home/senyc/.local/share/nvim/site/pack/packer/start/vim-be-good",
+    url = "https://github.com/ThePrimeagen/vim-be-good"
+  },
   ["vim-fugitive"] = {
     loaded = true,
     path = "/home/senyc/.local/share/nvim/site/pack/packer/start/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
+  },
+  ["vim-illuminate"] = {
+    loaded = true,
+    path = "/home/senyc/.local/share/nvim/site/pack/packer/start/vim-illuminate",
+    url = "https://github.com/RRethy/vim-illuminate"
   }
 }
 

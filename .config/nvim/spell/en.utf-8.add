@@ -37,3 +37,4 @@ treesitter
 NvimTree
 toggleterm
 TelescopePrompt
+lua
