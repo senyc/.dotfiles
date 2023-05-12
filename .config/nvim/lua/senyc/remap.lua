@@ -6,7 +6,7 @@ map('i','jj', '<Esc>', options)
 map('n', '<leader>l', ':bnext<CR>', options)
 map('n', '<leader>h', ':bprevious<CR>', options)
 map('n', '<leader>dd', ':w<CR> :NvimTreeClose <cr> :bdelete<cr> :LspRestart<cr>', options)
-map('n', '<leader>d!', ':bdelete<CR>', options)
+map('n', '<leader>d!', ':NvimTreeClose <cr> :bdelete<cr> :LspRestart<cr>', options)
 -- Centralized navigation
 map('n', '<c-d>', '<c-d>zz', options)
 map('n', '<c-u>', '<c-u>zz', options)

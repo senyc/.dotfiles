@@ -6,7 +6,6 @@ vim.opt.spell = true
 vim.opt.number = true
 -- Denying the automatic comment extending
 
-
 vim.cmd("autocmd FileType * set formatoptions-=cro")
 vim.cmd(':set formatoptions-=cro')
 vim.opt.formatoptions = ''
@@ -21,7 +20,6 @@ vim.opt.hlsearch = false
 vim.opt.incsearch = true
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
-vim.opt.colorcolumn = "100"
 vim.opt.updatetime = 50
 vim.opt.autochdir = true
 vim.opt.swapfile = false

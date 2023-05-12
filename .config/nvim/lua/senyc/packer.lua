@@ -52,6 +52,7 @@ return require('packer').startup(function(use)
   use 'f-person/git-blame.nvim'
   use 'ThePrimeagen/vim-be-good'
   use 'windwp/nvim-ts-autotag'
-
+  use 'romgrk/doom-one.vim'
+  -- use 'NTBBloodbath/doom-one.nvim'
 end)
 
