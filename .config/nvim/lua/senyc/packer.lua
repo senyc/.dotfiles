@@ -52,7 +52,8 @@ return require('packer').startup(function(use)
   use 'f-person/git-blame.nvim'
   use 'ThePrimeagen/vim-be-good'
   use 'windwp/nvim-ts-autotag'
+  -- Older extension but works nice, may need to change green color
   use 'romgrk/doom-one.vim'
-  -- use 'NTBBloodbath/doom-one.nvim'
+  use 'barrett-ruth/live-server.nvim'
 end)
 

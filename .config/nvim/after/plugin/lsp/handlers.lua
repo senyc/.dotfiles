@@ -58,18 +58,18 @@ for _, lsp in ipairs(servers) do
       },
     }
 
-  elseif lsp == 'pylsp' then
-    local pystyle_ignore = {'e302', 'W391'}
-    configurations.settings = {
-      pylsp = {
-        plugins = {
-          pycodestyle = {
-            ignore = pystyle_ignore,
-            maxlinelength = 100
-          }
-        }
-      }
-    }
+  -- elseif lsp == 'pylsp' then
+  --   local pystyle_ignore = {'e302', 'e391'}
+  --   configurations.settings = {
+  --     pylsp = {
+  --       plugins = {
+  --         pycodestyle = {
+  --           ignore = pystyle_ignore,
+  --           maxlinelength = 100
+  --         }
+  --       }
+  --     }
+  --   }
 
   elseif lsp == 'html' then
     configurations.settings = {

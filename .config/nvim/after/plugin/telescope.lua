@@ -32,11 +32,11 @@ require("telescope").setup({
   },
 })
 
-local find_files_cwd = function()
+local find_files_home = function()
   builtin.find_files({ cwd = vim.fn.expand('$HOME'), hiden = true})
 end
 
-local find_files_home = function()
+local find_files_cwd = function()
   builtin.find_files({cwd = utils.buffer_dir()})
 end
 

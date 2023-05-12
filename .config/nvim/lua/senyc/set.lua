@@ -18,6 +18,10 @@ vim.opt.termguicolors = true
 
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
+-- Enable smartcase
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
 vim.opt.updatetime = 50
@@ -30,3 +34,4 @@ vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 vim.opt.scrolloff = 8
 vim.opt.updatetime = 50
+vim.opt.cursorline = true
