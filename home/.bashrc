@@ -140,7 +140,9 @@ export XDG_CONFIG_HOME="$HOME/.config"
 
 # Path additions
 export PATH=$PATH:/usr/local/bin
-
+export TERM='screen-256color'
+export EDITOR='nvim'
+export VISUAL='nvim'
 # Powerline setup
 export PATH="$PATH:/home/senyc/.local/bin"
 export LC_ALL=en_US.UTF-8
