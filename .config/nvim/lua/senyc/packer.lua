@@ -7,7 +7,6 @@ return require('packer').startup(function(use)
     branch = '0.1.x',
     requires = { {'nvim-lua/plenary.nvim'} }
   }
-  use 'olimorris/onedarkpro.nvim'
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
   use 'nvim-treesitter/playground'
   use 'nvim-tree/nvim-tree.lua'
@@ -53,7 +52,7 @@ return require('packer').startup(function(use)
   use 'ThePrimeagen/vim-be-good'
   use 'windwp/nvim-ts-autotag'
   -- Older extension but works nice, may need to change green color
-  use 'romgrk/doom-one.vim'
+  use 'senyc/doom-one.vim'
   use 'barrett-ruth/live-server.nvim'
 end)
 
