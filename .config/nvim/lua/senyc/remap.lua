@@ -36,4 +36,8 @@ map('n', '<leader>rw', [[m`:%s/\s\+$//e<cr>``]], options)
 map('n', '<leader>wq', ":wa <cr> :qa!<cr>")
 -- Remap to highlight all of the file
 map('n', '<C-a>', 'GVgg', options)
-
+-- Resize windows w/ control and arrows
+map("n", "<C-Up>", ":resize -2<CR>", options)
+map("n", "<C-Down>", ":resize +2<CR>", options)
+map("n", "<C-Left>", ":vertical resize -2<CR>", options)
+map("n", "<C-Right>", ":vertical resize +2<CR>", options)
