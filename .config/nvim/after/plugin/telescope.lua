@@ -81,7 +81,7 @@ map('n', '<leader>ff', find_files_cwd, options)
 map('n', '<leader>fh', find_files_home, options)
 map('n', '<leader>fg', builtin.git_files, options)
 -- find references
-map('n', 'fr', builtin.lsp_references)
+map('n', '<leader>fr', builtin.lsp_references)
 
 -- grep <directive>
 map('n', '<leader>gh', grep_home, options)
