@@ -18,7 +18,7 @@ require("nvim-tree").setup { -- BEGIN_DEFAULT_OPTS
   select_prompts = false,
   view = {
     centralize_selection = false,
-    cursorline = true,
+    cursorline = false,
     debounce_delay = 15,
     width = 30,
     hide_root_folder = false,
@@ -86,7 +86,7 @@ require("nvim-tree").setup { -- BEGIN_DEFAULT_OPTS
         modified = "●",
         folder = {
           arrow_closed = "",
-          arrow_open = "",
+          arrow_open = "",
           default = "",
           open = "",
           empty = "",
