@@ -1,0 +1,27 @@
+"pamixer --toggle-mute"
+    m:0x0 + c:121
+    XF86AudioMute
+"pamixer --increase 2"
+    m:0x0 + c:123
+    XF86AudioRaiseVolume
+"pamixer --decrease 2"
+    m:0x0 + c:122
+    XF86AudioLowerVolume
+"playerctl next"
+    m:0x0 + c:171
+    XF86AudioNext
+"playerctl previous"
+    m:0x0 + c:173
+    XF86AudioPrev
+"playerctl play-pause"
+    m:0x0 + c:172
+    XF86AudioPlay
+"xbacklight -inc +5"
+    m:0x0 + c:233
+    XF86MonBrightnessUp
+"xbacklight -dec +5"
+    m:0x0 + c:232
+    XF86MonBrightnessDown
+"screenshot_select"
+    m:0x0 + c:107
+    Print

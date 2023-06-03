@@ -31,4 +31,4 @@ vim.opt.backup = false
 vim.opt.history = 10000
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
-vim.opt.cursorline = true
+-- vim.opt.cursorline = true

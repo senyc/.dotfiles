@@ -13,7 +13,7 @@ map('n', '<c-u>', '<c-u>zz', options)
 map('n', 'n', 'nzzzv')
 map('n', 'N', 'Nzzzv')
 -- Allow for easy empty line adjustments
-map('n', 'go', [[o<Esc>]], options )
+map('n', 'go', [[o<Esc>]], options)
 map('n', 'gO', [[O<Esc>]], options)
 map('n', 'Y', 'y$', options)
 -- Allow for vis mode to move lines

@@ -72,8 +72,8 @@
             show_buffer_icons = false,
             show_buffer_close_icons = false,
             show_close_icon = false,
-            show_tab_indicators = true, 
-            show_duplicate_prefix = false, 
+            show_tab_indicators = true,
+            show_duplicate_prefix = false,
             persist_buffer_sort = false, -- whether or not custom sorted buffers should persist
             -- can also be a table containing 2 custom separators
             -- [focused and unfocused]. eg: { '|', '|' }

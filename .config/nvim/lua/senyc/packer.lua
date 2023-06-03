@@ -54,5 +54,8 @@ return require('packer').startup(function(use)
   -- Older extension but works nice, may need to change green color
   use 'senyc/doom-one.vim'
   use 'barrett-ruth/live-server.nvim'
+  use 'xiyaowong/transparent.nvim'
+  use 'folke/tokyonight.nvim'
+  use 'catppuccin/nvim'
 end)
 

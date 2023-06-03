@@ -1,0 +1,17 @@
+{
+    "gitstatus": {
+        "args": { 
+            "formats": {
+                "branch": "  {}",
+                "tag": " x {}",
+                "behind": " ↓ {}",
+                "ahead": " ↑ {}",
+                "staged": " ● {}",
+                "unmerged": "  {}",
+                "changed": " + {}",
+                "untracked": " … {}",
+                "stashed": "  {}"
+            }
+        }
+    }
+}

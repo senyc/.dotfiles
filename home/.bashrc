@@ -1,4 +1,4 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
+#0 ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
@@ -73,8 +73,9 @@ xterm*|rxvt*)
 esac
 
 # enable color support of ls and also add handy aliases
+
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    test -r ~/.dircolors && eval $(dircolors -b ~/.dircolors) || eval $(dircolors -b)
     alias ls='ls --color=auto'
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
@@ -143,17 +144,6 @@ export PATH=$PATH:/usr/local/bin
 export TERM='screen-256color'
 export EDITOR='nvim'
 export VISUAL='nvim'
-# Powerline setup
-export PATH="$PATH:/home/senyc/.local/bin"
-export LC_ALL=en_US.UTF-8
-powerline-daemon -q
-POWERLINE_BASH_CONTINUATION=1
-POWERLINE_BASH_SELECT=1
-source /home/senyc/.local/lib/python3.10/site-packages/powerline/bindings/bash/powerline.sh
-# Starting all terminals in tmux
-if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-    tmux attach -t default || tmux new -s default
-fi
 
 # Setup aliases for ssh connections - separate to hide IPs
 if [ -f ~/.bash_connections ]; then
@@ -167,3 +157,5 @@ export NVM_DIR="$HOME/.config/nvm"
 if [ -d "$HOME/node_modules" ] ; then
     PATH="$HOME/node_modules:$PATH"
 fi
+
+eval "$(starship init bash)"
