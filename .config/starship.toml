@@ -111,17 +111,17 @@ format = " at [$path/]($style)[$lock_symbol]($lock_style) "
 
 [jobs]
 symbol = ' '
+
 [git_status]
-conflicted = "⚔️ "
+renamed = "[R${count}](black) "
+deleted = "[D${count}](red) "
 ahead = "󰁝 ${count} "
 behind = "󰁅 ${count} "
 diverged = "󰁝${ahead_count} 󰁅${behind_count} "
 untracked = "[U${count}](yellow) "
 stashed = "[](blue) "
 modified = "[M${count}](#FFA500) "
-staged = "[ ${count}](green) "
-renamed = "📛 ×${count}"
-deleted = "🗑️  ×${count}"
+staged = "[S${count}](green) "
 style = "bright-white"
 format = "$all_status$ahead_behind"
 
