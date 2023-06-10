@@ -50,6 +50,7 @@ valid_basename() {
 main() {
   local home_path="$PWD/home"
   local config_path="$PWD/.config"
+  local bin_path="$PWD/bin"
   # Iterate over all the files in home
   for file in $home_path/.* $home_path/*; do
     valid_basename $(basename $file)

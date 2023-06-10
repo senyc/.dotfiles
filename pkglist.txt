@@ -1,3 +1,4 @@
+acpi
 alacritty
 alsa-utils
 base
@@ -7,6 +8,8 @@ chromium
 cmake
 dhcpcd
 discord
+dmenu
+dunst
 efibootmgr
 evtest
 gcc
@@ -15,6 +18,7 @@ htop
 intel-ucode
 iw
 iwd
+light
 linux
 linux-firmware
 lshw
@@ -30,9 +34,6 @@ nodejs
 noto-fonts-cjk
 noto-fonts-emoji
 npm
-nvidia-open
-nvidia-prime
-nvidia-settings
 openssh
 otf-aurulent-nerd
 pacman
@@ -46,6 +47,7 @@ python-iwlib
 python-pip
 qtile
 ripgrep
+rofi
 ruby
 rust
 scrot

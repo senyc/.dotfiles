@@ -25,13 +25,16 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from libqtile import bar, layout, widget
+from libqtile import layout, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 # from libqtile.utils import
+from top_bar import bar
 margin = 0
 mod = "mod4"
 terminal = "alacritty"
+powermenu = 'run_powermenu'
+drun = 'run_rofi'
 
 @lazy.function
 def minimize_all(qtile):
@@ -50,7 +53,7 @@ keys = [
     Key([mod], "space", lazy.layout.next(), desc="Move window focus to other window"),
     # Move windows between left/right columns or move up/down in current stack.
 
-    Key([mod], "f", lazy.window.toggle_fullscreen(), desc="Toggle fullscreen"),
+    Key([mod], "f", lazy.window.toggle_maximize(), desc="Toggle fullscreen"),
     Key([mod, "shift"], "h", lazy.layout.shuffle_left(), desc="Move window to the left"),
     Key([mod, "shift"], "l", lazy.layout.shuffle_right(), desc="Move window to the right"),
     Key([mod, "shift"], "j", lazy.layout.shuffle_down(), desc="Move window down"),
@@ -70,11 +73,12 @@ keys = [
     Key([mod, "shift"], "Return", lazy.layout.toggle_split(), desc="Toggle between split and unsplit sides of stack"),
 
     # Toggle between different layouts as defined below
-    Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
+    Key([mod], "y", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+    Key([mod], "p", lazy.spawn(drun), desc="Spawn a command using rofi"),
+    Key([mod], "x", lazy.spawn(powermenu), desc="Spawn a command using powermenu"),
     Key([mod], "d", minimize_all(), desc="Toggle minimization on all window"),
     # Launch applications
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
@@ -133,35 +137,7 @@ widget_defaults = dict(
 
 screens = [
     Screen(
-        top=bar.Bar(
-            [
-                widget.CurrentLayout(padding=2),
-                widget.GroupBox(),
-                widget.Prompt(),
-                widget.WindowName(padding=2, max_chars=50),
-                widget.Chord(
-                    chords_colors={
-                        "launch": ("#ff0200", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
-                widget.Clock(format="%H:%M %m/%d"), widget.Spacer(),
-                widget.Wlan(
-                    format="  {essid}",
-                    padding=5
-                ),
-                widget.TextBox(fmt='󰕾 '),
-                widget.Volume(padding=2),
-                widget.Battery(
-                    format=' {char} {percent:2.0%} ',
-                    discharge_char='󰁿',
-                    full_char='󰁹',
-                    charge_char='󰂄',
-                    empty_char='󰂎',
-                ),
-            ],
-            24, opacity=0.85, background='#5A5A5A'
-        )
+        top=bar
     )
 ]
 
