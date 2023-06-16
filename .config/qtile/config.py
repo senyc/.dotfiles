@@ -1,36 +1,9 @@
-# Copyright (c) 2010 Aldo Cortesi
-
-# Copyright (c) 2010, 2014 dequis
-# Copyright (c) 2012 Randall Ma
-# Copyright (c) 2012-2014 Tycho Andersen
-# Copyright (c) 2012 Craig Barnes
-# Copyright (c) 2013 horsik
-# Copyright (c) 2013 Tao Sauvage
-
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in
-# all copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
-
-from libqtile import layout, widget
+from libqtile import layout
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
-# from libqtile.utils import
-from top_bar import bar
-margin = 0
+from primary_bar import primary_bar
+from side_bars import left_bar, right_bar
+
 mod = "mod4"
 terminal = "alacritty"
 powermenu = 'run_powermenu'
@@ -44,7 +17,6 @@ def minimize_all(qtile):
 
 
 keys = [
-
     # Switch between windows
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
     Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
@@ -85,9 +57,17 @@ keys = [
     Key([mod], "b", lazy.spawn("chromium"), desc="Launch chrome"),
     Key([mod], "s", lazy.spawn("spotify-launcher"), desc="Launch spotify"),
     Key([mod], "t", lazy.window.toggle_floating(), desc="Toggle floating"),
+    # Screens
+    Key([mod], "comma", lazy.to_screen(1)),
+    Key([mod, "control"], "comma", lazy.window.toscreen(1)),
+    Key([mod, "control"], "i", lazy.window.toscreen(1)),
+    Key([mod], "period", lazy.to_screen(0)),
+    Key([mod, "control"], "period", lazy.window.toscreen(0)),
+    Key([mod], "slash", lazy.to_screen(2)),
+    Key([mod, "control"], "slash", lazy.window.toscreen(2)),
 ]
 
-groups = [Group(i) for i in "123"]
+groups = [Group(i) for i in "vir"]
 
 for i in groups:
     keys.extend(
@@ -101,7 +81,7 @@ for i in groups:
             ),
             # mod1 + shift + letter of group = switch to & move focused window to group
             Key(
-                [mod, "shift"],
+                [mod, "control"],
                 i.name,
                 lazy.window.togroup(i.name, switch_group=True),
                 desc="Switch to & move focused window to group {}".format(i.name),
@@ -114,17 +94,15 @@ for i in groups:
     )
 
 layouts = [
-    layout.MonadTall(border_width=0),
-    layout.Columns(border_width=0),
+    layout.MonadTall(border_width=1, border_normal="#000000", border_focus="#ff0000"),
+    layout.VerticalTile(border_width=1, border_normal="#000000", border_focus="#ff0000"),
     # layout.Max(),
-    # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
     # layout.RatioTile(),
-    layout.Tile(border_width=0),
+    layout.Tile(border_width=1, border_normal="#000000", border_focus="#ff0000"),
     # layout.TreeTab(),
-    # layout.VerticalTile(),
     # layout.Zoomy(),
     # layout.Floating(),
 ]
@@ -135,10 +113,11 @@ widget_defaults = dict(
     padding=0,
 )
 
+# 0 is always primary monitor
 screens = [
-    Screen(
-        top=bar
-    )
+    Screen(top=primary_bar),
+    Screen(top=left_bar),
+    Screen(top=(right_bar)),
 ]
 
 # Drag floating layouts.
@@ -170,8 +149,6 @@ auto_fullscreen = True
 focus_on_window_activation = "smart"
 reconfigure_screens = True
 
-# If things like steam games want to auto-minimize themselves when losing
-# focus, should we respect this or not?
 auto_minimize = True
 
 # When using the Wayland backend, this can be used to configure input devices.

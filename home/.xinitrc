@@ -1,13 +1,13 @@
-#!/bin/sh
-xset -b
+#!bin/sh
 
-# Start compsitor
-picom &
-
-# Hide the mouse cursor
 unclutter --jitter 10 --start-hidden --fork
-nitrogen --set-zoom-fill "$HOME/Pictures/mountain.jpg"
 xbindkeys
+picom &
+# Cursor theme
+xrdb ~/.Xresources
+# Rotates monitor (right side) 
+xrandr --output DP-3 --rotate right
+xrandr --output HDMI-1 --primary
+nitrogen --restore
+# Make sure this is the last line
 qtile start
-xrandr --setprovideroutputsource modesetting NVIDIA-0
-xrandr --auto
