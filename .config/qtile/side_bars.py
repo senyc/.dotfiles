@@ -1,15 +1,36 @@
+from libqtile.widget.currentlayout import CurrentLayout
 from libqtile.bar import Bar
 from libqtile.widget.clock import Clock
 from libqtile.widget.spacer import Spacer
 
-from unicodes import left_half_circle, right_half_circle
+from libqtile.widget.window_count import WindowCount
 from colors import nord_fox
 from libqtile.widget.groupbox import GroupBox
 from options import group_box_kwargs, BAR_HEIGHT
+from unicodes import left_half_circle, right_arrow, right_half_circle
 
 left_bar = Bar(
     [
         GroupBox(**group_box_kwargs),
+
+        left_half_circle(nord_fox['blue'], nord_fox['bg']),
+        CurrentLayout(
+            background=nord_fox['blue'],
+            foreground=nord_fox['white'],
+            margin=10,
+        ),
+
+        right_arrow(nord_fox['fg_gutter'], nord_fox['blue']),
+
+        WindowCount(
+            background=nord_fox['fg_gutter'],
+            foreground=nord_fox['white'],
+            show_zero=False
+        ),
+
+        right_half_circle(nord_fox['fg_gutter'], nord_fox['bg']),
+
+
         Spacer(
             background=nord_fox['bg'],
         ),
@@ -35,6 +56,25 @@ left_bar = Bar(
 right_bar = Bar(
     [
         GroupBox(**group_box_kwargs),
+
+        left_half_circle(nord_fox['blue'], nord_fox['bg']),
+        CurrentLayout(
+            background=nord_fox['blue'],
+            foreground=nord_fox['white'],
+            margin=10,
+        ),
+
+        right_arrow(nord_fox['fg_gutter'], nord_fox['blue']),
+
+        WindowCount(
+            background=nord_fox['fg_gutter'],
+            foreground=nord_fox['white'],
+            show_zero=False
+        ),
+
+        right_half_circle(nord_fox['fg_gutter'], nord_fox['bg']),
+
+
         Spacer(
             background=nord_fox['bg'],
         ),

@@ -1,3 +1,8 @@
 #!/usr/bin/env bash
 
+
+if [[ -d "$HOME/Pictures/screenshots" ]]; then
+  mkdir -p "$HOME/Pictures/screenshots"
+fi
+
 scrot -s -i '%Y-%m-%d-%M-%s_scrot.png' -e 'mv $f ~/Pictures/screenshots'

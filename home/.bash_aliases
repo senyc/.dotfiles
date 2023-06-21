@@ -6,5 +6,4 @@ alias sl='ls'
 alias updateall='echo "updating machine and apps"; sudo apt update && sudo apt upgrade -yy && sudo apt autoremove -yy && flatpak update -y'
 alias v='nvim'
 alias vim='nvim'
-
-
+alias clera='clear'

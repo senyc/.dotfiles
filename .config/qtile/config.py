@@ -1,13 +1,15 @@
+from typing import List, Any
 from libqtile import layout
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from primary_bar import primary_bar
 from side_bars import left_bar, right_bar
 
-mod = "mod4"
-terminal = "alacritty"
+mod = 'mod4'
+terminal = 'alacritty'
 powermenu = 'run_powermenu'
 drun = 'run_rofi'
+browser = 'chromium'
 
 @lazy.function
 def minimize_all(qtile):
@@ -54,8 +56,7 @@ keys = [
     Key([mod], "d", minimize_all(), desc="Toggle minimization on all window"),
     # Launch applications
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
-    Key([mod], "b", lazy.spawn("chromium"), desc="Launch chrome"),
-    Key([mod], "s", lazy.spawn("spotify-launcher"), desc="Launch spotify"),
+    Key([mod], "b", lazy.spawn(browser), desc="Launch browser"),
     Key([mod], "t", lazy.window.toggle_floating(), desc="Toggle floating"),
     # Screens
     Key([mod], "comma", lazy.to_screen(1)),
@@ -67,41 +68,49 @@ keys = [
     Key([mod, "control"], "slash", lazy.window.toscreen(2)),
 ]
 
-groups = [Group(i) for i in "vir"]
 
-for i in groups:
+groups = [
+    Group(
+        name='v',
+        label='v'
+    ),
+    Group(
+        name='i',
+        label='i'
+    ),
+    Group(
+        name='r',
+        label='r'
+    ),
+]
+
+for name in 'vir':
     keys.extend(
         [
-            # mod1 + letter of group = switch to group
             Key(
                 [mod],
-                i.name,
-                lazy.group[i.name].toscreen(),
-                desc="Switch to group {}".format(i.name),
+                name,
+                lazy.group[name].toscreen(),
+                desc="Switch to group {}".format(name),
             ),
-            # mod1 + shift + letter of group = switch to & move focused window to group
             Key(
                 [mod, "control"],
-                i.name,
-                lazy.window.togroup(i.name, switch_group=True),
-                desc="Switch to & move focused window to group {}".format(i.name),
+                name,
+                lazy.window.togroup(name, switch_group=True),
+                desc="Switch to & move focused window to group {}".format(name),
             ),
-            # Or, use below if you prefer not to switch to that group.
-            # # mod1 + shift + letter of group = move focused window to group
-            # Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
-            #     desc="move focused window to group {}".format(i.name)),
         ]
     )
 
 layouts = [
-    layout.MonadTall(border_width=1, border_normal="#000000", border_focus="#ff0000"),
-    layout.VerticalTile(border_width=1, border_normal="#000000", border_focus="#ff0000"),
+    layout.MonadTall(border_width=0, border_normal="#000000", border_focus="#ff0000"),
+    layout.VerticalTile(border_width=0, border_normal="#000000", border_focus="#ff0000"),
     # layout.Max(),
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
     # layout.RatioTile(),
-    layout.Tile(border_width=1, border_normal="#000000", border_focus="#ff0000"),
+    layout.Tile(border_width=0, border_normal="#000000", border_focus="#ff0000"),
     # layout.TreeTab(),
     # layout.Zoomy(),
     # layout.Floating(),
@@ -128,8 +137,8 @@ mouse = [
 ]
 
 dgroups_key_binder = None
-dgroups_app_rules = []
-follow_mouse_focus = True
+dgroups_app_rules: List[Any] = []
+follow_mouse_focus = False
 bring_front_click = False
 cursor_warp = False
 floating_layout = layout.Floating(
@@ -157,4 +166,4 @@ wl_input_rules = None
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
 # I changed it to qtile
-wmname = "qtile"
+wimname = "qtile"

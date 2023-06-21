@@ -17,6 +17,7 @@ from options import group_box_kwargs, BAR_HEIGHT
 primary_bar = Bar(
     [
         GroupBox(**group_box_kwargs),
+
         left_half_circle(nord_fox['blue'], nord_fox['bg']),
 
         CurrentLayout(

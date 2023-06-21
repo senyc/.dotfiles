@@ -10,10 +10,6 @@ return require('packer').startup(function(use)
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
   use 'nvim-treesitter/playground'
   use 'nvim-tree/nvim-tree.lua'
-  use {
-    "akinsho/toggleterm.nvim",
-    tag = '*'
-  }
   use 'nvim-tree/nvim-web-devicons'
   use {
     'nvim-lualine/lualine.nvim',
@@ -51,11 +47,6 @@ return require('packer').startup(function(use)
   use 'f-person/git-blame.nvim'
   use 'ThePrimeagen/vim-be-good'
   use 'windwp/nvim-ts-autotag'
-  -- Older extension but works nice, may need to change green color
-  use 'senyc/doom-one.vim'
-  use 'barrett-ruth/live-server.nvim'
-  use 'xiyaowong/transparent.nvim'
-  use 'folke/tokyonight.nvim'
   use 'catppuccin/nvim'
 end)
 
