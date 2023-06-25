@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# This is only for starting programs - everything else can be done in ~/.xinitrc
+chromium &
+spotify-launcher &

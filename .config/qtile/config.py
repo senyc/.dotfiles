@@ -1,7 +1,12 @@
 from typing import List, Any
+import subprocess
+import os
+
+from libqtile import hook
 from libqtile import layout
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
+
 from primary_bar import primary_bar
 from side_bars import left_bar, right_bar
 
@@ -59,32 +64,41 @@ keys = [
     Key([mod], "b", lazy.spawn(browser), desc="Launch browser"),
     Key([mod], "t", lazy.window.toggle_floating(), desc="Toggle floating"),
     # Screens
-    Key([mod], "comma", lazy.to_screen(1)),
-    Key([mod, "control"], "comma", lazy.window.toscreen(1)),
-    Key([mod, "control"], "i", lazy.window.toscreen(1)),
+    Key([mod], "comma", lazy.to_screen(2)),
+    Key([mod, "control"], "comma", lazy.window.toscreen(2)),
     Key([mod], "period", lazy.to_screen(0)),
     Key([mod, "control"], "period", lazy.window.toscreen(0)),
-    Key([mod], "slash", lazy.to_screen(2)),
-    Key([mod, "control"], "slash", lazy.window.toscreen(2)),
+    Key([mod], "slash", lazy.to_screen(1)),
+    Key([mod, "control"], "slash", lazy.window.toscreen(1)),
 ]
-
 
 groups = [
     Group(
-        name='v',
-        label='v'
-    ),
-    Group(
         name='i',
-        label='i'
+        label='i',
+        spawn=terminal
     ),
     Group(
         name='r',
-        label='r'
+        label='r',
+        matches=[Match(wm_class='chromium')],
+        layout='monadtall'
+    ),
+    Group(
+        name='v',
+        label='v',
+        matches=[Match(wm_class='spotify')],
+        layout='monadtall'
+    ),
+    Group(
+        name='o',
+        label='o',
+        matches=[Match(wm_class='slack'), Match(wm_class='discord')],
+        layout='columns'
     ),
 ]
 
-for name in 'vir':
+for name in 'viro':
     keys.extend(
         [
             Key(
@@ -114,6 +128,7 @@ layouts = [
     # layout.TreeTab(),
     # layout.Zoomy(),
     # layout.Floating(),
+    # layout.Columns(),
 ]
 
 widget_defaults = dict(
@@ -126,7 +141,7 @@ widget_defaults = dict(
 screens = [
     Screen(top=primary_bar),
     Screen(top=left_bar),
-    Screen(top=(right_bar)),
+    Screen(top=right_bar),
 ]
 
 # Drag floating layouts.
@@ -157,13 +172,15 @@ floating_layout = layout.Floating(
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 reconfigure_screens = True
-
 auto_minimize = True
-
-# When using the Wayland backend, this can be used to configure input devices.
 wl_input_rules = None
+
+@hook.subscribe.startup_once
+def autostart():
+    file_dir = os.path.expanduser('~/.config/qtile/autostart')
+    subprocess.run([file_dir])
 
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
 # I changed it to qtile
-wimname = "qtile"
+wmname = "qtile"
