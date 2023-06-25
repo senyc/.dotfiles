@@ -70,8 +70,14 @@ require("catppuccin").setup({
     mini = false,
     illuminate = true,
     treesitter = true,
+    mason = true,
     -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
   },
 })
 
 vim.cmd.colorscheme "catppuccin"
+
+-- These make the numbers much easier to see they use the colors here:
+-- https://github.com/catppuccin/nvim/blob/main/lua/catppuccin/palettes/mocha.lua
+vim.cmd('hi CursorLineNr guifg=#a6e3a1')
+vim.cmd('hi LineNr guifg=#a6adc8')

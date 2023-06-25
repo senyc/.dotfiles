@@ -85,8 +85,8 @@ require("nvim-tree").setup { -- BEGIN_DEFAULT_OPTS
         bookmark = "󱚑",
         modified = "●",
         folder = {
-          arrow_closed = "",
-          arrow_open = "",
+          arrow_closed = "⏵",
+          arrow_open = "⏷",
           default = "",
           open = "",
           empty = "",

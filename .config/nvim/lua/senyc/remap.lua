@@ -23,6 +23,7 @@ map('v', 'K', ":m '<-2<CR>gv=gv", options)
 map('n', '<C-j>', 'a<cr><Esc>', options)
 map('n', 'J', 'mzJ`z', options)
 -- System clipboard adjustments
+
 map({'n','v'}, '<leader>Y', [["+Y]], options)
 map({'n','v'}, '<leader>y', [["+y]], options)
 map({'n','v'}, '<leader>P', [["+P]], options)
@@ -41,3 +42,15 @@ map("n", "<C-Up>", ":resize -2<CR>", options)
 map("n", "<C-Down>", ":resize +2<CR>", options)
 map("n", "<C-Left>", ":vertical resize -2<CR>", options)
 map("n", "<C-Right>", ":vertical resize +2<CR>", options)
+-- <C-i> to insert the next key to the right of the cursor
+-- vim.keymap.set("n", "<C-i>", "aX<Esc>r", {remap = true})
+
+map('n',
+  '<C-i>',
+  function ()
+    vim.cmd("normal! a_")
+    vim.api.nvim_feedkeys('r', 'n', true)
+  end,
+  options
+)
+

@@ -1,9 +1,11 @@
 local builtin = require('telescope.builtin')
-local options = {  noremap = true, silent = true }
-local map = vim.keymap.set
 local utils = require("telescope.utils")
 local actions = require("telescope.actions")
-require("telescope").setup({
+
+local options = { noremap = true, silent = true }
+local map = vim.keymap.set
+
+require("telescope").setup {
   defaults = {
     vimgrep_arguments = {
       'rg',
@@ -13,12 +15,9 @@ require("telescope").setup({
       '--column',
       '--smart-case',
       '--hidden',
+    }, mappings = { i = { ["<esc>"] = actions.close,
+      ["<c-c>"] = actions.close,
     },
-    mappings = {
-      i = {
-        ["<esc>"] = actions.close,
-        ["<c-c>"] = actions.close,
-      },
       n = {
         ["<esc>"] = actions.close,
         ["<c-c>"] = actions.close,
@@ -27,28 +26,28 @@ require("telescope").setup({
   },
   pickers = {
     find_files = {
-      theme = 'dropdown',
+      -- theme = 'dropdown',
     }
   },
-})
+}
 
-local find_files_home = function()
-  builtin.find_files({ cwd = vim.fn.expand('$HOME'), hiden = true})
+local function find_files_home()
+  builtin.find_files { cwd = vim.fn.expand('$HOME'), hiden = true}
 end
 
-local find_files_cwd = function()
-  builtin.find_files({cwd = utils.buffer_dir()})
+local function find_files_cwd()
+  builtin.find_files {cwd = utils.buffer_dir()}
 end
 
 -- to do remove this encapsulation buffer_dir is much better than cwd
-local grep_dynamic = function(environment)
-  builtin.grep_string({
+local function grep_dynamic(environment)
+  builtin.grep_string {
     cwd = vim.fn.expand(environment),
     search = vim.fn.input("Search " .. vim.fn.expand(environment) .. ": ")
-  })
+  }
 end
 
-local grep_git = function()
+local function grep_git()
   local git_dir = vim.fn.system(
     string.format(
       "git -C %s rev-parse --show-toplevel",
@@ -56,24 +55,24 @@ local grep_git = function()
     )
   )
   -- remove newline character from git_dir
-  git_dir = string.gsub(git_dir, "\n", "")
+  local sanitized_git_dir = string.gsub(git_dir, "\n", "")
   local opts = {
-    cwd = git_dir,
-    search = vim.fn.input("Git Grep " .. git_dir .. ": ")
+    cwd = sanitized_git_dir,
+    search = vim.fn.input("Git Grep " .. sanitized_git_dir .. ": ")
   }
   builtin.grep_string(opts)
 end
 
-local grep_home = function()
+local function grep_home()
   grep_dynamic('$HOME')
 end
 
-local grep_cwd = function()
-  local buffer_dir = builtin.utils.buffer_dir
-  builtin.grep_string({
+local function grep_cwd()
+  local buffer_dir = utils.buffer_dir()
+  builtin.grep_string {
     cwd = buffer_dir,
     search = vim.fn.input("Git Grep " .. buffer_dir .. ": ")
-  })
+  }
 end
 
 -- file <directive>

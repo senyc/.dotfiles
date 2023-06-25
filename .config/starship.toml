@@ -127,7 +127,7 @@ style = "bright-white"
 format = "$all_status$ahead_behind"
 
 [git_commit]
-only_detached = false
+only_detached = true
 
 [hostname]
 ssh_only = true

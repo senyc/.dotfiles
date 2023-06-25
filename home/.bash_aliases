@@ -7,3 +7,4 @@ alias updateall='echo "updating machine and apps"; sudo apt update && sudo apt u
 alias v='nvim'
 alias vim='nvim'
 alias clera='clear'
+alias code='nvim'
