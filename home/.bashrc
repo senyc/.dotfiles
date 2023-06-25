@@ -63,16 +63,6 @@ else
 fi
 unset color_prompt force_color_prompt
 
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
-
-# enable color support of ls and also add handy aliases
 
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval $(dircolors -b ~/.dircolors) || eval $(dircolors -b)
@@ -134,6 +124,12 @@ unset __conda_setup
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
+fi
+
+python_site_packages=$(find /usr/lib -type d -path "*/python*/site-packages")
+
+if [[ -n $python_site_packages ]]; then
+    export PATH="$python_site_packages:$PATH"
 fi
 
 # Create home configuration environment variable
