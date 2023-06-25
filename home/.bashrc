@@ -140,6 +140,11 @@ if [ -d "$HOME/node_modules" ] ; then
     PATH="$HOME/node_modules:$PATH"
 fi
 
+# Enable git autocomplete
+if [ -f ~/.git-completion.bash ]; then
+  . ~/.git-completion.bash
+fi
+
 eval "$(starship init bash)"
 
 # >>> conda initialize >>>
