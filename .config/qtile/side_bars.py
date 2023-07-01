@@ -14,6 +14,7 @@ left_bar = Bar(
         GroupBox(**group_box_kwargs),
 
         left_half_circle(nord_fox['blue'], nord_fox['bg']),
+
         CurrentLayout(
             background=nord_fox['blue'],
             foreground=nord_fox['white'],
@@ -29,7 +30,6 @@ left_bar = Bar(
         ),
 
         right_half_circle(nord_fox['fg_gutter'], nord_fox['bg']),
-
 
         Spacer(
             background=nord_fox['bg'],
@@ -58,6 +58,7 @@ right_bar = Bar(
         GroupBox(**group_box_kwargs),
 
         left_half_circle(nord_fox['blue'], nord_fox['bg']),
+
         CurrentLayout(
             background=nord_fox['blue'],
             foreground=nord_fox['white'],

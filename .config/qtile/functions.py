@@ -19,5 +19,3 @@ def get_monitor_resolutions() -> list[tuple]:
     else:
         return resolutions
 
-
-print(get_monitor_resolutions())

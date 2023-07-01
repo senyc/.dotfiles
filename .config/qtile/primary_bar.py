@@ -1,17 +1,17 @@
 from libqtile.bar import Bar
-from libqtile.widget.groupbox import GroupBox
 from libqtile.widget.clock import Clock
 from libqtile.widget.cpu import CPU
 from libqtile.widget.currentlayout import CurrentLayout
+from libqtile.widget.groupbox import GroupBox
 from libqtile.widget.memory import Memory
 from libqtile.widget.spacer import Spacer
 from libqtile.widget.systray import Systray
 from libqtile.widget.window_count import WindowCount
 from libqtile.widget.windowname import WindowName
 
-from unicodes import left_half_circle, right_arrow, right_half_circle
 from colors import nord_fox
 from options import group_box_kwargs, BAR_HEIGHT
+from unicodes import left_half_circle, right_arrow, right_half_circle
 
 
 primary_bar = Bar(
@@ -37,9 +37,9 @@ primary_bar = Bar(
         right_half_circle(nord_fox['fg_gutter'], nord_fox['bg']),
 
         WindowName(
-            format=' {state}{name}',
             background=nord_fox['bg'],
             foreground=nord_fox['fg'],
+            format=' {state}{name}',
             max_chars=50,
         ),
 
@@ -65,16 +65,16 @@ primary_bar = Bar(
         ),
 
         CPU(
-            format=' {freq_current}GHz {load_percent}% ',
             background=nord_fox['black'],
-            foreground=nord_fox['pink']
+            foreground=nord_fox['pink'],
+            format=' {freq_current}GHz {load_percent}% ',
         ),
 
 
         Memory(
-            format=' {MemUsed: .0f}{mm}/{MemTotal: .0f}{mm} ',
             background=nord_fox['black'],
-            foreground=nord_fox['cyan']
+            foreground=nord_fox['cyan'],
+            format=' {MemUsed: .0f}{mm}/{MemTotal: .0f}{mm} ',
         ),
     ],
     size=BAR_HEIGHT,

@@ -1,12 +1,13 @@
 from typing import List, Any
-import subprocess
 import os
+import subprocess
 
 from libqtile import hook
 from libqtile import layout
-from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile.config import Click, Drag, Group, Key, Match, Screen, ScratchPad, DropDown
 from libqtile.lazy import lazy
 
+from functions import get_monitor_resolutions
 from primary_bar import primary_bar
 from side_bars import left_bar, right_bar
 
@@ -15,6 +16,9 @@ terminal = 'alacritty'
 powermenu = 'run_powermenu'
 drun = 'run_rofi'
 browser = 'chromium'
+drop_down_one = 'firefox'
+
+monitor_count = len(get_monitor_resolutions())
 
 @lazy.function
 def minimize_all(qtile):
@@ -26,23 +30,23 @@ def minimize_all(qtile):
 keys = [
     # Switch between windows
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
-    Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
     Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
     Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
+    Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
     Key([mod], "space", lazy.layout.next(), desc="Move window focus to other window"),
     # Move windows between left/right columns or move up/down in current stack.
 
-    Key([mod], "f", lazy.window.toggle_maximize(), desc="Toggle fullscreen"),
     Key([mod, "shift"], "h", lazy.layout.shuffle_left(), desc="Move window to the left"),
-    Key([mod, "shift"], "l", lazy.layout.shuffle_right(), desc="Move window to the right"),
     Key([mod, "shift"], "j", lazy.layout.shuffle_down(), desc="Move window down"),
     Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
+    Key([mod, "shift"], "l", lazy.layout.shuffle_right(), desc="Move window to the right"),
+    Key([mod], "f", lazy.window.toggle_maximize(), desc="Toggle fullscreen"),
     # Grow windows. If current window is on the edge of screen and direction
     # will be to screen edge - window would shrink.
     Key([mod, "control"], "h", lazy.layout.grow_left(), desc="Grow window to the left"),
-    Key([mod, "control"], "l", lazy.layout.grow_right(), desc="Grow window to the right"),
     Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
     Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
+    Key([mod, "control"], "l", lazy.layout.grow_right(), desc="Grow window to the right"),
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
 
     # Toggle between split and unsplit sides of stack.
@@ -52,49 +56,43 @@ keys = [
     Key([mod, "shift"], "Return", lazy.layout.toggle_split(), desc="Toggle between split and unsplit sides of stack"),
 
     # Toggle between different layouts as defined below
-    Key([mod], "y", lazy.next_layout(), desc="Toggle between layouts"),
-    Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
-    Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod], "p", lazy.spawn(drun), desc="Spawn a command using rofi"),
-    Key([mod], "x", lazy.spawn(powermenu), desc="Spawn a command using powermenu"),
+    Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod], "d", minimize_all(), desc="Toggle minimization on all window"),
+    Key([mod], "p", lazy.spawn(drun), desc="Spawn a command using rofi"),
+    Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
+    Key([mod], "x", lazy.spawn(powermenu), desc="Spawn a command using powermenu"),
+    Key([mod], "y", lazy.next_layout(), desc="Toggle between layouts"),
     # Launch applications
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     Key([mod], "b", lazy.spawn(browser), desc="Launch browser"),
     Key([mod], "t", lazy.window.toggle_floating(), desc="Toggle floating"),
     # Screens
-    Key([mod], "comma", lazy.to_screen(2)),
-    Key([mod, "control"], "comma", lazy.window.toscreen(2)),
-    Key([mod], "period", lazy.to_screen(0)),
-    Key([mod, "control"], "period", lazy.window.toscreen(0)),
-    Key([mod], "slash", lazy.to_screen(1)),
-    Key([mod, "control"], "slash", lazy.window.toscreen(1)),
 ]
 
 groups = [
     Group(
-        name='i',
         label='i',
-        spawn=terminal
+        name='i',
+        spawn=terminal,
     ),
     Group(
-        name='r',
         label='r',
-        matches=[Match(wm_class='chromium')],
-        layout='monadtall'
+        matches=[Match(wm_class=browser)],
+        name='r',
+        spawn=browser,
     ),
     Group(
-        name='v',
         label='v',
         matches=[Match(wm_class='spotify')],
-        layout='monadtall'
+        name='v',
+        spawn='spotify-launcher',
     ),
     Group(
-        name='o',
+        exclusive=True,
         label='o',
         matches=[Match(wm_class='slack'), Match(wm_class='discord')],
-        layout='columns'
+        name='o',
     ),
 ]
 
@@ -116,6 +114,12 @@ for name in 'viro':
         ]
     )
 
+    groups.append(ScratchPad('scratchpad', [
+        DropDown('calendar/notes', drop_down_one, width=0.4, height=0.5, x=0.3, y=0.1, opacity=1, match=False),
+    ]))
+    keys.extend([
+        Key([mod], "backslash", lazy.group['scratchpad'].dropdown_toggle('calendar/notes')),
+    ])
 layouts = [
     layout.MonadTall(border_width=0, border_normal="#000000", border_focus="#ff0000"),
     layout.VerticalTile(border_width=0, border_normal="#000000", border_focus="#ff0000"),
@@ -137,12 +141,46 @@ widget_defaults = dict(
     padding=0,
 )
 
-# 0 is always primary monitor
-screens = [
-    Screen(top=primary_bar),
-    Screen(top=left_bar),
-    Screen(top=right_bar),
-]
+
+if monitor_count == 3:
+    # 0 is always primary monitor
+    screens = [
+        Screen(
+            top=primary_bar,
+            wallpaper='~/.dotfiles/images/horizontal.jpg',
+            wallpaper_mode='fill',
+        ),
+        Screen(
+            top=left_bar,
+            wallpaper='~/.dotfiles/images/vertical.jpg',
+            wallpaper_mode='fill',
+        ),
+        Screen(
+            top=right_bar,
+            wallpaper='~/.dotfiles/images/horizontal.jpg',
+            wallpaper_mode='fill',
+        ),
+    ]
+    keys.extend(
+        [
+            Key([mod, "control"], "comma", lazy.window.toscreen(2)),
+            Key([mod, "control"], "period", lazy.window.toscreen(0)),
+            Key([mod, "control"], "slash", lazy.window.toscreen(1)),
+            Key([mod], "comma", lazy.to_screen(2)),
+            Key([mod], "period", lazy.to_screen(0)),
+            Key([mod], "slash", lazy.to_screen(1)),
+        ]
+    )
+elif monitor_count == 1:
+    screens = [
+        Screen(top=primary_bar),
+    ]
+    keys.extend(
+        [
+            Key([mod, "control"], "period", lazy.window.toscreen(0)),
+            Key([mod], "period", lazy.to_screen(0)),
+        ]
+    )
 
 # Drag floating layouts.
 mouse = [
@@ -177,8 +215,10 @@ wl_input_rules = None
 
 @hook.subscribe.startup_once
 def autostart():
-    file_dir = os.path.expanduser('~/.config/qtile/autostart')
-    subprocess.run([file_dir])
+    if monitor_count == 3:
+        file_dir = os.path.expanduser('~/.config/qtile/autostart')
+        subprocess.run([file_dir])
+
 
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.

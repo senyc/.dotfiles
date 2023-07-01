@@ -8,7 +8,8 @@ def left_half_circle(fg_color, bg_color):
         fontsize=35,
         foreground=fg_color,
         background=bg_color,
-        padding=0)
+        padding=0
+    )
 
 
 def right_half_circle(fg_color, bg_color: Optional['str'] = None):
@@ -17,7 +18,8 @@ def right_half_circle(fg_color, bg_color: Optional['str'] = None):
         fontsize=35,
         background=bg_color,
         foreground=fg_color,
-        padding=0)
+        padding=0
+    )
 
 
 def lower_left_triangle(bg_color, fg_color):
@@ -26,7 +28,8 @@ def lower_left_triangle(bg_color, fg_color):
         padding=0,
         fontsize=50,
         background=bg_color,
-        foreground=fg_color)
+        foreground=fg_color
+    )
 
 
 def left_arrow(bg_color, fg_color):
@@ -35,7 +38,8 @@ def left_arrow(bg_color, fg_color):
         padding=0,
         fontsize=25,
         background=bg_color,
-        foreground=fg_color)
+        foreground=fg_color
+    )
 
 
 def right_arrow(bg_color, fg_color):
@@ -44,4 +48,5 @@ def right_arrow(bg_color, fg_color):
         padding=0,
         fontsize=35,
         background=bg_color,
-        foreground=fg_color)
+        foreground=fg_color
+    )

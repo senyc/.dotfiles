@@ -22,7 +22,7 @@ require('lualine').setup {
     lualine_c = {{
       'filename',
       file_status = true,
-      path = 2
+      path = 4
     }},
     lualine_x = {'encoding', 'fileformat', 'filetype'},
     lualine_y = {'progress'},

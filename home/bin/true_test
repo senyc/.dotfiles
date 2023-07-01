@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+echo $-
+function test_true {
+    if [[ $1 ]]; then
+        echo "true $1"
+    else
+        echo "false $1"
+    fi
+}
+
+echo "testing true"
+test_true true
+
+echo "testing false"
+test_true false
+
+echo "testing with subshell"
+
+echo "testing false"
+false
+test_true $?
+
+echo "testing true"
+true
+test_true $?
+
+echo "testing 0"
+test_true 0
+
+echo "testing 1"
+test_true 1
+
+echo "safety"
+
+test_true 
