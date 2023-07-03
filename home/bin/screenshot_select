@@ -5,4 +5,4 @@ if [[ -d "$HOME/Pictures/screenshots" ]]; then
   mkdir -p "$HOME/Pictures/screenshots"
 fi
 
-scrot -s -i '%Y-%m-%d-%M-%s_scrot.png' -e 'mv $f ~/Pictures/screenshots'
+scrot -s -i -z -f -p -q 100  '%Y-%m-%d-%M-%s_screenshot.png' -e 'mv $f ~/Pictures/screenshots && xclip -selection clipboard -target image/png -i ~/Pictures/screenshots/$f'

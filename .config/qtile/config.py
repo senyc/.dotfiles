@@ -11,12 +11,12 @@ from functions import get_monitor_resolutions
 from primary_bar import primary_bar
 from side_bars import left_bar, right_bar
 
-mod = 'mod4'
-terminal = 'alacritty'
-powermenu = 'run_powermenu'
-drun = 'run_rofi'
 browser = 'chromium'
 drop_down_one = 'firefox'
+drun = 'run_rofi'
+mod = 'mod4'
+powermenu = 'run_powermenu'
+terminal = 'alacritty'
 
 monitor_count = len(get_monitor_resolutions())
 
