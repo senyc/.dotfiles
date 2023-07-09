@@ -41,3 +41,4 @@ lua
 decrementing
 whitelist
 xinitrc
+mason:

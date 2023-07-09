@@ -1,52 +1,27 @@
--- TODO use lazy
 return require('packer').startup(function(use)
-  use 'wbthomason/packer.nvim'
-  use {
-    'nvim-telescope/telescope.nvim',
-    tag = '0.1.1',
-    branch = '0.1.x',
-    requires = { {'nvim-lua/plenary.nvim'} }
-  }
-  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
-  use 'nvim-treesitter/playground'
+  use 'L3MON4D3/LuaSnip'
+  use 'RRethy/vim-illuminate'
+  use 'ThePrimeagen/vim-be-good'
+  use 'akinsho/bufferline.nvim'
+  use 'catppuccin/nvim'
+  use 'f-person/git-blame.nvim'
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/nvim-cmp'
+  use 'kylechui/nvim-surround'
+  use 'lewis6991/gitsigns.nvim'
+  use 'mbbill/undotree'
+  use 'neovim/nvim-lspconfig'
+  use 'nvim-lua/plenary.nvim'
+  use 'nvim-lualine/lualine.nvim'
+  use 'nvim-telescope/telescope.nvim'
   use 'nvim-tree/nvim-tree.lua'
   use 'nvim-tree/nvim-web-devicons'
-  use {
-    'nvim-lualine/lualine.nvim',
-    requires = { 'nvim-tree/nvim-web-devicons',
-    opt = true }
-  }
-  use {
-    'akinsho/bufferline.nvim',
-    tag = '*',
-    requires = 'nvim-tree/nvim-web-devicons'
-  }
-  use 'kylechui/nvim-surround'
+  use 'nvim-treesitter/playground'
   use 'terrortylor/nvim-comment'
-  use 'mbbill/undotree'
-  use 'tpope/vim-fugitive'
-  use {
-    'VonHeikemen/lsp-zero.nvim',
-    branch = 'v2.x',
-    requires = {
-      {'neovim/nvim-lspconfig'},
-      { 'williamboman/mason.nvim',
-        run = function()
-          pcall(vim.cmd, 'MasonUpdate')
-        end,
-      },
-      {'williamboman/mason-lspconfig.nvim'},
-
-      {'hrsh7th/nvim-cmp'},
-      {'hrsh7th/cmp-nvim-lsp'},
-      {'L3MON4D3/LuaSnip'},
-    }
-  }
-  use 'lewis6991/gitsigns.nvim'
-  use 'RRethy/vim-illuminate'
-  use 'f-person/git-blame.nvim'
-  use 'ThePrimeagen/vim-be-good'
+  use 'wbthomason/packer.nvim'
+  use 'williamboman/mason-lspconfig.nvim'
   use 'windwp/nvim-ts-autotag'
-  use 'catppuccin/nvim'
+  use { "williamboman/mason.nvim", run = ":MasonUpdate" }
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 end)
 

@@ -1,6 +1,5 @@
 require("mason").setup {
-    ui = {
-      border='rounded'
-    }
+  ui = {
+    border = 'rounded'
   }
-
+}

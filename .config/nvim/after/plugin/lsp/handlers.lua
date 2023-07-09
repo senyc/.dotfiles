@@ -1,4 +1,3 @@
-local lsp_zero = require('lsp-zero')
 local lspconfig = require('lspconfig')
 
 local servers = {
@@ -11,37 +10,43 @@ local servers = {
   'html',
   'solargraph',
   'bashls',
-  'lua_ls'
+  'lua_ls',
 }
 
-local function on_attach(client, bufnr)
-  local opts = {buffer = bufnr, remap = false}
+-- To use the current client replace _ with client
+local function on_attach(_, bufnr)
+  local opts = { buffer = bufnr, remap = false, silent = true }
 
-  vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-  vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
+  vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+  vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
   -- Find symbols
-  vim.keymap.set("n", "<leader>fs", function() vim.lsp.buf.workspace_symbol() end, opts)
-  vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
-  -- set up similar to the default [ and ] actions 
-  vim.keymap.set("n", "[d", function() vim.diagnostic.goto_prev() end, opts)
-  vim.keymap.set("n", "]d", function() vim.diagnostic.goto_next() end, opts)
-  vim.keymap.set("n", "<leader>.", function() vim.lsp.buf.code_action() end, opts)
+  vim.keymap.set("n", "<leader>fs", vim.lsp.buf.workspace_symbol, opts)
+  vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
+  -- set up similar to the default [ and ] actions
+  vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+  vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+  vim.keymap.set("n", "<leader>.", vim.lsp.buf.code_action, opts)
+  vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, opts)
+  vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+  vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
 
-  vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
-  vim.keymap.set("n", "gr", function() vim.lsp.buf.references() end, opts)
-  vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+  vim.keymap.set("n", "<leader>=", vim.lsp.buf.format, opts)
+  vim.keymap.set("v", "<leader>=", function()
+      vim.lsp.buf.format()
+      vim.api.nvim_input("<esc>")
+    end,
+    opts
+  )
 end
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 -- Configure auto completion capabilities and keybinds for language server
-for _, lsp in ipairs(servers) do
-   local configurations = {
+for _, lsp in pairs(servers) do
+  local configurations = {
     on_attach = on_attach,
     capabilities = capabilities,
   }
 
-  -- Checks for some specific language servers that require specific settings
-  --   TODO pull this out into another file
   if lsp == 'lua_ls' then
     configurations.settings = {
       Lua = {
@@ -49,7 +54,7 @@ for _, lsp in ipairs(servers) do
           version = 'LuaJIT',
         },
         diagnostics = {
-          globals = {'vim'},
+          globals = { 'vim' },
         },
         workspace = {
           library = vim.api.nvim_get_runtime_file("", true),
@@ -57,9 +62,11 @@ for _, lsp in ipairs(servers) do
         telemetry = {
           enable = false,
         },
+        format = {
+          enable = true,
+        },
       },
     }
-
   elseif lsp == 'html' then
     configurations.settings = {
       css = {
@@ -75,27 +82,24 @@ for _, lsp in ipairs(servers) do
 end
 
 local signs = {
-  error = '>>',
-  warn = '->',
-  hint = '>-',
-  info = '--'
+  Error = '>>',
+  Warn = '->',
+  Hint = '>-',
+  Info = '--'
 }
 
-lsp_zero.set_sign_icons(signs)
-
-local diagnostic_signs = {
-  { name = "DiagnosticSignError", text = signs.error },
-  { name = "DiagnosticSignWarn", text = signs.warn },
-  { name = "DiagnosticSignHint", text = signs.hint },
-  { name = "DiagnosticSignInfo", text = signs.info },
-}
+for type, icon in pairs(signs) do
+  local name = "DiagnosticSign" .. type
+  local mapping = { text = icon, texthl = name, numhl = "" }
+  vim.fn.sign_define(name, mapping)
+end
 
 local config = {
-  virtual_text = {spacing = 2},
-  -- show signs
-  signs = {
-    active = diagnostic_signs,
+  virtual_text = {
+    -- prefix = "●",
+    spacing = 2,
   },
+  signs = true,
   update_in_insert = true,
   underline = false,
   severity_sort = true,
@@ -119,4 +123,3 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
   border = "rounded",
 })
-

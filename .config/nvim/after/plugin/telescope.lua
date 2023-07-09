@@ -15,9 +15,12 @@ require("telescope").setup {
       '--column',
       '--smart-case',
       '--hidden',
-    }, mappings = { i = { ["<esc>"] = actions.close,
-      ["<c-c>"] = actions.close,
     },
+    mappings = {
+      i = {
+        ["<esc>"] = actions.close,
+        ["<c-c>"] = actions.close,
+      },
       n = {
         ["<esc>"] = actions.close,
         ["<c-c>"] = actions.close,
@@ -32,11 +35,11 @@ require("telescope").setup {
 }
 
 local function find_files_home()
-  builtin.find_files { cwd = vim.fn.expand('$HOME'), hiden = true}
+  builtin.find_files { cwd = vim.fn.expand('$HOME'), hiden = true }
 end
 
 local function find_files_cwd()
-  builtin.find_files {cwd = utils.buffer_dir()}
+  builtin.find_files { cwd = utils.buffer_dir() }
 end
 
 -- to do remove this encapsulation buffer_dir is much better than cwd
@@ -86,4 +89,3 @@ map('n', '<leader>fr', builtin.lsp_references)
 map('n', '<leader>gh', grep_home, options)
 map('n', '<leader>gf', grep_cwd, options)
 map('n', '<leader>gg', grep_git, options)
-
