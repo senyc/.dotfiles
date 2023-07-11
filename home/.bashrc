@@ -120,8 +120,6 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
-
-
 # Setup aliases for ssh connections - separate to hide IPs
 if [ -f ~/.bash_connections ]; then
     . ~/.bash_connections
