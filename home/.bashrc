@@ -35,6 +35,14 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
+export PATH=$PATH:/usr/local/bin
+export TERM='screen-256color'
+export EDITOR='nvim'
+export VISUAL='nvim'
+
+# Create home configuration environment variable
+export XDG_CONFIG_HOME="$HOME/.config"
+
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
     xterm-color|*-256color) color_prompt=yes;;
@@ -43,7 +51,7 @@ esac
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-#force_color_prompt=yes
+force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -76,7 +84,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
 alias ll='ls -alF'
@@ -107,45 +115,17 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/senyc/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/senyc/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/senyc/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/senyc/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
-
-python_site_packages=$(find /usr/lib -type d -path "*/python*/site-packages")
-
-if [[ -n $python_site_packages ]]; then
-    export PATH="$python_site_packages:$PATH"
-fi
-
-# Create home configuration environment variable
-export XDG_CONFIG_HOME="$HOME/.config"
-
-# Path additions
-export PATH=$PATH:/usr/local/bin
-export TERM='screen-256color'
-export EDITOR='nvim'
-export VISUAL='nvim'
 
 # Setup aliases for ssh connections - separate to hide IPs
 if [ -f ~/.bash_connections ]; then
     . ~/.bash_connections
 fi
 
+# Node version manager
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -153,5 +133,24 @@ export NVM_DIR="$HOME/.config/nvm"
 if [ -d "$HOME/node_modules" ] ; then
     PATH="$HOME/node_modules:$PATH"
 fi
+
+# Enable git autocomplete
+if [ -f ~/.git-completion.bash ]; then
+  . ~/.git-completion.bash
+fi
+
+
+# Conda init
+__conda_setup="$('/home/senyc/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/senyc/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/senyc/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/senyc/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
 
 eval "$(starship init bash)"

@@ -44,6 +44,7 @@ link_all_source_to_local_machine() {
         fi
     done
 
+    # Return value is not pure so this will work even if most recent call is a failure
     if [ "$?" != 0 ]; then
         echo -e "Nothing found to link for ${GREEN}${source_target_root}${NC}, continuing...\n"
         return 0

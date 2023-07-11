@@ -38,3 +38,7 @@ NvimTree
 toggleterm
 TelescopePrompt
 lua
+decrementing
+whitelist
+xinitrc
+mason:

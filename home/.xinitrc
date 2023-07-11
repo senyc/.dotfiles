@@ -1,13 +1,9 @@
-#!/bin/sh
-xset -b
+#!/usr/bin/sh
 
-# Start compsitor
-picom &
-
-# Hide the mouse cursor
 unclutter --jitter 10 --start-hidden --fork
-nitrogen --set-zoom-fill "$HOME/Pictures/mountain.jpg"
 xbindkeys
+picom &
+# Cursor theme
+xrdb ~/.Xresources
+# Make sure this is the last line
 qtile start
-xrandr --setprovideroutputsource modesetting NVIDIA-0
-xrandr --auto

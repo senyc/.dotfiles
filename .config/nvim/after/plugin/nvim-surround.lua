@@ -1,4 +1,4 @@
-require("nvim-surround").setup()
+require('nvim-surround').setup()
 
 --     Old text                    Command         New text
 -- --------------------------------------------------------------------------------

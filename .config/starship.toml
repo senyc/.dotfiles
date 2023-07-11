@@ -107,13 +107,14 @@ format = "took [$duration]($style) "
 
 [directory]
 truncation_length = 5
-format = " @ [$path]($style)[$lock_symbol]($lock_style) "
+home_symbol="~"
+format = "at [$path]($style)[$lock_symbol]($lock_style) "
 
 [jobs]
 symbol = ' '
 
 [git_status]
-renamed = "[R${count}](black) "
+renamed = "[R${count}](orange) "
 deleted = "[D${count}](red) "
 ahead = "󰁝 ${count} "
 behind = "󰁅 ${count} "
@@ -125,9 +126,12 @@ staged = "[S${count}](green) "
 style = "bright-white"
 format = "$all_status$ahead_behind"
 
+[git_commit]
+only_detached = true
+
 [hostname]
-ssh_only = false
-format = "[$hostname]($style)"
+ssh_only = true
+format = " in [$hostname]($style)"
 trim_at = "="
 style = "blue"
 disabled = false
@@ -135,15 +139,16 @@ disabled = false
 [username]
 style_user = "bold green"
 show_always = true
+format = "[$user]($style) "
 
 [shell]
-disabled = false
+disabled = true
 bash_indicator = " "
 zsh_indicator = "Zsh "
 format = '[$indicator\] ](red)'
 
 [os]
-disabled = false
+disabled = true
 symbols.Arch = "󰣇 "
 symbols.Pop = " "
 symbols.Ubuntu= " "
