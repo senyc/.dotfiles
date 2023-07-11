@@ -8,6 +8,7 @@ vim.cmd("autocmd FileType * set formatoptions-=cro")
 vim.cmd(':set formatoptions-=cro')
 vim.opt.formatoptions = ''
 
+-- Default tab sizing
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
@@ -19,7 +20,6 @@ vim.opt.termguicolors = true
 
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
--- Enable smartcase
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 

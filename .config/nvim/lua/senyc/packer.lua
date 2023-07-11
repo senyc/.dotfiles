@@ -1,3 +1,4 @@
+-- Many of these are dependencies so remove with caution
 return require('packer').startup(function(use)
   use 'L3MON4D3/LuaSnip'
   use 'RRethy/vim-illuminate'

@@ -114,7 +114,7 @@ format = "at [$path]($style)[$lock_symbol]($lock_style) "
 symbol = ' '
 
 [git_status]
-renamed = "[R${count}](black) "
+renamed = "[R${count}](orange) "
 deleted = "[D${count}](red) "
 ahead = "󰁝 ${count} "
 behind = "󰁅 ${count} "

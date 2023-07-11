@@ -34,8 +34,6 @@ map("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], op
 map('n', '<leader>wr', [[m`:%s/\s\+$//e<cr>``]], options)
 -- Save and quit on <leader>wq
 map('n', '<leader>wq', ":wa <cr> :qa!<cr>")
--- Remap to highlight all of the file - I like incrementing
--- map('n', '<C-a>', 'GVgg', options)
 -- Resize windows w/ control and arrows
 map("n", "<C-Up>", ":resize -2<CR>", options)
 map("n", "<C-Down>", ":resize +2<CR>", options)

@@ -27,11 +27,6 @@ require("telescope").setup {
       },
     },
   },
-  pickers = {
-    find_files = {
-      -- theme = 'dropdown',
-    }
-  },
 }
 
 local function find_files_home()
