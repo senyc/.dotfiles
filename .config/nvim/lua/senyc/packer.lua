@@ -5,6 +5,7 @@ return require('packer').startup(function(use)
   use 'ThePrimeagen/vim-be-good'
   use 'akinsho/bufferline.nvim'
   use 'catppuccin/nvim'
+  use 'ellisonleao/glow.nvim'
   use 'f-person/git-blame.nvim'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/nvim-cmp'
