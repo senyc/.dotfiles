@@ -13,9 +13,11 @@ print_help() {
     echo
     echo "options"
     echo "  -h --help          Displays this help and exits"
-    echo "  -f --force         Automatically confirms linking and the deletion of files"
-    echo "  -r -d --remove     Automatically confirms the deletion of files"
+    echo "  -c --config        Only searches files in ~/.config"
+    echo "  -o --home          Only searches files in the user's home directory"
     echo "  -l --link          Automatically confirms the linking of files"
+    echo "  -r -d --remove     Automatically confirms the deletion of files"
+    echo "  -f --force         Automatically confirms linking and the deletion of files"
 }
 
 path_exists() {
@@ -78,10 +80,12 @@ setup_configuration() {
     fi
 }
 
-while getopts ":hfrdl-:" arg; do
-    user_wants_auto_deletion='no'
-    user_wants_auto_linking='no'
+user_only_wants_home_configured='no'
+user_only_wants_config_configured='no'
+user_wants_auto_deletion='no'
+user_wants_auto_linking='no'
 
+while getopts ":hcofrdl-:" arg; do
     case "$arg" in
         h)
             print_help
@@ -89,6 +93,12 @@ while getopts ":hfrdl-:" arg; do
             ;;
         r)
             user_wants_auto_deletion='yes'
+            ;;
+        c)
+            user_only_wants_config_configured='yes'
+            ;;
+        o)
+            user_only_wants_home_configured='yes'
             ;;
         d)
             user_wants_auto_deletion='yes'
@@ -112,9 +122,18 @@ while getopts ":hfrdl-:" arg; do
                 link)
                     user_wants_auto_linking='yes'
                     ;;
+                config)
+                    user_only_wants_config_configured='yes'
+                    ;;
+                home)
+                    user_only_wants_home_configured='yes'
+                    ;;
                 force)
                     user_wants_auto_deletion='yes'
                     user_wants_auto_linking='yes'
+                    ;; 
+                '') # Handling the -- argument
+                    echo "Found -- argument"
                     ;;
                 *)
                     echo "./setup: illegal option --$OPTARG"
@@ -124,6 +143,7 @@ while getopts ":hfrdl-:" arg; do
             esac
             ;;
         \?)
+            echo "./setup: illegal option -$OPTARG"
             print_help
             exit
             ;;
@@ -136,6 +156,17 @@ source_config_path="${script_path}/.config"
 local_machine_home_path="$HOME"
 local_machine_config_path="$HOME/.config"
 
-setup_configuration "$source_home_path" "$local_machine_home_path" "$user_wants_auto_deletion" "$user_wants_auto_linking"
-setup_configuration "$source_config_path" "$local_machine_config_path" "$user_wants_auto_deletion" "$user_wants_auto_linking"
+if [[ $user_only_wants_home_configured = 'no' ]]; then
+    setup_configuration "$source_home_path" "$local_machine_home_path" "$user_wants_auto_deletion" "$user_wants_auto_linking"
+fi
+
+
+if [[ $user_only_wants_config_configured = 'no' ]]; then
+    setup_configuration "$source_config_path" "$local_machine_config_path" "$user_wants_auto_deletion" "$user_wants_auto_linking"
+fi
+
+# 
+if [[ $user_only_wants_config_configured = 'yes' ]] && [[ $user_only_wants_home_configured = 'yes' ]]; then
+    echo "Nothing to do" 
+fi
 

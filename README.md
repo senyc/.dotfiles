@@ -1,8 +1,32 @@
 # senyc's dotfiles
 
+## Installation 
+
+### GitHub
+
+```bash
+git clone https://github.com/senyc/.dotfiles
+cd .dotfiles
+```
+
 ## Usage 
 
-run `./setup` and if any of the files in `home` or `.config` do not exist links will be made pointing to files/dirs present in this repo.
+This repository contains two primary sections:
+  1. `home` which contains all files/directories that live in the user's home path (`$HOME`)
+  2. `config` which contains all files/directories that live in the user's standard configuration path often known as `$XDG_CONFIG_HOME`
 
+To dynamically link the files in the source repository to the system path the shell script `setup` can be invoked to search the user's file system. Upon the user's confirmation, link files that don't already exists are linked.For files that already exist, the user is prompted on if they would like to remove them for linking. All prompts can be skipped with the appropriate option.
 
-All values and configurations are subject to change.
+```
+Usage: ./setup OPTION...
+Utility for linking system configuration files to files contained in this repository.
+Also gives the opportunity to remove files that are not linked.
+
+options
+  -h --help          Displays this help and exits
+  -c --config        Only searches files in ~/.config
+  -o --home          Only searches files in the user's home directory
+  -l --link          Automatically confirms the linking of files
+  -r -d --remove     Automatically confirms the deletion of files
+  -f --force         Automatically confirms linking and the deletion of files
+```
