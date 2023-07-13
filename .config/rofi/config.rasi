@@ -5,7 +5,7 @@
  * 
  * Configuration For Rofi Version: 1.7.3
  **/
-@import "~/.config/rofi/colors/onedark.rasi"
+
 configuration {
 	/*---------- General setting ----------*/
 	modi: "drun,run,filebrowser,window";
@@ -82,8 +82,8 @@ configuration {
 	display-filebrowser: "Files";
 
 	/*---------- Misc setting ----------*/
-	terminal: "rofi-sensible-terminal";
-	font: "Mono 12";
+    terminal: "alacritty";
+    font: "JetBrains Mono Nerd Font 12";
 	sort: false;
 	threads: 0;
 	click-to-exit: true;
@@ -107,7 +107,7 @@ configuration {
 	kb-primary-paste: "Control+V,Shift+Insert";
 	kb-secondary-paste: "Control+v,Insert";
 	kb-clear-line: "Control+u";
-	kb-move-front: "Alt+a";
+	kb-move-front: "Alt+v";
 	kb-move-end: "Alt+e";
 	kb-move-word-back: "Alt+b,Control+Left";
 	kb-move-word-forward: "Alt+f,Control+Right";
@@ -177,3 +177,5 @@ configuration {
 	me-accept-entry: "MouseDPrimary";
 	me-accept-custom: "Control+MouseDPrimary";
 }
+/* Default theme*/
+@theme "/usr/share/rofi/themes/Monokai.rasi"

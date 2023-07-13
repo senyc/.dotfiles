@@ -1,87 +1,56 @@
 #!/usr/bin/env bash
 
-## Author : Aditya Shakya (adi1090x)
-## Github : @adi1090x
-#
-## Rofi   : Power Menu
-#
-## Available Styles
-#
-## style-1   style-2   style-3   style-4   style-5
+file_name="powermenu_theme.rasi"
 
-# Current Theme
-dir="$HOME/.config/rofi/powermenu/type-4"
-theme='style-5'
+if [[ -n $XDG_CONFIG_HOME ]]; then
+    dir="/$XDG_CONFIG_HOME/rofi/themes/$file_name"
+else
+    dir="/$HOME/.config/rofi/themes/$file_name"
+fi
 
-# CMDs
-uptime="`uptime -p | sed -e 's/up //g'`"
+uptime="$(uptime -p | sed -e 's/up //g')"
 
-# Options
 shutdown=''
 reboot=''
 lock=''
 suspend=''
-logout=''
 
-# Rofi CMD
-rofi_cmd() {
-	rofi -dmenu \
-		-p "I'm sorry ${USER}..." \
-		-mesg "Uptime: $uptime" \
-		-theme ${dir}/${theme}.rasi
-}
+rofi_cmd() { rofi -dmenu -p "I'm sorry ${USER}..." -mesg "Uptime: $uptime" -theme "$dir"; }
+run_rofi() { echo -e "$lock\n$suspend\n$reboot\n$shutdown" | rofi_cmd; }
 
-
-# Pass variables to rofi dmenu
-run_rofi() {
-	echo -e "$lock\n$suspend\n$logout\n$reboot\n$shutdown" | rofi_cmd
-}
-
-# Execute Command
 run_cmd() {
     if [[ $1 == '--shutdown' ]]; then
         shutdown -h now
     elif [[ $1 == '--reboot' ]]; then
-        reboot -h now
+        reboot
     elif [[ $1 == '--suspend' ]]; then
         mpc -q pause
         amixer set Master mute
         systemctl suspend
-    elif [[ $1 == '--logout' ]]; then
-        if [[ "$DESKTOP_SESSION" == 'openbox' ]]; then
-            openbox --exit
-        elif [[ "$DESKTOP_SESSION" == 'bspwm' ]]; then
-            bspc quit
-        elif [[ "$DESKTOP_SESSION" == 'i3' ]]; then
-            i3-msg exit
-        elif [[ "$DESKTOP_SESSION" == 'plasma' ]]; then
-            qdbus org.kde.ksmserver /KSMServer logout 0 0 0
-        fi
-    else
-        exit 0
+    elif [[ $1 == '--lock' ]]; then
+        if [[ -x '/usr/bin/i3lock' ]]; then
+            i3lock
+		elif [[ -x '/usr/bin/betterlockscreen' ]]; then
+			betterlockscreen -l
+		fi
     fi
 }
 
-# Actions
-chosen="$(run_rofi)"
-case ${chosen} in
-    $shutdown)
+case "$(run_rofi)" in
+    "$shutdown")
 		run_cmd --shutdown
         ;;
-    $reboot)
+    "$reboot")
 		run_cmd --reboot
         ;;
-    $lock)
-		if [[ -x '/usr/bin/betterlockscreen' ]]; then
-			betterlockscreen -l
-		elif [[ -x '/usr/bin/i3lock' ]]; then
-			i3lock
-		fi
+    "$lock")
+        run_cmd --lock
         ;;
-    $suspend)
+    "$suspend")
 		run_cmd --suspend
         ;;
-    $logout)
-		run_cmd --logout
+    /?)
+        exit 1
         ;;
 esac
+

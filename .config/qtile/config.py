@@ -13,7 +13,7 @@ from side_bars import left_bar, right_bar
 
 browser = 'chromium'
 drop_down_one = 'firefox'
-drun = 'run_rofi'
+drun = 'run_drun'
 mod = 'mod4'
 powermenu = 'run_powermenu'
 terminal = 'alacritty'
