@@ -159,17 +159,17 @@ if monitor_count == 3:
     screens = [
         Screen(
             top=primary_bar,
-            wallpaper='~/.dotfiles/images/horizontal.jpg',
+            wallpaper='~/.dotfiles/backgrounds/horizontal.jpg',
             wallpaper_mode='fill',
         ),
         Screen(
             top=left_bar,
-            wallpaper='~/.dotfiles/images/vertical.jpg',
+            wallpaper='~/.dotfiles/backgrounds/vertical.jpg',
             wallpaper_mode='fill',
         ),
         Screen(
             top=right_bar,
-            wallpaper='~/.dotfiles/images/horizontal.jpg',
+            wallpaper='~/.dotfiles/backgrounds/horizontal.jpg',
             wallpaper_mode='fill',
         ),
     ]
