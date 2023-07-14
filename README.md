@@ -10,6 +10,10 @@ git clone https://github.com/senyc/.dotfiles
 cd .dotfiles
 ```
 
+## Photos
+
+![2023-07-13-24-1689294261_screenshot](https://github.com/senyc/.dotfiles/assets/95313103/bf924eb3-4900-4933-b490-7019e9a11fae)
+
 ## Usage 
 
 This repository contains two primary sections:
@@ -31,8 +35,3 @@ options
   -r -d --remove     Automatically confirms the deletion of files
   -f --force         Automatically confirms linking and the deletion of files
 ```
-
-## Photos
-
-![2023-07-13-24-1689294261_screenshot](https://github.com/senyc/.dotfiles/assets/95313103/bf924eb3-4900-4933-b490-7019e9a11fae)
-
