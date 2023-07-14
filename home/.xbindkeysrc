@@ -25,3 +25,5 @@
 "screenshot_select"
     m:0x0 + c:107
     Print
+"screen_screenshot_select"
+    Shift + Print

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+
+if [[ -d "$HOME/Pictures/screenshots" ]]; then
+  mkdir -p "$HOME/Pictures/screenshots"
+fi
+
+scrot -u -i -z -p -q 100  '%Y-%m-%d-%M-%s_screenshot.png' -e 'mv $f ~/Pictures/screenshots && xclip -selection clipboard -target image/png -i ~/Pictures/screenshots/$f'
