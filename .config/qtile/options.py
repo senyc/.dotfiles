@@ -1,6 +1,7 @@
 from colors import nord_fox
 
 BAR_HEIGHT = 28
+MOD_KEY = 'mod4'
 
 group_box_kwargs = {
     "active": nord_fox['white'],
