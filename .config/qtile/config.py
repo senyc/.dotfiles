@@ -153,39 +153,51 @@ widget_defaults = dict(
     padding=0,
 )
 
+vertical_background: str = '~/.dotfiles/backgrounds/vertical.jpeg'
+horizontal_background: str = '~/.dotfiles/backgrounds/horizontal.jpeg'
 
+# 0 is always primary monitor
+# Assumes that one monitor is going to use the vertical monitor background
 if monitor_count == 3:
-    # 0 is always primary monitor
     screens = [
         Screen(
             top=primary_bar,
-            wallpaper='~/.dotfiles/backgrounds/horizontal.jpg',
+            wallpaper=horizontal_background,
             wallpaper_mode='fill',
         ),
         Screen(
             top=left_bar,
-            wallpaper='~/.dotfiles/backgrounds/vertical.jpg',
+            wallpaper=vertical_background,
             wallpaper_mode='fill',
         ),
         Screen(
             top=right_bar,
-            wallpaper='~/.dotfiles/backgrounds/horizontal.jpg',
+            wallpaper=horizontal_background,
             wallpaper_mode='fill',
         ),
     ]
-    keys.extend(
-        [
-            Key([mod, "control"], "comma", lazy.window.toscreen(2)),
-            Key([mod, "control"], "period", lazy.window.toscreen(0)),
-            Key([mod, "control"], "slash", lazy.window.toscreen(1)),
-            Key([mod], "comma", lazy.to_screen(2)),
-            Key([mod], "period", lazy.to_screen(0)),
-            Key([mod], "slash", lazy.to_screen(1)),
-        ]
-    )
+
+elif monitor_count == 2:
+    screens = [
+        Screen(
+            top=primary_bar,
+            wallpaper=horizontal_background,
+            wallpaper_mode='fill',
+        ),
+        Screen(
+            top=left_bar,
+            wallpaper=vertical_background,
+            wallpaper_mode='fill',
+        )
+    ]
+
 elif monitor_count == 1:
     screens = [
-        Screen(top=primary_bar),
+        Screen(
+            top=primary_bar,
+            wallpaper=horizontal_background,
+            wallpaper_mode='fill',
+        ),
     ]
     keys.extend(
         [
@@ -225,10 +237,11 @@ focus_on_window_activation = "smart"
 reconfigure_screens = True
 wl_input_rules = None
 
+
 @hook.subscribe.startup_once
 def autostart():
     if monitor_count == 3:
-        file_dir = os.path.expanduser('~/.config/qtile/autostart')
+        file_dir = os.path.expanduser('~/.config/qtile/three_monitor_mappings')
         subprocess.run([file_dir])
 
 
