@@ -1,3 +1,4 @@
+
 # senyc's dotfiles
 
 ## Installation 
@@ -33,4 +34,5 @@ options
 
 ## Photos
 
-![2023-07-13-57-1689292649_screenshot](https://github.com/senyc/.dotfiles/assets/95313103/39f113ae-4274-4ab4-982f-126c9e320426)
+![2023-07-13-24-1689294261_screenshot](https://github.com/senyc/.dotfiles/assets/95313103/bf924eb3-4900-4933-b490-7019e9a11fae)
+
