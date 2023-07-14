@@ -8,7 +8,6 @@ def get_monitor_resolutions() -> list[tuple]:
         display = xdisplay.Display()
         screen = display.screen()
         resources = screen.root.xrandr_get_screen_resources()._data
-
         for output in resources['outputs']:
             monitor = display.xrandr_get_output_info(output, resources['config_timestamp'])._data
             if monitor['connection'] == RR_Connected and monitor['crtc']:
@@ -18,4 +17,4 @@ def get_monitor_resolutions() -> list[tuple]:
         return [(0, 0)]
     else:
         return resolutions
-
+print(get_monitor_resolutions())
