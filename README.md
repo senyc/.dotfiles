@@ -30,3 +30,7 @@ options
   -r -d --remove     Automatically confirms the deletion of files
   -f --force         Automatically confirms linking and the deletion of files
 ```
+
+## Photos
+
+![2023-07-13-57-1689292649_screenshot](https://github.com/senyc/.dotfiles/assets/95313103/39f113ae-4274-4ab4-982f-126c9e320426)
