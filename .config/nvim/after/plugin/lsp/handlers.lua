@@ -8,11 +8,28 @@ local servers = {
   'eslint',
   'html',
   'lua_ls',
-  'pylsp',
+  'pyright',
   'solargraph',
   'taplo',
   'tsserver',
 }
+
+-- Default formatting action
+vim.keymap.set("n", "<leader>=", ':Format<cr>', { remap = false, silent = true })
+
+local function on_attach_pyright(_, bufnr)
+  local opts = { buffer = bufnr, remap = false, silent = true }
+  vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+  vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+  vim.keymap.set("n", "<leader>gs", vim.lsp.buf.workspace_symbol, opts)
+  vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
+  vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+  vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+  vim.keymap.set("n", "<leader>.", vim.lsp.buf.code_action, opts)
+  vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, opts)
+  vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+  vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
+end
 
 -- To use the current client replace _ with client
 local function on_attach(_, bufnr)
@@ -80,6 +97,27 @@ for _, lsp in pairs(servers) do
         },
       },
     }
+  elseif lsp == 'pyright' then
+    -- To get default formatting functionality
+    configurations.on_attach = on_attach_pyright
+    configurations.settings = {
+      single_file_support = true,
+      settings = {
+        pyright = {
+          disableLanguageServices = false,
+          disableOrganizeImports = false
+        },
+        python = {
+          analysis = {
+            autoImportCompletions = true,
+            autoSearchPaths = true,
+            diagnosticMode = "workspace",
+            typeCheckingMode = "basic",
+            useLibraryCodeForTypes = true
+          }
+        }
+      },
+    }
   end
 
   -- Actually set up the languages server
@@ -88,7 +126,6 @@ end
 
 local config = {
   virtual_text = {
-    -- prefix = "●",
     spacing = 2,
   },
   signs = true,

@@ -25,5 +25,5 @@ return require('packer').startup(function(use)
   use 'windwp/nvim-ts-autotag'
   use { "williamboman/mason.nvim", run = ":MasonUpdate" }
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+  use { 'mhartington/formatter.nvim' }
 end)
-
