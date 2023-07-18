@@ -52,6 +52,7 @@ keys = [
 
     # Toggle between different layouts as defined below
     Key([MOD_KEY, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
+    Key([MOD_KEY], "Delete", lazy.spawn("lock_screen"), desc="lock the screen"),
     Key([MOD_KEY, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([MOD_KEY], "d", minimize_all(), desc="Toggle minimization on all window"),
     Key([MOD_KEY], "p", lazy.spawn(drun), desc="Spawn a command using rofi"),
