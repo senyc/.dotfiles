@@ -154,3 +154,11 @@ fi
 unset __conda_setup
 
 eval "$(starship init bash)"
+
+# pnpm
+export PNPM_HOME="/home/senyc/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
