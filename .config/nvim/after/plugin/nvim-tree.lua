@@ -25,8 +25,8 @@ require('nvim-tree').setup { -- BEGIN_DEFAULT_OPTS
     side = 'right',
     preserve_window_proportions = false,
     number = false,
-    relativenumber = false,
-    signcolumn = 'yes',
+    relativenumber = true,
+    signcolumn = 'no',
     mappings = {
       custom_only = false,
       list = {
@@ -73,7 +73,7 @@ require('nvim-tree').setup { -- BEGIN_DEFAULT_OPTS
       padding = ' ',
       symlink_arrow = ' ',
       show = {
-        file = false,
+        file = true,
         folder = false,
         folder_arrow = true,
         git = true,

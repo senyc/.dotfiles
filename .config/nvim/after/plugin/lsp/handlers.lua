@@ -1,15 +1,13 @@
 local lspconfig = require('lspconfig')
+local util = require 'lspconfig/util'
 local cmp = require("cmp_nvim_lsp")
 
 local servers = {
   'bashls',
+  'tailwindcss',
   'clangd',
-  'cssls',
-  'eslint',
-  'html',
   'lua_ls',
   'pyright',
-  'solargraph',
   'taplo',
   'tsserver',
 }
@@ -100,23 +98,32 @@ for _, lsp in pairs(servers) do
   elseif lsp == 'pyright' then
     -- To get default formatting functionality
     configurations.on_attach = on_attach_pyright
+    configurations.root_dir = function(fname)
+      local root_files = {
+        'pyproject.toml',
+        'setup.py',
+        'setup.cfg',
+        'requirements.txt',
+        'Pipfile',
+        'pyrightconfig.json',
+        '.git'
+      }
+      return util.root_pattern(unpack(root_files))(fname) or util.find_git_ancestor(fname) or util.path.dirname(fname)
+    end
     configurations.settings = {
       single_file_support = true,
-      settings = {
-        pyright = {
-          disableLanguageServices = false,
-          disableOrganizeImports = false
-        },
-        python = {
-          analysis = {
-            autoImportCompletions = true,
-            autoSearchPaths = true,
-            diagnosticMode = "workspace",
-            typeCheckingMode = "basic",
-            useLibraryCodeForTypes = true
-          }
-        }
+      pyright = {
+        autoImportCompletion = true,
+        typeCheckingMode = 'off',
       },
+      python = {
+        analysis = {
+          autoSearchPaths = true,
+          diagnosticMode = 'openFilesOnly',
+          useLibraryCodeForTypes = true,
+          typeCheckingMode = 'off'
+        }
+      }
     }
   end
 

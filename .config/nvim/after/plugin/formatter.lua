@@ -7,6 +7,7 @@ require("formatter").setup {
         exe = "black",
         args = {
           "-q",
+          "--skip-string-normalization",
           "-",
         },
         stdin = true,

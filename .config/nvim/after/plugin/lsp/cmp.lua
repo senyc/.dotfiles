@@ -10,11 +10,15 @@ cmp.setup {
   },
   mapping = cmp.mapping.preset.insert {
     ['<C-space>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
+      -- behavior = cmp.ConfirmBehavior.Replace,
+      select = true,
+    },
+    ['<CR>'] = cmp.mapping.confirm {
+      -- behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
     ['<tab>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
+      -- behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
     ['<C-n>'] = cmp.mapping(function(fallback)
