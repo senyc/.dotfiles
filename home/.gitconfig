@@ -17,9 +17,12 @@
 	rb = rebase
 	s = status
 	sw = switch
+    a = add
     ap = add -p
     c = commit
     cm = commit -m
+    d = diff
+    p = push
     ri = rebase -i
 [apply]
     whitespace = nowarn
