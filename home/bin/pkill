@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if [[ -n "$1" ]]; then
+    kill "$(pgrep -f "$1" | head -1)"
+else
+    echo "Usage: pkill <process name>"
+fi

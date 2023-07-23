@@ -10,6 +10,7 @@ local servers = {
   'pyright',
   'taplo',
   'tsserver',
+  'jsonls',
 }
 
 -- Default formatting action
@@ -98,6 +99,7 @@ for _, lsp in pairs(servers) do
   elseif lsp == 'pyright' then
     -- To get default formatting functionality
     configurations.on_attach = on_attach_pyright
+    -- Don't know why I have to do this myself
     configurations.root_dir = function(fname)
       local root_files = {
         'pyproject.toml',
@@ -124,6 +126,29 @@ for _, lsp in pairs(servers) do
           typeCheckingMode = 'off'
         }
       }
+    }
+  elseif lsp == 'tsserver' then
+    -- quoteStyle config doesn't seem to be applying likely issue w/ tsserver
+    configurations.settings = {
+      preferences = {
+        organizeImportsIgnoreCase = true
+      },
+      javascript = {
+        format = {
+          semicolons = "insert",
+        },
+        preferences = {
+          quoteStyle = "single"
+        },
+      },
+      typescript = {
+        format = {
+          semicolons = "insert",
+        },
+        preferences = {
+          quoteStyle = "single"
+        },
+      },
     }
   end
 

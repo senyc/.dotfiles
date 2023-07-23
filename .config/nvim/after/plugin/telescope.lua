@@ -26,7 +26,7 @@ require("telescope").setup {
         ["<c-c>"] = actions.close,
       },
     },
-  },
+  }
 }
 
 local function find_files_home()
@@ -73,12 +73,24 @@ local function grep_cwd()
   }
 end
 
--- file <directive>
-map('n', '<leader>ff', find_files_cwd, options)
+local function defaut_search()
+  if pcall(builtin.git_files) then
+  else
+    find_files_cwd()
+  end
+end
+
+-- ff will check if in a git directory and show git git_files
+--  else it will just show the current files in directory
+map('n', '<leader>ff', defaut_search, options)
 map('n', '<leader>fh', find_files_home, options)
-map('n', '<leader>fg', builtin.git_files, options)
+map('n', '<leader>fg', find_files_cwd, options)
+-- find commits
+map('n', '<leader>fc', builtin.git_commits, options)
 -- find references
 map('n', '<leader>fr', builtin.lsp_references)
+-- find buffers
+map('n', '<leader>fb', builtin.buffers)
 
 -- grep <directive>
 map('n', '<leader>gh', grep_home, options)
