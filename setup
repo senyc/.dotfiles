@@ -20,14 +20,10 @@ print_help() {
     echo "  -f --force         Automatically confirms linking and the deletion of files"
 }
 
-path_exists() {
-     [ -L "$1" ] || [ -f "$1" ] || [ -d "$1" ]
-}
+path_exists() { [ -L "$1" ] || [ -f "$1" ] || [ -d "$1" ]; }
 
 # This exists because bash includes '..' and '.' in the `in` keyword
-valid_basename() {
-    [ "$1" != "." ] && [ "$1" != ".." ]
-}
+valid_basename() { [ "$1" != "." ] && [ "$1" != ".." ]; }
 
 setup_configuration() {
     local source_target_root=$1
@@ -50,7 +46,7 @@ setup_configuration() {
                 read -r confirm
             fi
 
-            if [[ $no_deletion_confirmation = 'yes' ]] || [[ $confirm = "yes" ]]; then
+            if [[ $no_deletion_confirmation = 'yes' ]] || [[ $confirm = "yes" ]] || [[ $confirm = "y" ]]; then
                 rm "$local_path"
                 echo -e "${RED}Removed${NC} $local_path\n"
             fi
@@ -64,7 +60,7 @@ setup_configuration() {
                 read -r confirm
             fi
 
-            if [[ $no_linking_confirmation = 'yes' ]] || [[ $confirm = "yes" ]]; then
+            if [[ $no_linking_confirmation = 'yes' ]] || [[ $confirm = "yes" ]] || [[ $confirm = "y" ]]; then
                  ln -s "${source_target_root}/$(basename "$local_path")" "$local_path"
                  echo -e "${BLUE}Linked${NC} ${YELLOW}${source_target_root}/$(basename "$local_path")${NC} to ${YELLOW}${local_path}${NC}\n"
             fi
@@ -161,7 +157,6 @@ if [[ $user_only_wants_home_configured = 'no' ]]; then
     setup_configuration "$source_config_path" "$local_machine_config_path" "$user_wants_auto_deletion" "$user_wants_auto_linking"
 fi
 
-# 
 if [[ $user_only_wants_config_configured = 'yes' ]] && [[ $user_only_wants_home_configured = 'yes' ]]; then
     echo "Nothing to do" 
 fi

@@ -1,0 +1,27 @@
+[user]
+	email = kdbomhof@gmail.com
+	name = senyc
+[core]
+	editor = nvim
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	interactive = auto
+	ui = always
+[alias]
+	br = branch
+	ca = commit --amend
+	cae = commit --amend --no-edit
+	co = checkout
+	rb = rebase
+	s = status
+	sw = switch
+    ap = add -p
+    c = commit
+    cm = commit -m
+    ri = rebase -i
+[apply]
+    whitespace = nowarn
+[url "git@github.com:"]
+	insteadOf = "gh:"
