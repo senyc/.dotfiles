@@ -153,6 +153,17 @@ else
 fi
 unset __conda_setup
 
+# Allows for a quick way to change directories and read new child items
+c() {
+    if [ -z "$1" ]; then
+        cd "$HOME" || return
+        ls --color=auto
+        return
+    fi
+    cd "$1" || return
+    ls --color=auto
+}
+
 eval "$(starship init bash)"
 
 # pnpm
