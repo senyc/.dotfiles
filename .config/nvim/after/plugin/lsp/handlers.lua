@@ -11,6 +11,7 @@ local servers = {
   'taplo',
   'tsserver',
   'jsonls',
+  'yamlls'
 }
 
 -- Default formatting action
