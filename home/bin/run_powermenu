@@ -16,7 +16,7 @@ lock=''
 suspend=''
 
 rofi_cmd() { rofi -dmenu -p "I'm sorry ${USER}..." -mesg "Uptime: $uptime" -theme "$dir"; }
-run_rofi() { echo -e "$lock\n$suspend\n$reboot\n$shutdown" | rofi_cmd; }
+run_rofi() { echo -e "$shutdown\n$reboot\n$suspend\n$lock" | rofi_cmd; }
 
 run_cmd() {
     if [[ $1 == '--shutdown' ]]; then
