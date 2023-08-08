@@ -4,8 +4,6 @@ if [[ -d "$HOME/tmp" ]]; then
 	mkdir -p "$HOME/tmp"
 fi
 
-basic_packages=("which" "alacritty" "rofi" "ripgrep" "scrot" "tmux" "light" "lua" "picom" "starship" "xbindkeys" "unclutter" "xclip" "nodejs" "npm" "python" "python-pip" "qtile" "python-xlib" "python-dbus-next" "luarocks" "neofetch" "not-fonts-cjk" "openssh" "spotify-launcher" "pulseaudio" "playerctl" "pamixer" "man-db" "alsa-utils" "pavucontrol" "xorg-xinit" "slack-desktop" "speedtest-cli" "wget" "jq" "python-iwlib" "xorg-server" "xorg-apps")
-
 check_and_install() {
     if ! pacman -Q "$1" &> /dev/null; then
         echo "$1 not installed"
@@ -15,7 +13,7 @@ check_and_install() {
     fi
 }
 
-for i in "${basic_packages[@]}"; do
+for i in $(cat "$HOME/.dotfiles/packagelist"); do
     check_and_install "$i"
 done
 
