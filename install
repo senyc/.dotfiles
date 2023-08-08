@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+if [[ -d "$HOME/tmp" ]]; then 
+	mkdir -p "$HOME/tmp"
+fi
+
+basic_packages=("which" "alacritty" "rofi" "ripgrep" "scrot" "tmux" "light" "lua" "picom" "starship" "xbindkeys" "unclutter" "xclip" "nodejs" "npm" "python" "python-pip" "qtile" "python-xlib" "python-dbus-next" "luarocks" "neofetch" "not-fonts-cjk" "openssh" "spotify-launcher" "pulseaudio" "playerctl" "pamixer" "man-db" "alsa-utils" "pavucontrol" "xorg-xinit" "slack-desktop" "speedtest-cli" "wget" "jq" "python-iwlib" "xorg-server" "xorg-apps")
+
+check_and_install() {
+    if ! pacman -Q "$1" &> /dev/null; then
+        echo "$1 not installed"
+        sudo pacman -S "$1"
+    else
+        echo "$1 already installed"
+    fi
+}
+
+for i in "${basic_packages[@]}"; do
+    check_and_install "$i"
+done
+
+if ! which nvim > /dev/null; then
+	cd "$HOME/tmp" || return
+	git clone git@github.com:neovim/neovim
+	cd neovim/ || return
+    # This will only download version .9 I don't feel like automating to the most recent stable version rn
+	git checkout release-0.9
+	sudo pacman -S cmake make gcc glibc lua
+	make CMAKE_BUILD_TYPE=RelWithDebInfo
+	sudo make install	
+    # Install packer for package management
+	git clone --depth 1 https://github.com/wbthomason/packer.nvim\~/.local/share/nvim/site/pack/packer/start/packer.nvim
+	echo "Please go to $HOME/.config/nvim/lua/senyc/packer.lua and type :PackerInstall"
+else 
+    echo "nvim already installed"
+fi 
