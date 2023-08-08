@@ -82,6 +82,10 @@ end
 
 -- ff will check if in a git directory and show git git_files
 --  else it will just show the current files in directory
+
+-- TODO: We should probably think about changing some of these and even include
+--  The `help_tags` option as that seems pretty neat, I don't really like how the git functionality 
+--  depends on being in a git repo as it leads to a little too much mental overhead y'know
 map('n', '<leader>ff', defaut_search, options)
 map('n', '<leader>fh', find_files_home, options)
 map('n', '<leader>fg', find_files_cwd, options)

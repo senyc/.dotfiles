@@ -1,3 +1,5 @@
+-- We should do more with this we really don't do that much here
+-- tj has a great video of this
 require('nvim-treesitter.configs').setup {
   ensure_installed = {
     "bash",
