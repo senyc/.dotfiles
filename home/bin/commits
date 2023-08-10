@@ -12,6 +12,7 @@ print_semantic_commits() {
     echo "style: Changes that do not affect the function at all (white space, etc.)"
     echo "test: Adding missing tests or correcting existing tests"
     echo "revert: first include title of commit in the body include sha"
+    echo "chore: grunt tasks; no production code change, e.g. update .gitignore, nothing main user would see"
     echo "---------------------------------------------------------"
 }
 
