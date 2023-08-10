@@ -12,7 +12,8 @@ local servers = {
   'tsserver',
   'jsonls',
   'yamlls',
-  'gopls'
+  'gopls',
+  'cssls'
 }
 
 -- Default formatting action
