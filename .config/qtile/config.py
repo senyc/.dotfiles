@@ -10,6 +10,7 @@ from libqtile.config import (Click, Drag, DropDown, Group, Key, Match,
 from functions import get_monitor_resolutions
 from options import MOD_KEY
 from primary_bar import primary_bar
+from laptop_bar import laptop_bar
 from side_bars import left_bar, right_bar
 
 browser = 'chromium'
@@ -194,7 +195,7 @@ elif monitor_count == 2:
 elif monitor_count == 1:
     screens = [
         Screen(
-            top=primary_bar,
+            top=laptop_bar,
             wallpaper=horizontal_background,
             wallpaper_mode='fill',
         ),
