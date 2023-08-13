@@ -7,7 +7,7 @@ luarocks
 man-db 
 neofetch 
 nodejs 
-not-fonts-cjk 
+noto-fonts-cjk 
 npm 
 openssh 
 pamixer 
@@ -24,7 +24,6 @@ qtile
 ripgrep 
 rofi 
 scrot 
-slack-desktop 
 speedtest-cli 
 spotify-launcher 
 starship 
