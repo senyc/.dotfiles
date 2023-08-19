@@ -83,7 +83,7 @@ laptop_bar = Bar(
             show_short_text=False,
             foreground=nord_fox['fg'],
             full_char='󰁹',
-            charge_char='󰁹',
+            charge_char='󱐋󰁹',
             empty_char='󰁹',
             discharge_char='󰁹'
         ),
