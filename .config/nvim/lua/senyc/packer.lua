@@ -12,6 +12,8 @@ return require('packer').startup(function(use)
   use 'f-person/git-blame.nvim'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/nvim-cmp'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-path'
   use 'kylechui/nvim-surround'
   use 'lewis6991/gitsigns.nvim'
   use 'mbbill/undotree'
