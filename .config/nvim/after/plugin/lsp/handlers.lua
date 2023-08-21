@@ -13,7 +13,8 @@ local servers = {
   'jsonls',
   'yamlls',
   'gopls',
-  'cssls'
+  'cssls',
+  'ruby_ls'
 }
 
 -- Default formatting action

@@ -163,6 +163,27 @@ c() {
     cd "$1" || return
     ls --color=auto
 }
+# Allows for a quick way to navigate to base project directory
+cdb() {
+    if [ -n "$1" ]; then
+        case $1 in 
+            "--help")
+                echo "searches for git base level directory and moves working directory there"
+                return
+                ;;
+            "-")
+                echo "searches for git base level directory and moves working directory there"
+                return
+                ;;
+        esac
+        return
+    fi
+
+    base_git_dir=$(git rev-parse --show-toplevel)
+    if [ -n "$base_git_dir" ]; then
+        cd "$base_git_dir" || return
+    fi
+}
 
 eval "$(starship init bash)"
 
