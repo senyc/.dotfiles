@@ -17,4 +17,3 @@ def get_monitor_resolutions() -> list[tuple]:
         return [(0, 0)]
     else:
         return resolutions
-print(get_monitor_resolutions())

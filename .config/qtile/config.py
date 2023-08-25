@@ -2,15 +2,14 @@ import os
 import subprocess
 from typing import Any, List
 
-from libqtile.lazy import lazy
 from libqtile import hook, layout
-from libqtile.config import (Click, Drag, DropDown, Group, Key, Match,
-                             ScratchPad, Screen)
+from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile.lazy import lazy
 
 from functions import get_monitor_resolutions
+from laptop_bar import laptop_bar
 from options import MOD_KEY
 from primary_bar import primary_bar
-from laptop_bar import laptop_bar
 from side_bars import left_bar, right_bar
 
 browser = 'chromium'
@@ -48,9 +47,12 @@ keys = [
     Key([MOD_KEY, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
     Key([MOD_KEY, "control"], "l", lazy.layout.grow_right(), desc="Grow window to the right"),
     Key([MOD_KEY], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
-
-    Key([MOD_KEY, "shift"], "Return", lazy.layout.toggle_split(), desc="Toggle between split and unsplit sides of stack"),
-
+    Key(
+        [MOD_KEY, "shift"],
+        "Return",
+        lazy.layout.toggle_split(),
+        desc="Toggle between split and unsplit sides of stack",
+    ),
     # Toggle between different layouts as defined below
     Key([MOD_KEY, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([MOD_KEY], "Delete", lazy.spawn("lock_screen"), desc="lock the screen"),
@@ -121,27 +123,6 @@ for name in 'viro':
         ]
     )
 
-    groups.append(ScratchPad('scratchpad', [
-        DropDown(
-            'calendar/notes',
-            drop_down_one,
-            height=0.5,
-            match=False,
-            on_focus_lost_hide=False,
-            opacity=1,
-            width=0.4,
-            x=0.3,
-            y=0.1,
-        ),
-    ]))
-    keys.extend([
-        Key(
-            [MOD_KEY],
-            "backslash",
-            lazy.group['scratchpad'].dropdown_toggle('calendar/notes')
-        ),
-    ])
-
 layouts = [
     layout.MonadTall(border_width=0, border_normal="#000000", border_focus="#ff0000"),
     layout.VerticalTile(border_width=0, border_normal="#000000", border_focus="#ff0000"),
@@ -189,7 +170,7 @@ elif monitor_count == 2:
             top=left_bar,
             wallpaper=vertical_background,
             wallpaper_mode='fill',
-        )
+        ),
     ]
 
 elif monitor_count == 1:
@@ -203,7 +184,9 @@ elif monitor_count == 1:
 
 # Drag floating layouts.
 mouse = [
-    Drag([MOD_KEY], "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()),
+    Drag(
+        [MOD_KEY], "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()
+    ),
     Drag([MOD_KEY], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
     Click([MOD_KEY], "Button2", lazy.window.bring_to_front()),
 ]
