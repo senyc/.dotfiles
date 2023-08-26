@@ -79,7 +79,7 @@ groups = [
     Group(
         label='i',
         name='i',
-        spawn=terminal,
+        spawn="alacritty -e tmux",
     ),
     Group(
         label='r',
