@@ -96,7 +96,7 @@ groups = [
     Group(
         exclusive=True,
         label='o',
-        matches=[Match(wm_class='slack'), Match(wm_class='discord')],
+        matches=[Match(wm_class='slack'), Match(wm_class='discord'), Match(wm_class='zoom')],
         name='o',
     ),
 ]
@@ -221,6 +221,9 @@ wl_input_rules = None
 def autostart():
     if monitor_count == 3:
         file_dir = os.path.expanduser('~/.config/qtile/three_monitor_mappings')
+        subprocess.run([file_dir])
+    elif monitor_count == 2:
+        file_dir = os.path.expanduser('~/.config/qtile/two_monitor_mappings')
         subprocess.run([file_dir])
 
 
