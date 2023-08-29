@@ -1,5 +1,7 @@
 alacritty 
 alsa-utils 
+base-devel
+i3lock
 jq 
 light 
 lua 
@@ -36,4 +38,3 @@ xclip
 xorg-apps
 xorg-server 
 xorg-xinit 
-base-devel
