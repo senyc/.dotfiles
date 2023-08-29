@@ -1,0 +1,19 @@
+#!/usr/bin/env sh
+
+if ! head -1 "$1" | grep -qE "^(feat|fix|chore|docs|test|style|refactor|perf|build|ci|revert)(\(.+?\))?: .{1,}$"; then
+    echo "Aborting commit. Your commit message is invalid. Please follow the semantic commit guidelines" >&2
+    exit 1
+fi
+
+if ! which aspell > /dev/null; then
+    echo "Please install aspell for proper spell checking" >&2
+    exit 1
+fi
+
+misspelled_words=$(cat "$1" | aspell --list | tr '\n' ' ')
+
+if [ -n "$misspelled_words" ]; then
+    echo "Found misspelled words: $misspelled_words" >&2
+    echo "Please correct them before committing" >&2
+    exit 1
+fi

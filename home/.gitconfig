@@ -3,6 +3,7 @@
     name = senyc
 [core]
     editor = nvim
+	hooksPath = /home/senyc/.git_hooks
 [color]
     diff = auto
     status = auto
