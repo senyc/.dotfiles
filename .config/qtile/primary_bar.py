@@ -67,14 +67,14 @@ primary_bar = Bar(
         CPU(
             background=nord_fox['black'],
             foreground=nord_fox['pink'],
-            format=' {freq_current}GHz {load_percent}% ',
+            format='{freq_current}GHz {load_percent}% ',
         ),
 
 
         Memory(
             background=nord_fox['black'],
             foreground=nord_fox['cyan'],
-            format=' {MemUsed: .0f}{mm}/{MemTotal: .0f}{mm} ',
+            format='{MemUsed:.0f}{mm}/{MemTotal:.0f}{mm} ',
         ),
     ],
     size=BAR_HEIGHT,
