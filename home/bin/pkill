@@ -3,19 +3,18 @@
 print_help() {
     echo "Usage: pkill [PROCESS NAME]"
     echo "Utility for manually searching for process by name and killing it"
-    echo "Uses pgrep and kills first returned value"
+    echo "Uses pgrep and kills all instances of the passed in name"
     echo
     echo "options"
     echo "  -h --help          Displays this help and exits"
 }
 
-if [[ -z "$1" ]]; then
+if [[ -z "$1" ]] || [[ "$1" = "--help" ]] || [[ "$1" = "-h" ]]; then
     print_help
     exit 0
 fi
 
-if [[ "$1" = "--help" ]] || [[ "$1" = "-h" ]]; then
-    print_help
-    exit 0
-fi
-kill "$(pgrep -f "$1" | head -1)"
+for i in $(pgrep -f "$1"); do
+    # Silences the "Terminated" message
+    kill -INT "$i" 
+done
