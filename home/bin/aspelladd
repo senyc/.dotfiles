@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-readonly file_name="$HOME/.aspell.en.pws" 
+readonly file_name="$HOME/.aspell_en_dict" 
 
 print_help() {
     echo "Usage: aspelladd [WORD]..."

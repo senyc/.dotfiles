@@ -31,3 +31,5 @@ alias gaa='git add --all'
 alias gd='git diff'
 alias gp='git push'
 alias gds='git diff --staged'
+
+alias aspell='aspell --lang=en_US --personal=$HOME/.aspell_en_dict'

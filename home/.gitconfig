@@ -34,3 +34,5 @@
     insteadOf = "gh:"
 [pull]
     rebase = true
+[init]
+	defaultBranch = main
