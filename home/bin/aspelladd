@@ -1,8 +1,16 @@
 #!/usr/bin/env bash
-file_name="$HOME/.aspell.en.pws" 
+readonly file_name="$HOME/.aspell.en.pws" 
 
-if [[ -z "$1" ]]; then
-    echo "Please invoke like $0 <word>" >&2
+print_help() {
+    echo "Usage: aspelladd [WORD]..."
+    echo "Utility for adding word(s) to aspell dictionary"
+    echo
+    echo "options"
+    echo "  -h --help          Displays this help and exits"
+}
+
+if [[ -z "$1" ]] || [[ "$1" == '-h' ]] || [[ "$1" == '--help' ]]; then
+    print_help
     exit 1
 fi
 
@@ -11,8 +19,11 @@ if ! [[ -f "$file_name" ]]; then
     exit 1
 fi
 
-echo "$1" >> "$file_name"
-
-if grep "$1" "$file_name" > /dev/null; then
-    echo "Added $1 to $file_name"
-fi
+for i in "$@"; do
+    if grep -w "$i" "$file_name" > /dev/null; then
+        echo "\"$i\" already included in $file_name"
+    else
+        echo "$i" >> "$file_name"
+        echo "Added \"$i\" to $file_name"
+    fi
+done
