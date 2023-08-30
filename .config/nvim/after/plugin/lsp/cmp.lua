@@ -1,7 +1,7 @@
 local cmp = require 'cmp'
 local luasnip = require 'luasnip'
 require("luasnip.loaders.from_vscode").lazy_load()
--- nvim-cmp setup
+
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -13,12 +13,11 @@ cmp.setup {
       -- behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
-    -- ['<CR>'] = cmp.mapping.confirm {
-    --   -- behavior = cmp.ConfirmBehavior.Replace,
-    --   select = true,
-    -- },
+    ['<CR>'] = cmp.mapping.confirm {
+      select = false,
+    },
     ['<tab>'] = cmp.mapping.confirm {
-      -- behavior = cmp.ConfirmBehavior.Replace,
+      -- Auto select the first item
       select = true,
     },
     ['<C-n>'] = cmp.mapping(function(fallback)
