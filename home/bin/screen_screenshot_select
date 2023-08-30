@@ -1,8 +1,13 @@
 #!/usr/bin/env bash
 
 
-if [[ -d "$HOME/Pictures/screenshots" ]]; then
-  mkdir -p "$HOME/Pictures/screenshots"
+if ! [[ -d "$HOME/Pictures/screenshots/" ]]; then
+    mkdir -p "$HOME/Pictures/screenshots/"
 fi
 
+# kills unclutter so freeze works as expected
+pkill unclutter 
+
 scrot -u -i -z -p -q 100  '%Y-%m-%d-%M-%s_screenshot.png' -e 'mv $f ~/Pictures/screenshots && xclip -selection clipboard -target image/png -i ~/Pictures/screenshots/$f'
+
+unclutter --jitter 10 --start-hidden --fork
