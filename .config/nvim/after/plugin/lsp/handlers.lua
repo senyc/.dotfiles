@@ -22,14 +22,22 @@ vim.keymap.set("n", "<leader>=", ':Format<cr>', { remap = false, silent = true }
 
 local function on_attach_pyright(_, bufnr)
   local opts = { buffer = bufnr, remap = false, silent = true }
+
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
   vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+  -- Get symbols
   vim.keymap.set("n", "<leader>gs", vim.lsp.buf.workspace_symbol, opts)
-  vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
-  vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-  vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+  -- View diagnostics
+  vim.keymap.set("n", "<leader>dq", vim.diagnostic.setqflist, opts)
+  -- open flost
+  vim.keymap.set("n", "<leader>do", vim.diagnostic.open_float, opts)
+
+  vim.keymap.set("n", "dp", vim.diagnostic.goto_prev, opts)
+  vim.keymap.set("n", "dn", vim.diagnostic.goto_next, opts)
   vim.keymap.set("n", "<leader>.", vim.lsp.buf.code_action, opts)
+  -- Rename
   vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, opts)
+  -- Get references
   vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
   vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
 end
@@ -43,10 +51,12 @@ local function on_attach(_, bufnr)
   -- Get symbols
   vim.keymap.set("n", "<leader>gs", vim.lsp.buf.workspace_symbol, opts)
   -- View diagnostics
-  vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
-  -- set up similar to the default [ and ] actions
-  vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-  vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+  vim.keymap.set("n", "<leader>dq", vim.diagnostic.setqflist, opts)
+  -- open flost
+  vim.keymap.set("n", "<leader>do", vim.diagnostic.open_float, opts)
+
+  vim.keymap.set("n", "dp", vim.diagnostic.goto_prev, opts)
+  vim.keymap.set("n", "dn", vim.diagnostic.goto_next, opts)
   vim.keymap.set("n", "<leader>.", vim.lsp.buf.code_action, opts)
   -- Rename
   vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, opts)
@@ -169,7 +179,7 @@ local config = {
   underline = false,
   severity_sort = true,
   float = {
-    focusable = false,
+    focusable = true,
     style = "minimal",
     border = "rounded",
     source = "always",

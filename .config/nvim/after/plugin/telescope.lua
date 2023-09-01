@@ -1,12 +1,15 @@
-local builtin = require('telescope.builtin')
-local utils = require("telescope.utils")
-local actions = require("telescope.actions")
+local builtin = require 'telescope.builtin'
+local utils = require 'telescope.utils'
+local actions = require 'telescope.actions'
 
 local options = { noremap = true, silent = true }
 local map = vim.keymap.set
 
 require("telescope").setup {
   defaults = {
+    file_ignore_patterns = {
+      "^.git/"
+    },
     vimgrep_arguments = {
       'rg',
       '--no-heading',
@@ -18,85 +21,83 @@ require("telescope").setup {
     },
     mappings = {
       i = {
-        ["<esc>"] = actions.close,
-        ["<c-c>"] = actions.close,
+        ['<esc>'] = actions.close,
+        ['<c-c>'] = actions.close,
+        ['ZZ'] = actions.close,
       },
       n = {
-        ["<esc>"] = actions.close,
-        ["<c-c>"] = actions.close,
+        ['<esc>'] = actions.close,
+        ['<c-c>'] = actions.close,
+        ['ZZ'] = actions.close,
       },
     },
   }
 }
 
-local function find_files_home()
-  builtin.find_files { cwd = vim.fn.expand('$HOME'), hiden = true }
-end
+--- Returns the base git directory from CWD else return error code
+--- in string format
+---
+---@return string? err_msg
+---@return string? git_dir
+local function get_git_dir()
+  local handler = io.popen('git rev-parse --show-toplevel 2>/dev/null')
+  if not handler then
+    return "Failed to execute 'git'", nil
+  end
 
-local function find_files_cwd()
-  builtin.find_files { cwd = utils.buffer_dir() }
-end
-
--- to do remove this encapsulation buffer_dir is much better than cwd
-local function grep_dynamic(environment)
-  builtin.grep_string {
-    cwd = vim.fn.expand(environment),
-    search = vim.fn.input("Search " .. vim.fn.expand(environment) .. ": ")
-  }
-end
-
-local function grep_git()
-  local git_dir = vim.fn.system(
-    string.format(
-      "git -C %s rev-parse --show-toplevel",
-      vim.fn.expand("%:p:h")
-    )
-  )
-  -- remove newline character from git_dir
-  local sanitized_git_dir = string.gsub(git_dir, "\n", "")
-  local opts = {
-    cwd = sanitized_git_dir,
-    search = vim.fn.input("Git Grep " .. sanitized_git_dir .. ": ")
-  }
-  builtin.grep_string(opts)
-end
-
-local function grep_home()
-  grep_dynamic('$HOME')
-end
-
-local function grep_cwd()
-  local buffer_dir = utils.buffer_dir()
-  builtin.grep_string {
-    cwd = buffer_dir,
-    search = vim.fn.input("Git Grep " .. buffer_dir .. ": ")
-  }
-end
-
-local function defaut_search()
-  if pcall(builtin.git_files) then
+  local result = handler:read("*l")
+  -- Because stderr redirected to null assumes any stdout response due to validity of call
+  if result then
+    return nil, result
   else
-    find_files_cwd()
+    return "No valid return file", nil
   end
 end
 
--- ff will check if in a git directory and show git git_files
---  else it will just show the current files in directory
+-- Searches for files available in the repository including ones that are not being tracked
+local function defaut_search()
+  local err, gitdir = get_git_dir()
+  if err then
+    builtin.fd { cwd = utils.buffer_dir(), hidden = true }
+  else
+    builtin.fd { cwd = gitdir, hidden = true }
+  end
+end
 
--- TODO: We should probably think about changing some of these and even include
---  The `help_tags` option as that seems pretty neat, I don't really like how the git functionality 
---  depends on being in a git repo as it leads to a little too much mental overhead y'know
+local function live_git_grep()
+  local err, gitdir = get_git_dir()
+  if err then
+    builtin.live_grep { cwd = utils.buffer_dir(), hidden = true }
+  else
+    builtin.live_grep { cwd = gitdir, hidden = true }
+  end
+end
+
+local function git_commits()
+  if not pcall(builtin.git_commits) then
+    vim.print('Not in a git repository')
+  end
+end
+
+local function git_buffer_commit_diff()
+  if not pcall(builtin.git_bcommits) then
+    vim.print('Not in a git repository')
+  end
+end
+
+-- find file
 map('n', '<leader>ff', defaut_search, options)
-map('n', '<leader>fh', find_files_home, options)
-map('n', '<leader>fg', find_files_cwd, options)
--- find commits
-map('n', '<leader>fc', builtin.git_commits, options)
+-- find vim help
+map('n', '<leader>fh', builtin.help_tags, options)
+-- find live git grep
+map('n', '<leader>fg', live_git_grep, options)
+-- find commits in repo
+map('n', '<leader>fc', git_commits, options)
+-- find man page entries
+map('n', '<leader>fm', builtin.man_pages, options)
+-- find git buffer commit diff
+map('n', '<leader>fd', git_buffer_commit_diff, options)
 -- find references
-map('n', '<leader>fr', builtin.lsp_references)
+map('n', '<leader>fr', builtin.lsp_references, options)
 -- find buffers
-map('n', '<leader>fb', builtin.buffers)
-
--- grep <directive>
-map('n', '<leader>gh', grep_home, options)
-map('n', '<leader>gf', grep_cwd, options)
-map('n', '<leader>gg', grep_git, options)
+map('n', '<leader>fb', builtin.buffers, options)
