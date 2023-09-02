@@ -2,6 +2,7 @@ alacritty
 alsa-utils 
 aspell-en
 base-devel
+github-cli
 i3lock
 jq 
 light 
