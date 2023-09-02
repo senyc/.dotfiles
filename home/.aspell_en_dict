@@ -4,3 +4,5 @@ nvim
 aspell
 packagelist
 plist
+pid
+minheap

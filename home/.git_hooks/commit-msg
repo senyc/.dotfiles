@@ -15,13 +15,13 @@ misspelled_words=$(cat "$1" | aspell --lang=en_US --personal="$HOME"/.aspell_en_
 if [ -n "$misspelled_words" ]; then
     echo "Found misspelled words: $misspelled_words" >&2
     echo "Would you like to add these to the dictionary? [y|n]" 
-    read -n 1 -r -s < /dev/tty
+    read -r -s < /dev/tty
     if [ "$REPLY" = 'y' ] || [ "$REPLY" = 'Y' ]; then
         if ! which aspelladd > /dev/null; then
             echo "This operation requires the aspelladd binary, please add that. It can found at https://github.com/senyc/.dotfiles/tree/main/home/bin/aspelladd" >&2
             exit 1
         fi
-        # The lack of quotes is intentional
+        # **The lack of quotes is intentional**
         aspelladd $misspelled_words
         echo
     else
