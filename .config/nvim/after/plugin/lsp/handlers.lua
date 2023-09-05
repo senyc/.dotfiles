@@ -1,6 +1,7 @@
 local lspconfig = require('lspconfig')
 local util = require 'lspconfig/util'
 local cmp = require("cmp_nvim_lsp")
+local map = vim.keymap.set
 
 local servers = {
   'bashls',
@@ -19,54 +20,54 @@ local servers = {
 }
 
 -- Default formatting action
-vim.keymap.set("n", "<leader>=", ':Format<cr>', { remap = false, silent = true })
+map("n", "<leader>=", ':Format<cr>', { remap = false, silent = true })
 
 local function on_attach_pyright(_, bufnr)
   local opts = { buffer = bufnr, remap = false, silent = true }
 
-  vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-  vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+  map("n", "gd", vim.lsp.buf.definition, opts)
+  map("n", "K", vim.lsp.buf.hover, opts)
   -- Get symbols
-  vim.keymap.set("n", "<leader>gs", vim.lsp.buf.workspace_symbol, opts)
+  map("n", "<leader>gs", vim.lsp.buf.workspace_symbol, opts)
   -- View diagnostics
-  vim.keymap.set("n", "<leader>dq", vim.diagnostic.setqflist, opts)
+  map("n", "<leader>dq", vim.diagnostic.setqflist, opts)
   -- open flost
-  vim.keymap.set("n", "<leader>do", vim.diagnostic.open_float, opts)
+  map("n", "<leader>do", vim.diagnostic.open_float, opts)
 
-  vim.keymap.set("n", "dp", vim.diagnostic.goto_prev, opts)
-  vim.keymap.set("n", "dn", vim.diagnostic.goto_next, opts)
-  vim.keymap.set("n", "<leader>.", vim.lsp.buf.code_action, opts)
+  map("n", "dp", vim.diagnostic.goto_prev, opts)
+  map("n", "dn", vim.diagnostic.goto_next, opts)
+  map("n", "<leader>.", vim.lsp.buf.code_action, opts)
   -- Rename
-  vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, opts)
+  map("n", "<leader>r", vim.lsp.buf.rename, opts)
   -- Get references
-  vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-  vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
+  map("n", "gr", vim.lsp.buf.references, opts)
+  map("i", "<C-h>", vim.lsp.buf.signature_help, opts)
 end
 
 -- To use the current client replace _ with client
 local function on_attach(_, bufnr)
   local opts = { buffer = bufnr, remap = false, silent = true }
 
-  vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-  vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+  map("n", "gd", vim.lsp.buf.definition, opts)
+  map("n", "K", vim.lsp.buf.hover, opts)
   -- Get symbols
-  vim.keymap.set("n", "<leader>gs", vim.lsp.buf.workspace_symbol, opts)
+  map("n", "<leader>gs", vim.lsp.buf.workspace_symbol, opts)
   -- View diagnostics
-  vim.keymap.set("n", "<leader>dq", vim.diagnostic.setqflist, opts)
+  map("n", "<leader>dq", vim.diagnostic.setqflist, opts)
   -- open flost
-  vim.keymap.set("n", "<leader>do", vim.diagnostic.open_float, opts)
+  map("n", "<leader>do", vim.diagnostic.open_float, opts)
 
-  vim.keymap.set("n", "dp", vim.diagnostic.goto_prev, opts)
-  vim.keymap.set("n", "dn", vim.diagnostic.goto_next, opts)
-  vim.keymap.set("n", "<leader>.", vim.lsp.buf.code_action, opts)
+  map("n", "dp", vim.diagnostic.goto_prev, opts)
+  map("n", "dn", vim.diagnostic.goto_next, opts)
+  map("n", "<leader>.", vim.lsp.buf.code_action, opts)
   -- Rename
-  vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, opts)
+  map("n", "<leader>r", vim.lsp.buf.rename, opts)
   -- Get references
-  vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-  vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
+  map("n", "gr", vim.lsp.buf.references, opts)
+  map("i", "<C-h>", vim.lsp.buf.signature_help, opts)
 
-  vim.keymap.set("n", "<leader>=", vim.lsp.buf.format, opts)
-  vim.keymap.set("v", "<leader>=", function()
+  map("n", "<leader>=", vim.lsp.buf.format, opts)
+  map("v", "<leader>=", function()
       vim.lsp.buf.format()
       -- Escape visual mode
       vim.api.nvim_input("<esc>")

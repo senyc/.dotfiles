@@ -40,18 +40,17 @@ require("telescope").setup {
 ---@return string? err_msg
 ---@return string? git_dir
 local function get_git_dir()
-  local handler = io.popen('git rev-parse --show-toplevel 2>/dev/null')
+  local handler = io.popen 'git rev-parse --show-toplevel 2>/dev/null'
   if not handler then
     return "Failed to execute 'git'", nil
   end
 
-  local result = handler:read("*l")
+  local result = handler:read('*l')
   -- Because stderr redirected to null assumes any stdout response due to validity of call
   if result then
     return nil, result
-  else
-    return "No valid return file", nil
   end
+  return 'No valid return file', nil
 end
 
 -- Searches for files available in the repository including ones that are not being tracked
@@ -75,13 +74,13 @@ end
 
 local function git_commits()
   if not pcall(builtin.git_commits) then
-    vim.print('Not in a git repository')
+    vim.print 'Not in a git repository'
   end
 end
 
 local function git_buffer_commit_diff()
   if not pcall(builtin.git_bcommits) then
-    vim.print('Not in a git repository')
+    vim.print 'Not in a git repository'
   end
 end
 
@@ -99,5 +98,5 @@ map('n', '<leader>fm', builtin.man_pages, options)
 map('n', '<leader>fd', git_buffer_commit_diff, options)
 -- find references
 map('n', '<leader>fr', builtin.lsp_references, options)
--- find buffers
+-- find buffer
 map('n', '<leader>fb', builtin.buffers, options)
