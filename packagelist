@@ -7,6 +7,7 @@ i3lock
 jq 
 light 
 lua 
+docker
 luarocks 
 man-db 
 neofetch 
@@ -31,7 +32,6 @@ scrot
 speedtest-cli 
 spotify-launcher 
 starship 
-tmux 
 unclutter 
 wget 
 which 

@@ -14,7 +14,8 @@ local servers = {
   'yamlls',
   'gopls',
   'cssls',
-  'ruby_ls'
+  'sqlls',
+  'solargraph'
 }
 
 -- Default formatting action

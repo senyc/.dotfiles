@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if [[ -d "$HOME/tmp" ]]; then 
+if [[ -d "$HOME/tmp/" ]]; then 
 	mkdir -p "$HOME/tmp"
 fi
 
@@ -17,7 +17,7 @@ for i in $(cat "$HOME/.dotfiles/packagelist"); do
     check_and_install "$i"
 done
 
-if ! which nvim > /dev/null; then
+if ! which nvim &> /dev/null; then
 	cd "$HOME/tmp" || return
 	git clone git@github.com:neovim/neovim
 	cd neovim/ || return
@@ -32,3 +32,17 @@ if ! which nvim > /dev/null; then
 else 
     echo "nvim already installed"
 fi 
+
+if ! which tmux &> /dev/null; then
+    check_and_install tmux
+    git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
+fi
+
+if ! which conda &> /dev/null; then
+    cd "$HOME/tmp" || return
+    curl -o conda-install.sh https://repo.anaconda.com/archive/Anaconda3-2023.07-2-Linux-x86_64.sh
+    chmod 700 conda-install.sh
+    ./conda-install.sh
+    echo "Creating python 3.11 environment, this will take a while"
+    conda install -c conda-forge python=3.11
+fi

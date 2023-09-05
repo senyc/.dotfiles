@@ -36,6 +36,7 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
 fi
 
 export PATH=$PATH:/usr/local/bin
+export PATH=$PATH:/home/senyc/.local/share/gem/ruby/3.0.0/bin
 export TERM='screen-256color'
 export EDITOR='nvim'
 export VISUAL='nvim'
@@ -139,20 +140,6 @@ if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
 fi
 
-
-# Conda init
-__conda_setup="$('/home/senyc/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/senyc/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/senyc/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/senyc/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-
 # Allows for a quick way to change directories and read new child items
 c() {
     if [ -z "$1" ]; then
@@ -194,3 +181,19 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/senyc/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/senyc/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/senyc/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/senyc/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+

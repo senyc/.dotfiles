@@ -36,3 +36,5 @@
     rebase = true
 [init]
 	defaultBranch = main
+[safe]
+	directory = /usr/lib/ruby/gems/3.0.0/bundler/gems/active_merchant-bceda09c4ee5
