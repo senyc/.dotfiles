@@ -77,35 +77,41 @@ keys = [
 
 groups = [
     Group(
-        label='i',
-        name='i',
-        spawn="alacritty -e tmux",
+        label="i",
+        name="i",
+        spawn=f"{terminal} -e tmux",
     ),
     Group(
-        label='r',
+        label="r",
         matches=[Match(wm_class=browser)],
-        name='r',
+        name="r",
         spawn=browser,
     ),
     Group(
-        label='v',
-        matches=[Match(wm_class='spotify')],
-        name='v',
-        spawn='spotify-launcher',
+        label="v",
+        matches=[Match(wm_class="spotify")],
+        name="v",
+        spawn="spotify-launcher",
     ),
     Group(
-        exclusive=True,
-        label='o',
-        matches=[Match(wm_class='slack'), Match(wm_class='discord'), Match(wm_class='zoom')],
-        name='o',
+        label="n",
+        matches=[Match(wm_class="obsidian")],
+        name="n",
+        spawn="obsidian",
+    ),
+    Group(
+        label="o",
+        matches=[Match(wm_class="slack"), Match(wm_class="discord"), Match(wm_class="zoom")],
+        name="o",
     ),
 ]
 
-# volume
 # interface
 # routing (browsing)
+# volume
+# notes
 # other
-for name in 'viro':
+for name in "virno":
     keys.extend(
         [
             Key(
