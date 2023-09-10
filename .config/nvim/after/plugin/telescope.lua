@@ -8,7 +8,8 @@ local map = vim.keymap.set
 require("telescope").setup {
   defaults = {
     file_ignore_patterns = {
-      "^.git/"
+      "^.git/",
+      "node_modules/"
     },
     vimgrep_arguments = {
       'rg',
