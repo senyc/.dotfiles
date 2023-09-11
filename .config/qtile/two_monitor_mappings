@@ -2,7 +2,7 @@
 
 # Two monitor mappings
 
-xrandr --output DP-4 --primary
-xrandr --output DP-2 --right-of DP-4
+xrandr --output HDMI-0 --primary
+xrandr --output DP-2 --right-of HDMI-0
 xrandr --output DP-2 --rotate right
 xrandr --output DP-2 --pos 2560x-650
