@@ -201,14 +201,12 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
   border = "rounded",
 })
 
-local signs = {
+for type, icon in pairs({
   Error = '>>',
   Warn = '->',
   Hint = '>-',
   Info = '--'
-}
-
-for type, icon in pairs(signs) do
+}) do
   local name = "DiagnosticSign" .. type
   local mapping = { text = icon, texthl = name, numhl = "" }
   vim.fn.sign_define(name, mapping)

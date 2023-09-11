@@ -22,7 +22,6 @@ map('v', 'K', ":m '<-2<CR>gv=gv", options)
 map('n', '<C-j>', 'a<cr><Esc>', options)
 map('n', 'J', 'mzJ`z', options)
 -- System clipboard adjustments
-
 map({ 'n', 'v' }, '<leader>Y', [["+Y]], options)
 map({ 'n', 'v' }, '<leader>y', [["+y]], options)
 map({ 'n', 'v' }, '<leader>P', [["+P]], options)
