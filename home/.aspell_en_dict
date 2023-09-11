@@ -12,12 +12,11 @@ sql
 vrange
 conda
 vimrc
-<<<<<<< HEAD
 qtile
 tmux
-=======
 pkill
 validparens
 readme
 init
->>>>>>> 6370bac (refactor: clean up lsp config)
+lsp
+config
