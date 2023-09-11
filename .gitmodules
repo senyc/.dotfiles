@@ -1,0 +1,3 @@
+[submodule "home/.ssh"]
+	path = home/.ssh
+	url = gh:senyc/.ssh
