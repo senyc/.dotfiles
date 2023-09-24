@@ -131,7 +131,7 @@ only_detached = true
 
 [hostname]
 ssh_only = true
-format = " in [$hostname]($style)"
+format = "in [$hostname]($style) "
 trim_at = "="
 style = "blue"
 disabled = false
