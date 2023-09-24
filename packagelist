@@ -2,12 +2,12 @@ alacritty
 alsa-utils 
 aspell-en
 base-devel
+docker
 github-cli
 i3lock
 jq 
 light 
 lua 
-docker
 luarocks 
 man-db 
 neofetch 
@@ -16,6 +16,7 @@ noto-fonts-cjk
 npm 
 openssh 
 pamixer 
+pandoc
 pavucontrol 
 picom 
 playerctl 
@@ -32,6 +33,12 @@ scrot
 speedtest-cli 
 spotify-launcher 
 starship 
+texlive-basic 
+texlive-latex 
+texlive-latexrecommended 
+texlive-pictures 
+texlive-latexextra 
+texlive-fontsrecommended
 unclutter 
 wget 
 which 
