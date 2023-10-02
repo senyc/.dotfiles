@@ -42,6 +42,8 @@ local function on_attach_pyright(_, bufnr)
   -- Get references
   map("n", "gr", vim.lsp.buf.references, opts)
   map("i", "<C-h>", vim.lsp.buf.signature_help, opts)
+  -- Get implementation
+  map("n", "<leader>gi", vim.lsp.buf.implementation, opts)
 end
 
 -- To use the current client replace _ with client
@@ -65,6 +67,8 @@ local function on_attach(_, bufnr)
   -- Get references
   map("n", "gr", vim.lsp.buf.references, opts)
   map("i", "<C-h>", vim.lsp.buf.signature_help, opts)
+  -- Get implementation
+  map("n", "<leader>gi", vim.lsp.buf.implementation, opts)
 
   map("n", "<leader>=", vim.lsp.buf.format, opts)
   map("v", "<leader>=", function()
