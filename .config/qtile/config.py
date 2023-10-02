@@ -83,9 +83,12 @@ groups = [
     ),
     Group(
         label="r",
-        matches=[Match(wm_class=browser)],
         name="r",
         spawn=browser,
+    ),
+    Group(
+        label="s",
+        name="s",
     ),
     Group(
         label="v",
@@ -108,10 +111,11 @@ groups = [
 
 # interface
 # routing (browsing)
+# search (browsing)
 # volume
 # notes
 # other
-for name in "virno":
+for name in "virsno":
     keys.extend(
         [
             Key(
