@@ -22,7 +22,6 @@ lsp
 config
 gitignore
 hdmi
-<<<<<<< Updated upstream
 submodule
 roadtest
 preprocessor
@@ -50,10 +49,8 @@ wm
 xpath
 makefile
 fdas
-=======
 pmandel
 mrt
 qsort
 shm
 priv
->>>>>>> Stashed changes
