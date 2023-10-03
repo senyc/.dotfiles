@@ -16,7 +16,7 @@ require("formatter").setup {
         exe = "black",
         args = {
           "-q",
-          "--skip-string-normalization",
+          -- "--skip-string-normalization",
           "-",
           "--line-length 100",
         },
