@@ -12,11 +12,10 @@ from options import MOD_KEY
 from primary_bar import primary_bar
 from side_bars import left_bar, right_bar
 
-browser = 'chromium'
-drop_down_one = 'firefox'
-drun = 'run_drun'
-powermenu = 'run_powermenu'
-terminal = 'alacritty'
+browser = "firefox --browser"
+drun = "run_drun"
+powermenu = "run_powermenu"
+terminal = "alacritty"
 
 monitor_count = len(get_monitor_resolutions())
 
@@ -84,7 +83,6 @@ groups = [
     Group(
         label="r",
         name="r",
-        spawn=browser,
     ),
     Group(
         label="s",
@@ -140,13 +138,13 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font='JetBrainsMono Nerd Font Mono',
+    font="JetBrainsMono Nerd Font Mono",
     fontsize=15,
     padding=0,
 )
 
-vertical_background: str = '~/.dotfiles/backgrounds/vertical.jpeg'
-horizontal_background: str = '~/.dotfiles/backgrounds/horizontal.jpeg'
+vertical_background: str = "~/.dotfiles/backgrounds/vertical.jpeg"
+horizontal_background: str = "~/.dotfiles/backgrounds/horizontal.jpeg"
 
 # 0 is always primary monitor
 # Assumes that one monitor is going to use the vertical monitor background
@@ -155,17 +153,17 @@ if monitor_count == 3:
         Screen(
             top=primary_bar,
             wallpaper=horizontal_background,
-            wallpaper_mode='fill',
+            wallpaper_mode="fill",
         ),
         Screen(
             top=left_bar,
             wallpaper=vertical_background,
-            wallpaper_mode='fill',
+            wallpaper_mode="fill",
         ),
         Screen(
             top=right_bar,
             wallpaper=horizontal_background,
-            wallpaper_mode='fill',
+            wallpaper_mode="fill",
         ),
     ]
 
@@ -174,12 +172,12 @@ elif monitor_count == 2:
         Screen(
             top=primary_bar,
             wallpaper=horizontal_background,
-            wallpaper_mode='fill',
+            wallpaper_mode="fill",
         ),
         Screen(
             top=left_bar,
             wallpaper=vertical_background,
-            wallpaper_mode='fill',
+            wallpaper_mode="fill",
         ),
     ]
 
@@ -188,7 +186,7 @@ elif monitor_count == 1:
         Screen(
             top=laptop_bar,
             wallpaper=horizontal_background,
-            wallpaper_mode='fill',
+            wallpaper_mode="fill",
         ),
     ]
 
@@ -230,10 +228,10 @@ wl_input_rules = None
 @hook.subscribe.startup_once
 def autostart():
     if monitor_count == 3:
-        file_dir = os.path.expanduser('~/.config/qtile/three_monitor_mappings')
+        file_dir = os.path.expanduser("~/.config/qtile/three_monitor_mappings")
         subprocess.run([file_dir])
     elif monitor_count == 2:
-        file_dir = os.path.expanduser('~/.config/qtile/two_monitor_mappings')
+        file_dir = os.path.expanduser("~/.config/qtile/two_monitor_mappings")
         subprocess.run([file_dir])
 
 
