@@ -33,4 +33,9 @@ alias gp='git push'
 alias gds='git diff --staged'
 
 alias aspell='aspell --lang=en_US --personal=$HOME/.aspell_en_dict'
+<<<<<<< HEAD
 alias compose='docker-compose'
+=======
+alias start_papercut='sh ~/printing/papercut/pc-client-linux.sh'
+alias s='sudo'
+>>>>>>> 549af2b (fix(nvim): correct git conflict plugin)
