@@ -12,10 +12,18 @@ from options import MOD_KEY
 from primary_bar import primary_bar
 from side_bars import left_bar, right_bar
 
+<<<<<<< Updated upstream
 browser = "firefox --browser"
 drun = "run_drun"
 powermenu = "run_powermenu"
 terminal = "alacritty"
+=======
+browser = 'firefox'
+drop_down_one = 'firefox'
+drun = 'run_drun'
+powermenu = 'run_powermenu'
+terminal = 'alacritty'
+>>>>>>> Stashed changes
 
 monitor_count = len(get_monitor_resolutions())
 
@@ -83,10 +91,14 @@ groups = [
     Group(
         label="r",
         name="r",
+<<<<<<< Updated upstream
     ),
     Group(
         label="s",
         name="s",
+=======
+        # spawn=browser,
+>>>>>>> Stashed changes
     ),
     Group(
         label="v",
