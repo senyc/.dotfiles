@@ -101,3 +101,5 @@ map('n', '<leader>fd', git_buffer_commit_diff, options)
 map('n', '<leader>fr', builtin.lsp_references, options)
 -- find buffer
 map('n', '<leader>fb', builtin.buffers, options)
+-- telescope resume
+map('n', '<leader>tr', builtin.resume, options)
