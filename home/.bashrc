@@ -169,6 +169,8 @@ cdb() {
     base_git_dir=$(git rev-parse --show-toplevel)
     if [ -n "$base_git_dir" ]; then
         cd "$base_git_dir" || return
+    else 
+        echo "Can't find base git directory, are you in a git repo?"
     fi
 }
 
