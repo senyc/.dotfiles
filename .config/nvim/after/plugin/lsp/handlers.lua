@@ -180,6 +180,7 @@ local config = {
   virtual_text = {
     spacing = 2,
   },
+  virtual_lines = true,
   signs = true,
   update_in_insert = true,
   underline = false,
