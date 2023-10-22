@@ -3,7 +3,7 @@ return require('packer').startup(function(use)
   use 'laytan/tailwind-sorter.nvim'
   use 'RRethy/vim-illuminate'
   use 'akinsho/bufferline.nvim'
-  use 'akinsho/git-conflict.nvim'
+  use { 'akinsho/git-conflict.nvim', tag = "v1.0.0" }
   use 'catppuccin/nvim'
   use 'ellisonleao/glow.nvim'
   use 'hrsh7th/cmp-buffer'
