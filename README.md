@@ -5,7 +5,7 @@
 
 ### GitHub
 
-```bash
+```python
 git clone https://github.com/senyc/.dotfiles
 cd .dotfiles
 ```
