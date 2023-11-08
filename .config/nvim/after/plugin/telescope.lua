@@ -85,6 +85,15 @@ local function git_buffer_commit_diff()
   end
 end
 
+local function grep_string()
+  local err, gitdir = get_git_dir()
+  if err then
+    builtin.grep_string { cwd = utils.buffer_dir(), hidden = true }
+  else
+    builtin.grep_string { cwd = gitdir, hidden = true }
+  end
+end
+
 -- find file
 map('n', '<leader>ff', defaut_search, options)
 -- find vim help
@@ -103,3 +112,5 @@ map('n', '<leader>fr', builtin.lsp_references, options)
 map('n', '<leader>fb', builtin.buffers, options)
 -- telescope resume
 map('n', '<leader>tr', builtin.resume, options)
+-- find word
+map('n', '<leader>fw', grep_string, options)

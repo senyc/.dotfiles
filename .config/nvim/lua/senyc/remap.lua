@@ -38,8 +38,10 @@ map("n", "<C-Up>", ":resize -2<CR>", options)
 map("n", "<C-Down>", ":resize +2<CR>", options)
 map("n", "<C-Left>", ":vertical resize -2<CR>", options)
 map("n", "<C-Right>", ":vertical resize +2<CR>", options)
--- Add space after curor
+-- Add space after cursor
 map('n', 'gl', 'a <Esc>h', options)
 -- QuickFix items
 map('n', '<leader>,', ':cnext<cr>zz', options)
 map('n', '<leader>;', ':cprev<cr>zz', options)
+-- QuickFix close 
+map('n', '<leader>cc', ':cclose', options)
