@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Runs AUR installation steps
+makepkg
+sudo pacman -U -- *.zst

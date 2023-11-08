@@ -199,6 +199,11 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+<<<<<<< HEAD
 # Add thread mentor to path
 export PATH="$PATH:~/ThreadMentor/bin"
+=======
+# Rbenv setup
+export PATH="$HOME/.rbenv/bin:$PATH"
+>>>>>>> de91cfaaa5cb3151168dbb8a87532b7e0ab15825
 eval "$(rbenv init -)"
