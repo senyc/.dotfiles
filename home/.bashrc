@@ -199,3 +199,6 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# Rbenv setup
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
