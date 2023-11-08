@@ -3,7 +3,7 @@ local map = vim.keymap.set
 
 require('nvim-tree').setup { -- BEGIN_DEFAULT_OPTS
   auto_reload_on_write = true,
-  disable_netrw = true,
+  disable_netrw = false,
   hijack_cursor = true,
   hijack_netrw = true,
   hijack_unnamed_buffer_when_opening = false,
