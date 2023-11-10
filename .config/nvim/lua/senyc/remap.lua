@@ -44,4 +44,4 @@ map('n', 'gl', 'a <Esc>h', options)
 map('n', '<leader>,', ':cnext<cr>zz', options)
 map('n', '<leader>;', ':cprev<cr>zz', options)
 -- QuickFix close 
-map('n', '<leader>cc', ':cclose', options)
+map('n', '<leader>cc', ':cclose<cr>', options)
