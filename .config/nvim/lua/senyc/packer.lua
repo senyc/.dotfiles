@@ -28,6 +28,7 @@ return require('packer').startup(function(use)
   use 'nvim-tree/nvim-tree.lua'
   use 'nvim-tree/nvim-web-devicons'
   use 'nvim-treesitter/playground'
+  use 'nvim-treesitter/nvim-treesitter-context'
   use 'wbthomason/packer.nvim'
   use 'williamboman/mason-lspconfig.nvim'
   use { "williamboman/mason.nvim", run = ":MasonUpdate" }
