@@ -6,6 +6,7 @@ return require('packer').startup(function(use)
   use { 'akinsho/git-conflict.nvim', tag = "v1.0.0" }
   use 'catppuccin/nvim'
   use 'ellisonleao/glow.nvim'
+  use("folke/zen-mode.nvim")
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-cmdline'
   use 'hrsh7th/cmp-nvim-lsp'
