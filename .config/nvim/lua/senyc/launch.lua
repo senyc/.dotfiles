@@ -91,11 +91,8 @@ local buttons = {
   val = {
     button("e", "  New file", "<cmd>ene <CR>"),
     button("<leader>ff", "󰈞  Find file"),
-    button("<leader>fh", "󰊄  Recently opened files"),
-    button("<leader>fr", "  Frecency/MRU"),
     button("<leader>fg", "󰈬  Find word"),
     button("<leader>fm", "  Jump to bookmarks"),
-    button("<leader>sl", "  Open last session"),
   },
   opts = {
     spacing = 1,
