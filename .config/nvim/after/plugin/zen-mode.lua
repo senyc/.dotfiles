@@ -7,6 +7,7 @@ local function enable_zen_mode()
   require("zen-mode").toggle()
   vim.wo.wrap = false
   vim.wo.number = true
+  -- Relative line number 
   vim.wo.rnu = true
 end
 

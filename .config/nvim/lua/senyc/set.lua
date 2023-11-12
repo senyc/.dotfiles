@@ -3,11 +3,9 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.spelllang = 'en_us'
 vim.opt.spell = true
--- Denying the automatic comment extending
+-- This seems to be required because 
+-- some other plugin is adjusting formatoptions
 vim.cmd("autocmd FileType * set formatoptions-=cro")
-vim.cmd(':set formatoptions-=cro')
-vim.opt.formatoptions = ''
-
 -- Default tab sizing
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
