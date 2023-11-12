@@ -4,6 +4,7 @@ aspell-en
 base-devel
 docker
 github-cli
+go
 i3lock
 jq 
 light 
@@ -34,11 +35,11 @@ speedtest-cli
 spotify-launcher 
 starship 
 texlive-basic 
+texlive-fontsrecommended
 texlive-latex 
+texlive-latexextra 
 texlive-latexrecommended 
 texlive-pictures 
-texlive-latexextra 
-texlive-fontsrecommended
 unclutter 
 wget 
 which 
