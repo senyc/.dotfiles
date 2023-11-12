@@ -16,7 +16,7 @@ return require('packer').startup(function(use)
   use 'rafamadriz/friendly-snippets'
   use 'L3MON4D3/LuaSnip'
   use 'saadparwaiz1/cmp_luasnip'
-  use 'startup-nvim/startup.nvim'
+  use 'goolord/alpha-nvim'
   use 'kylechui/nvim-surround'
   use 'lewis6991/gitsigns.nvim'
   use 'mbbill/undotree'
