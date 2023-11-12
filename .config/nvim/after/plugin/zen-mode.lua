@@ -1,4 +1,5 @@
 local function enable_zen_mode()
+vim.cmd("lua require('gitsigns').toggle_current_line_blame()")
   require("zen-mode").setup {
     window = {
       width = 90,
