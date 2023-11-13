@@ -114,3 +114,5 @@ map('n', '<leader>fb', builtin.buffers, options)
 map('n', '<leader>tr', builtin.resume, options)
 -- find word
 map('n', '<leader>fw', grep_string, options)
+-- files old
+map('n', '<leader>fo', builtin.oldfiles, options)

@@ -89,10 +89,12 @@ end
 local buttons = {
   type = "group",
   val = {
-    button("e", "  New file", "<cmd>ene <CR>"),
     button("<leader>ff", "󰈞  Find file"),
     button("<leader>fg", "󰈬  Find word"),
-    button("<leader>fm", "  Jump to bookmarks"),
+    button("<leader>fh", "󰋖  Find help"),
+    button("<leader>fc", "  Find commit"),
+    button("<leader>fm", "  Find man page"),
+    button("e", "  New file", "<cmd>ene <CR>"),
   },
   opts = {
     spacing = 1,
