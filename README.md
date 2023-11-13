@@ -11,7 +11,7 @@ cd .dotfiles
 ```
 
 ## Photos
-![2023-11-13-54-1699890884_screenshot](https://github.com/senyc/.dotfiles/assets/95313103/b23de5cd-3936-41bd-93e8-2c56d0f7cf7f)
+![2023-11-13-58-1699891080_screenshot](https://github.com/senyc/.dotfiles/assets/95313103/0ec4a559-69d1-4bcc-8e84-c0fa947bc818)
 ![2023-07-13-24-1689294261_screenshot](https://github.com/senyc/.dotfiles/assets/95313103/bf924eb3-4900-4933-b490-7019e9a11fae)
 ![2023-07-27-18-1690474714_screenshot](https://github.com/senyc/.dotfiles/assets/95313103/f3cdcc4f-0ac1-45c6-806f-ef3aa6ab6af9)
 
