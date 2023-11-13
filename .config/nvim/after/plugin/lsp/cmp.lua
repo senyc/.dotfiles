@@ -11,13 +11,12 @@ cmp.setup {
   mapping = cmp.mapping.preset.insert {
     ['<C-space>'] = cmp.mapping.confirm {
       -- behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
+      select = true, -- Auto select the first item
     },
     ['<CR>'] = cmp.mapping.confirm {
       select = false,
     },
     ['<tab>'] = cmp.mapping.confirm {
-      -- Auto select the first item
       select = true,
     },
     ['<C-n>'] = cmp.mapping(function(fallback)

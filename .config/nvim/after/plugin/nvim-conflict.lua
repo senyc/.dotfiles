@@ -8,7 +8,6 @@ require 'git-conflict'.setup {
     current = 'DiffText',
   }
 }
-
 vim.api.nvim_create_autocmd('User', {
   pattern = 'GitConflictDetected',
   callback = function()

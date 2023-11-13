@@ -6,6 +6,7 @@ return require('packer').startup(function(use)
   use { 'akinsho/git-conflict.nvim', tag = "v1.0.0" }
   use 'catppuccin/nvim'
   use 'ellisonleao/glow.nvim'
+  use("folke/zen-mode.nvim")
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-cmdline'
   use 'hrsh7th/cmp-nvim-lsp'
@@ -15,7 +16,7 @@ return require('packer').startup(function(use)
   use 'rafamadriz/friendly-snippets'
   use 'L3MON4D3/LuaSnip'
   use 'saadparwaiz1/cmp_luasnip'
-  use 'startup-nvim/startup.nvim'
+  use 'goolord/alpha-nvim'
   use 'kylechui/nvim-surround'
   use 'lewis6991/gitsigns.nvim'
   use 'mbbill/undotree'

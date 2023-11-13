@@ -15,7 +15,7 @@ map('n', 'N', 'Nzzzv')
 map('n', 'go', [[o<Esc>]], options)
 map('n', 'gO', [[O<Esc>]], options)
 map('n', 'Y', 'y$', options)
--- Allow for vis mode to move lines
+-- Allow for visual mode to move lines
 map('v', 'J', ":m '>+1<cr>gv=gv", options)
 map('v', 'K', ":m '<-2<CR>gv=gv", options)
 -- Adjustment of cursor location in J and inverse addition for <c-j>
@@ -26,7 +26,10 @@ map({ 'n', 'v' }, '<leader>Y', [["+Y]], options)
 map({ 'n', 'v' }, '<leader>y', [["+y]], options)
 map({ 'n', 'v' }, '<leader>P', [["+P]], options)
 map({ 'n', 'v' }, '<leader>p', [["+p]], options)
+-- Deletion to the null buffer
 map({ 'n', 'v' }, '<leader>d', [["_d]], options)
+-- Deletion to system clipboard
+map({ 'n', 'v' }, '<leader>x', [["+d]], options)
 -- Allow for replacing word at cursor location
 map("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], options)
 -- Removes trailing white spaces keeps cursor in the same place

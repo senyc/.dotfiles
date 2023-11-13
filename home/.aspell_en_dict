@@ -96,3 +96,5 @@ bashrc
 cclose
 py
 aurinstall
+treesitter
+dir
