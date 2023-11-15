@@ -1,8 +1,8 @@
 local lspconfig = require('lspconfig')
-local cmp = require("cmp_nvim_lsp")
+local cmp = require('cmp_nvim_lsp')
 
 local map = vim.keymap.set
-local styles = { border = "rounded" }
+local styles = { border = 'rounded' }
 
 local no_formatting = {
   'pyright'
@@ -20,42 +20,42 @@ local function on_attach(client, bufnr)
     return true
   end
 
-  map("n", "K", vim.lsp.buf.hover, opts)
+  map('n', 'K', vim.lsp.buf.hover, opts)
   -- Get definition
-  map("n", "gd", vim.lsp.buf.definition, opts)
+  map('n', 'gd', vim.lsp.buf.definition, opts)
   -- Get declaration
-  map("n", "gD", vim.lsp.buf.declaration, opts)
+  map('n', 'gD', vim.lsp.buf.declaration, opts)
   -- Get symbol
-  map("n", "<leader>gs", vim.lsp.buf.workspace_symbol, opts)
+  map('n', '<leader>gs', vim.lsp.buf.workspace_symbol, opts)
   -- Diagnostic QuickFix
-  map("n", "<leader>dq", vim.diagnostic.setqflist, opts)
+  map('n', '<leader>dq', vim.diagnostic.setqflist, opts)
   -- Diagnostic open
-  map("n", "<leader>do", vim.diagnostic.open_float, opts)
+  map('n', '<leader>do', vim.diagnostic.open_float, opts)
   -- Diagnostic previous
-  map("n", "dp", vim.diagnostic.goto_prev, opts)
+  map('n', 'dp', vim.diagnostic.goto_prev, opts)
   -- Diagnostic next
-  map("n", "dn", vim.diagnostic.goto_next, opts)
+  map('n', 'dn', vim.diagnostic.goto_next, opts)
   -- Code actions
-  map("n", "<leader>.", vim.lsp.buf.code_action, opts)
+  map('n', '<leader>.', vim.lsp.buf.code_action, opts)
   -- Rename
-  map("n", "<leader>r", vim.lsp.buf.rename, opts)
+  map('n', '<leader>r', vim.lsp.buf.rename, opts)
   -- Get references
-  map("n", "gr", vim.lsp.buf.references, opts)
+  map('n', 'gr', vim.lsp.buf.references, opts)
   -- Get implementation
-  map("n", "<leader>gi", vim.lsp.buf.implementation, opts)
+  map('n', '<leader>gi', vim.lsp.buf.implementation, opts)
 
   -- Format
   if has_formatting(client.name) then
-    map("n", "<leader>=", vim.lsp.buf.format, opts)
-    map("v", "<leader>=", function()
+    map('n', '<leader>=', vim.lsp.buf.format, opts)
+    map('v', '<leader>=', function()
         vim.lsp.buf.format()
         -- Escape visual mode
-        vim.api.nvim_input("<esc>")
+        vim.api.nvim_input('<esc>')
       end,
       opts
     )
   else
-    map("n", "<leader>=", ':Format<cr>', { remap = false, silent = true })
+    map('n', '<leader>=', ':Format<cr>', { remap = false, silent = true })
   end
 end
 
@@ -81,38 +81,24 @@ for _, server in pairs(servers) do
     capabilities = cmp.default_capabilities(),
   }
 
-  local ok, settings = pcall(require, 'senyc.lspsettings.' .. server)
+  local ok, settings = pcall(require, 'lspsettings.' .. server)
   if ok then
-    config = vim.tbl_deep_extend("force", settings, config)
+    config = vim.tbl_deep_extend('force', settings, config)
   end
   lspconfig[server].setup(config)
 end
 
-local diagnostic_config = {
-  virtual_text = {
-    spacing = 2,
-  },
-  virtual_lines = true,
-  signs = true,
-  update_in_insert = true,
-  underline = false,
-  severity_sort = true,
-  float = {
-    focusable = true,
-    style = "minimal",
-    border = styles.border,
-    source = "always",
-    header = "",
-    prefix = "",
-    suffix = "",
-  },
-}
+local ok, settings = pcall(require, 'lspsettings.diagnostic_config')
+if ok then
+  vim.diagnostic.config(settings)
+else
+  -- Sets with the defaults
+  vim.diagnostic.config()
+end
 
-vim.diagnostic.config(diagnostic_config)
-
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, styles)
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, styles)
-require("lspconfig.ui.windows").default_options.border = styles.border
+vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, styles)
+vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, styles)
+require('lspconfig.ui.windows').default_options.border = styles.border
 
 for type, icon in pairs({
   Error = '>>',
@@ -120,7 +106,7 @@ for type, icon in pairs({
   Hint = '>-',
   Info = '--'
 }) do
-  local name = "DiagnosticSign" .. type
-  local mapping = { text = icon, texthl = name, numhl = "" }
+  local name = 'DiagnosticSign' .. type
+  local mapping = { text = icon, texthl = name, numhl = '' }
   vim.fn.sign_define(name, mapping)
 end
