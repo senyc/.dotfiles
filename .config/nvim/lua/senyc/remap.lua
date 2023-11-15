@@ -31,16 +31,16 @@ map({ 'n', 'v' }, '<leader>d', [["_d]], options)
 -- Deletion to system clipboard
 map({ 'n', 'v' }, '<leader>x', [["+d]], options)
 -- Allow for replacing word at cursor location
-map("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], options)
+map('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], options)
 -- Removes trailing white spaces keeps cursor in the same place
 map('n', '<leader>wr', [[m`:%s/\s\+$//e<cr>``]], options)
 -- Save and quit on <leader>wq
-map('n', '<leader>wq', ":wa <cr> :qa!<cr>")
+map('n', '<leader>wq', ':wa <cr> :qa!<cr>')
 -- Resize windows w/ control and arrows
-map("n", "<C-Up>", ":resize -2<CR>", options)
-map("n", "<C-Down>", ":resize +2<CR>", options)
-map("n", "<C-Left>", ":vertical resize -2<CR>", options)
-map("n", "<C-Right>", ":vertical resize +2<CR>", options)
+map('n', '<C-Up>', ':resize -2<CR>', options)
+map('n', '<C-Down>', ':resize +2<CR>', options)
+map('n', '<C-Left>', ':vertical resize -2<CR>', options)
+map('n', '<C-Right>', ':vertical resize +2<CR>', options)
 -- Add space after cursor
 map('n', 'gl', 'a <Esc>h', options)
 -- QuickFix items

@@ -2,7 +2,7 @@ local if_nil = vim.F.if_nil
 local M = {}
 
 local default_terminal = {
-  type = "terminal",
+  type = 'terminal',
   command = nil,
   width = 69,
   height = 8,
@@ -13,7 +13,7 @@ local default_terminal = {
 }
 
 local default_header = {
-  type = "text",
+  type = 'text',
   val = {
     [[=================     ===============     ===============   ========  ========]],
     [[\\ . . . . . . .\\   //. . . . . . .\\   //. . . . . . .\\  \\. . .\\// . . //]],
@@ -36,50 +36,50 @@ local default_header = {
     [[ `''                                                                      ``' ]],
   },
   opts = {
-    position = "center",
-    hl = "Type",
+    position = 'center',
+    hl = 'Type',
     -- wrap = "overflow";
   },
 }
 
 local footer = {
-  type = "text",
-  val = "",
+  type = 'text',
+  val = '',
   opts = {
-    position = "center",
-    hl = "Number",
+    position = 'center',
+    hl = 'Number',
   },
 }
 
-local leader = "<leader>"
+local leader = '<leader>'
 
 --- @param sc string
 --- @param txt string
 --- @param keybind string? optional
 --- @param keybind_opts table? optional
 local function button(sc, txt, keybind, keybind_opts)
-  local sc_ = sc:gsub("%s", ""):gsub(leader, "<leader>")
+  local sc_ = sc:gsub('%s', ''):gsub(leader, '<leader>')
 
   local opts = {
-    position = "center",
+    position = 'center',
     shortcut = sc,
     cursor = 3,
     width = 50,
-    align_shortcut = "right",
-    hl_shortcut = "Keyword",
+    align_shortcut = 'right',
+    hl_shortcut = 'Keyword',
   }
   if keybind then
     keybind_opts = if_nil(keybind_opts, { noremap = true, silent = true, nowait = true })
-    opts.keymap = { "n", sc_, keybind, keybind_opts }
+    opts.keymap = { 'n', sc_, keybind, keybind_opts }
   end
 
   local function on_press()
-    local key = vim.api.nvim_replace_termcodes(keybind or sc_ .. "<Ignore>", true, false, true)
-    vim.api.nvim_feedkeys(key, "t", false)
+    local key = vim.api.nvim_replace_termcodes(keybind or sc_ .. '<Ignore>', true, false, true)
+    vim.api.nvim_feedkeys(key, 't', false)
   end
 
   return {
-    type = "button",
+    type = 'button',
     val = txt,
     on_press = on_press,
     opts = opts,
@@ -87,14 +87,14 @@ local function button(sc, txt, keybind, keybind_opts)
 end
 
 local buttons = {
-  type = "group",
+  type = 'group',
   val = {
-    button("<leader>ff", "󰈞  Find file"),
-    button("<leader>fg", "󰈬  Find word"),
-    button("<leader>fh", "󰋖  Find help"),
-    button("<leader>fc", "  Find commit"),
-    button("<leader>fm", "  Find man page"),
-    button("e", "  New file", "<cmd>ene <CR>"),
+    button('<leader>ff', '󰈞  Find file'),
+    button('<leader>fg', '󰈬  Find word'),
+    button('<leader>fh', '󰋖  Find help'),
+    button('<leader>fc', '  Find commit'),
+    button('<leader>fm', '  Find man page'),
+    button('e', '  New file', '<cmd>ene <CR>'),
   },
   opts = {
     spacing = 1,
@@ -109,9 +109,9 @@ local section = {
 }
 
 M.layout = {
-    { type = "padding", val = 2 },
+    { type = 'padding', val = 2 },
     section.header,
-    { type = "padding", val = 2 },
+    { type = 'padding', val = 2 },
     section.buttons,
     section.footer,
   }

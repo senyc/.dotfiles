@@ -1,5 +1,5 @@
 require('glow').setup {
-  style = "dark",
+  style = 'dark',
   pager = false, -- This is broken
   border = 'rounded',
   width_ratio = 0.8,

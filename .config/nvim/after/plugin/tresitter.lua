@@ -2,14 +2,14 @@
 -- tj has a great video of this
 require('nvim-treesitter.configs').setup {
   ensure_installed = {
-    "bash",
-    "c",
-    "lua",
-    "vim",
-    "vimdoc",
-    "ruby",
-    "javascript",
-    "python"
+    'bash',
+    'c',
+    'lua',
+    'vim',
+    'vimdoc',
+    'ruby',
+    'javascript',
+    'python'
   },
   sync_install = false,
   auto_install = true,

@@ -1,1 +1,1 @@
-require("alpha").setup(require("senyc.launch"))
+require('alpha').setup(require('senyc.launch'))

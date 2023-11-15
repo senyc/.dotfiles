@@ -3,10 +3,10 @@ return require('packer').startup(function(use)
   use 'laytan/tailwind-sorter.nvim'
   use 'RRethy/vim-illuminate'
   use 'akinsho/bufferline.nvim'
-  use { 'akinsho/git-conflict.nvim', tag = "v1.0.0" }
+  use { 'akinsho/git-conflict.nvim', tag = 'v1.0.0' }
   use 'catppuccin/nvim'
   use 'ellisonleao/glow.nvim'
-  use("folke/zen-mode.nvim")
+  use('folke/zen-mode.nvim')
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-cmdline'
   use 'hrsh7th/cmp-nvim-lsp'
@@ -32,6 +32,6 @@ return require('packer').startup(function(use)
   use 'nvim-treesitter/nvim-treesitter-context'
   use 'wbthomason/packer.nvim'
   use 'williamboman/mason-lspconfig.nvim'
-  use { "williamboman/mason.nvim", run = ":MasonUpdate" }
+  use { 'williamboman/mason.nvim', run = ':MasonUpdate' }
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 end)
