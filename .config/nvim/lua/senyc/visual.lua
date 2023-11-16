@@ -68,5 +68,5 @@ vim.cmd.colorscheme 'catppuccin'
 -- https://github.com/catppuccin/nvim/blob/main/lua/catppuccin/palettes/mocha.lua
 vim.cmd('hi CursorLineNr guifg=#a6e3a1')
 vim.cmd('hi LineNr guifg=#a6adc8')
--- Change the virtual text for git blame
+-- Change the virtual text color for git blame
 vim.cmd('hi GitSignsCurrentLineBlame guifg=#6c7086')
