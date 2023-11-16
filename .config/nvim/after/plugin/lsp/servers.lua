@@ -81,14 +81,14 @@ for _, server in pairs(servers) do
     capabilities = cmp.default_capabilities(),
   }
 
-  local ok, settings = pcall(require, 'lspsettings.' .. server)
+  local ok, settings = pcall(require, 'senyc.lspsettings.' .. server)
   if ok then
     config = vim.tbl_deep_extend('force', settings, config)
   end
   lspconfig[server].setup(config)
 end
 
-local ok, settings = pcall(require, 'lspsettings.diagnostic_config')
+local ok, settings = pcall(require, 'senyc.lspsettings.diagnostic_config')
 if ok then
   vim.diagnostic.config(settings)
 else
