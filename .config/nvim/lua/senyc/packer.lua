@@ -1,6 +1,6 @@
 -- Many of these are dependencies so remove with caution
 require('packer').startup(function(use, use_rocks)
- use_rocks 'luafilesystem'
+  use_rocks 'luafilesystem'
   use 'laytan/tailwind-sorter.nvim'
   use 'RRethy/vim-illuminate'
   use 'akinsho/bufferline.nvim'

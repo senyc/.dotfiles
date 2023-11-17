@@ -100,3 +100,4 @@ treesitter
 dir
 lspsettings
 lua
+sed
