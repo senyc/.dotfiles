@@ -5,7 +5,7 @@ map('i', 'jj', '<Esc>', options)
 -- Buffer deletion and traversal
 map('n', '<leader>l', ':bnext<cr>', options)
 map('n', '<leader>h', ':bprevious<cr>', options)
-map('n', '<leader>dd', [[:NvimTreeClose<cr>:bdelete<cr>]], options)
+map('n', '<leader>dd', [[:bdelete<cr>]], options)
 -- Centralized navigation for search and <c-d/u>
 map('n', '<c-d>', '<c-d>zz', options)
 map('n', '<c-u>', '<c-u>zz', options)
