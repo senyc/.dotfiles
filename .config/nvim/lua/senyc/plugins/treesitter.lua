@@ -25,6 +25,6 @@ return {
         enable = true
       }
     }
-    vim.cmd "TSUpdate"
+    vim.cmd 'silent TSUpdate'
   end
 }

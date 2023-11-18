@@ -6,8 +6,6 @@ return {
     local lspconfig = require 'lspconfig'
     local cmp = require 'cmp_nvim_lsp'
 
-    local styles = { border = 'rounded' }
-
     local no_formatting = {
       'pyright'
     }
@@ -99,9 +97,9 @@ return {
       vim.diagnostic.config()
     end
 
-    vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, styles)
-    vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, styles)
-    require('lspconfig.ui.windows').default_options.border = styles.border
+    vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' })
+    vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded' })
+    require('lspconfig.ui.windows').default_options.border = 'rounded'
 
     for type, icon in pairs({
       Error = '>>',

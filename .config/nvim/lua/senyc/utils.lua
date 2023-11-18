@@ -19,4 +19,11 @@ function M.get_git_dir()
   return 'No valid return file', nil
 end
 
+--- Uses default opts param with given vim.keymap.set options
+function M.default_map(...)
+  local args = { ... }
+  table.insert(args, { noremap = true, silent = true })
+  vim.keymap.set(unpack(args))
+end
+
 return M

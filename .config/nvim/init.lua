@@ -1,1 +1,1 @@
-require("senyc")
+require 'senyc'
