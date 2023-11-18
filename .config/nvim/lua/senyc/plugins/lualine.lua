@@ -9,7 +9,7 @@ return {
         component_separators = { left = '', right = '' },
         section_separators = { left = '', right = '' },
         disabled_filetypes = {
-          'lazy', 'NvimTree', 'undotree', 'alpha'
+          'netrw', 'undotree', 'alpha'
         },
         ignore_focus = {},
         always_divide_middle = true,

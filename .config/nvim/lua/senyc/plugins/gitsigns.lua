@@ -2,7 +2,7 @@ return {
   'lewis6991/gitsigns.nvim',
   lazy = false,
   config = function()
-    local opts = { remap = false, silent = true }
+    local options = { remap = false, silent = true }
     require 'gitsigns'.setup {
       signs = {
         add = { text = '│' },
@@ -45,8 +45,8 @@ return {
       },
     }
     -- jumps down to the next change
-    vim.keymap.set('n', '<leader>jn', require('gitsigns').next_hunk, opts)
+    vim.keymap.set('n', '<leader>jn', require 'gitsigns'.next_hunk, options)
     -- jumps up to the previous change
-    vim.keymap.set('n', '<leader>jp', require('gitsigns').prev_hunk, opts)
+    vim.keymap.set('n', '<leader>jp', require 'gitsigns'.prev_hunk, options)
   end
 }

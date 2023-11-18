@@ -94,9 +94,8 @@ return {
       val = {
         button('<leader>ff', '󰈞  Find file'),
         button('<leader>fg', '󰈬  Find word'),
-        button('<leader>fh', '󰋖  Find help'),
         button('<leader>fc', '  Find commit'),
-        button('<leader>fm', '  Find man page'),
+        button('<leader>fh', '󰋖  Find help'),
       },
       opts = {
         spacing = 1,

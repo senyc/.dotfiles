@@ -43,8 +43,21 @@ map('n', '<C-Left>', ':vertical resize -2<CR>')
 map('n', '<C-Right>', ':vertical resize +2<CR>')
 -- Add space after cursor
 map('n', 'gl', 'a <Esc>h')
+-- Show current directory
+map('n', '<leader>cd', vim.cmd.pwd)
 -- QuickFix navigation
 map('n', '<leader>,', ':cnext<cr>zz')
 map('n', '<leader>;', ':cprev<cr>zz')
 -- QuickFix close
 map('n', '<leader>cc', vim.cmd.cclose)
+
+-- Netrw bindings
+local function toggle_netrw()
+  if vim.api.nvim_buf_get_option(0, 'filetype') ~= 'netrw' then
+    vim.cmd.Ex()
+  else
+    vim.cmd.bdelete()
+  end
+end
+
+map('n', '<leader>fe', toggle_netrw)

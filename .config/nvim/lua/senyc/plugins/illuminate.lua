@@ -12,7 +12,7 @@ return {
       filetype_overrides = {},
       -- filetypes_denylist: filetypes to not illuminate, this overrides filetypes_allowlist
       filetypes_denylist = {
-        'NvimTree',
+        'netrw',
         'TelescopePrompt',
       },
       filetypes_allowlist = {},

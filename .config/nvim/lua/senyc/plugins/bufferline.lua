@@ -20,7 +20,7 @@ return {
         max_prefix_length = 15,   -- prefix used when a buffer is de-duplicated
         truncate_names = true,    -- whether or not tab names should be truncated
         tab_size = 18,
-        diagnostics = "nvim_lsp", --| "nvim_lsp" | "coc",
+        diagnostics = 'nvim_lsp', --| "nvim_lsp" | "coc",
         diagnostics_update_in_insert = false,
         -- The diagnostics indicator can be set to nil to keep the buffer name highlight but delete the highlighting
         diagnostics_indicator = function(count, level, diagnostics_dict, context)
@@ -47,17 +47,11 @@ return {
         end,
         offsets = {
           {
-            filetype = 'NvimTree',
-            text = 'File Explorer', --| function ,
             text_align = 'left',    --| "center" | "right"
             separator = false
           }
         },
         color_icons = true, -- whether or not to add the filetype icon highlights
-        get_element_icon = function(element)
-          local icon, hl = require 'nvim-web-devicons'.get_icon_by_filetype(element.filetype, { default = false })
-          return icon, hl
-        end,
         show_buffer_icons = false,
         show_buffer_close_icons = false,
         show_close_icon = false,
