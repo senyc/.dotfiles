@@ -2,7 +2,7 @@
 
 title=$(head -1 "$1")
 if ! ( echo "$title" | grep -qE "^Merge" ); then
-    if ! (echo "$title" | grep -qE "^(feat|fix|chore|docs|test|style|refactor|perf|build|ci|revert)(\(.+?\))?: .{1,}$"); then
+    if ! (echo "$title" | grep -qE "^(feat|fix|chore|docs|test|style|refactor|perf|build|ci|revert)(\(.+?\))?!?: .{1,}$"); then
         echo "Aborting commit. Your commit message is invalid. Please follow the semantic commit guidelines" >&2
         exit 1
     fi
