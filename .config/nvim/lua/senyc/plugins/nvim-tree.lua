@@ -1,7 +1,7 @@
 return {
   'nvim-tree/nvim-tree.lua',
   lazy = true,
-  keys = { "<C-n>" },
+  keys = { '<C-n>' },
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   config = function()
     require 'nvim-tree'.setup {

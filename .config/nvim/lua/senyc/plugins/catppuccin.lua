@@ -2,7 +2,7 @@ return {
   'catppuccin/nvim',
   priority = 1000,
   config = function()
-    require('catppuccin').setup {
+    require 'catppuccin'.setup {
       flavour = 'mocha', -- latte, frappe, macchiato, mocha
       background = { -- :h background
         light = 'latte',
@@ -68,9 +68,9 @@ return {
     vim.cmd.colorscheme 'catppuccin'
     -- These make the numbers much easier to see they use the colors here:
     -- https://github.com/catppuccin/nvim/blob/main/lua/catppuccin/palettes/mocha.lua
-    vim.cmd('hi CursorLineNr guifg=#a6e3a1')
-    vim.cmd('hi LineNr guifg=#a6adc8')
+    vim.cmd 'hi CursorLineNr guifg=#a6e3a1'
+    vim.cmd 'hi LineNr guifg=#a6adc8'
     -- -- Change the virtual text color for git blame
-    vim.cmd('hi GitSignsCurrentLineBlame guifg=#6c7086')
+    vim.cmd 'hi GitSignsCurrentLineBlame guifg=#6c7086'
   end
 }

@@ -3,8 +3,8 @@ return {
   dependencies = { 'hrsh7th/cmp-nvim-lsp' },
   lazy = false,
   config = function()
-    local lspconfig = require('lspconfig')
-    local cmp = require('cmp_nvim_lsp')
+    local lspconfig = require 'lspconfig'
+    local cmp = require 'cmp_nvim_lsp'
 
     local styles = { border = 'rounded' }
 
@@ -14,16 +14,7 @@ return {
 
     local function on_attach(client, bufnr)
       local opts = { buffer = bufnr, remap = false, silent = true }
-
-      local function has_formatting(server)
-        for _, val in pairs(no_formatting) do
-          if val == server then
-            return false
-          end
-        end
-        return true
-      end
-
+      -- Inspect cursor token
       vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
       -- Get definition
       vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
@@ -36,10 +27,10 @@ return {
       -- Diagnostic open
       vim.keymap.set('n', '<leader>do', vim.diagnostic.open_float, opts)
       -- Diagnostic previous
-      vim.keymap.set('n', 'dp', vim.diagnostic.goto_prev, opts)
+      vim.keymap.set('n', '<leader>dp', vim.diagnostic.goto_prev, opts)
       -- Diagnostic next
-      vim.keymap.set('n', 'dn', vim.diagnostic.goto_next, opts)
-      -- Code actions
+      vim.keymap.set('n', '<leader>dn', vim.diagnostic.goto_next, opts)
+      -- Code action
       vim.keymap.set('n', '<leader>.', vim.lsp.buf.code_action, opts)
       -- Rename
       vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, opts)
@@ -49,7 +40,15 @@ return {
       vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation, opts)
 
       -- Format
-      if has_formatting(client.name) then
+      if (function()
+            for _, val in pairs(no_formatting) do
+              if val == client.name then
+                return false
+              end
+            end
+            return true
+          end)()
+      then
         vim.keymap.set('n', '<leader>=', vim.lsp.buf.format, opts)
         vim.keymap.set('v', '<leader>=', function()
             vim.lsp.buf.format()
@@ -59,7 +58,7 @@ return {
           opts
         )
       else
-        vim.keymap.set('n', '<leader>=', function() vim.cmd('Format') end, { remap = false, silent = true })
+        vim.keymap.set('n', '<leader>=', vim.cmd.Format, { remap = false, silent = true })
       end
     end
 

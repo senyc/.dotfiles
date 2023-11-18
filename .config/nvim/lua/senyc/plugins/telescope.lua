@@ -11,7 +11,6 @@ return {
     local get_git_dir = require 'senyc.utils'.get_git_dir
 
     local options = { noremap = true, silent = true }
-    local map = vim.keymap.set
 
     require 'telescope'.setup {
       defaults = {
@@ -84,26 +83,26 @@ return {
     end
 
     -- find file
-    map('n', '<leader>ff', defaut_search, options)
+    vim.keymap.set('n', '<leader>ff', defaut_search, options)
     -- find vim help
-    map('n', '<leader>fh', builtin.help_tags, options)
+    vim.keymap.set('n', '<leader>fh', builtin.help_tags, options)
     -- find live git grep
-    map('n', '<leader>fg', live_git_grep, options)
+    vim.keymap.set('n', '<leader>fg', live_git_grep, options)
     -- find commits in repo
-    map('n', '<leader>fc', git_commits, options)
+    vim.keymap.set('n', '<leader>fc', git_commits, options)
     -- find man page entries
-    map('n', '<leader>fm', builtin.man_pages, options)
+    vim.keymap.set('n', '<leader>fm', builtin.man_pages, options)
     -- find git buffer commit diff
-    map('n', '<leader>fd', git_buffer_commit_diff, options)
+    vim.keymap.set('n', '<leader>fd', git_buffer_commit_diff, options)
     -- find references
-    map('n', '<leader>fr', builtin.lsp_references, options)
+    vim.keymap.set('n', '<leader>fr', builtin.lsp_references, options)
     -- find buffer
-    map('n', '<leader>fb', builtin.buffers, options)
+    vim.keymap.set('n', '<leader>fb', builtin.buffers, options)
     -- telescope resume
-    map('n', '<leader>tr', builtin.resume, options)
+    vim.keymap.set('n', '<leader>tr', builtin.resume, options)
     -- find word
-    map('n', '<leader>fw', grep_string, options)
+    vim.keymap.set('n', '<leader>fw', grep_string, options)
     -- files old
-    map('n', '<leader>fo', builtin.oldfiles, options)
+    vim.keymap.set('n', '<leader>fo', builtin.oldfiles, options)
   end
 }

@@ -1,6 +1,6 @@
 return {
   'mhartington/formatter.nvim',
-  cmd = "Format",
+  cmd = 'Format',
   lazy = true,
   config = function()
     require 'formatter'.setup {

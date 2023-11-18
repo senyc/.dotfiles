@@ -2,7 +2,7 @@ return {
   'akinsho/bufferline.nvim',
   lazy = false,
   config = function()
-    require('bufferline').setup {
+    require 'bufferline'.setup {
       options = {
         mode = 'buffers',                    -- set to "tabs" to only show tabpages instead
         themable = false,                    -- allows highlight groups to be overriden i.e. sets highlights as default
@@ -55,7 +55,7 @@ return {
         },
         color_icons = true, -- whether or not to add the filetype icon highlights
         get_element_icon = function(element)
-          local icon, hl = require('nvim-web-devicons').get_icon_by_filetype(element.filetype, { default = false })
+          local icon, hl = require 'nvim-web-devicons'.get_icon_by_filetype(element.filetype, { default = false })
           return icon, hl
         end,
         show_buffer_icons = false,

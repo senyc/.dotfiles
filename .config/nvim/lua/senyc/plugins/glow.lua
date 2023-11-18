@@ -1,6 +1,6 @@
 return {
   'ellisonleao/glow.nvim',
-  cmd = "Glow",
+  cmd = 'Glow',
   lazy = true,
   config = function()
     require 'glow'.setup {
