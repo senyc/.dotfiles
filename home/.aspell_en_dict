@@ -101,3 +101,7 @@ dir
 lspsettings
 lua
 sed
+configs
+keymap
+keymaps
+utils
