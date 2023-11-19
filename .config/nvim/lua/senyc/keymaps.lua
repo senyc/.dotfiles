@@ -2,10 +2,11 @@ local map = require 'senyc.utils'.default_map
 
 -- exit insert mode
 map('i', 'jj', '<Esc>')
+map('i', 'jJ', '<Esc>')
 -- Buffer deletion and traversal
 map('n', '<leader>l', vim.cmd.bnext)
 map('n', '<leader>h', vim.cmd.bprevious)
-map('n', '<leader>dd', vim.cmd.bdelete)
+map('n', '<leader>bd', vim.cmd.bdelete)
 -- Centralized navigation for search and <c-d/u>
 map('n', '<c-d>', '<c-d>zz')
 map('n', '<c-u>', '<c-u>zz')
@@ -26,10 +27,10 @@ map({ 'n', 'v' }, '<leader>Y', [["+Y]])
 map({ 'n', 'v' }, '<leader>y', [["+y]])
 map({ 'n', 'v' }, '<leader>P', [["+P]])
 map({ 'n', 'v' }, '<leader>p', [["+p]])
--- Deletion to the null buffer
-map({ 'n', 'v' }, '<leader>d', [["_d]])
 -- Deletion to system clipboard
-map({ 'n', 'v' }, '<leader>x', [["+d]])
+map({ 'n', 'v' }, '<leader>d', [["+d]])
+-- Deletion to the null buffer
+map({ 'n', 'v' }, '<leader>x', [["_d]])
 -- Allow for replacing word at cursor location
 map('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 -- Removes trailing white spaces keeps cursor in the same place

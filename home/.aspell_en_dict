@@ -101,8 +101,18 @@ dir
 lspsettings
 lua
 sed
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 configs
 keymap
 keymaps
 utils
+<<<<<<< Updated upstream
 lualine
+=======
+netrw
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
