@@ -51,7 +51,8 @@ map('n', '<leader>,', ':cnext<cr>zz')
 map('n', '<leader>;', ':cprev<cr>zz')
 -- QuickFix close
 map('n', '<leader>cc', vim.cmd.cclose)
-
+-- QuickFix open
+map('n', '<leader>co', vim.cmd.copen)
 -- Netrw bindings
 local function toggle_netrw()
   if vim.api.nvim_buf_get_option(0, 'filetype') ~= 'netrw' then
@@ -62,3 +63,23 @@ local function toggle_netrw()
 end
 
 map('n', '<leader>fe', toggle_netrw)
+
+local function toggle_windowed_netrw()
+  local killed_netrw = false
+  local current_win = vim.api.nvim_get_current_win()
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    vim.api.nvim_set_current_win(win)
+    if vim.bo.filetype == 'netrw' then
+      vim.cmd.q()
+      killed_netrw = true
+      break
+    end
+  end
+
+  if not killed_netrw then
+    vim.cmd('Vex!')
+  end
+  pcall(vim.api.nvim_set_current_win, current_win)
+end
+
+map('n', '<leader>ve', toggle_windowed_netrw)

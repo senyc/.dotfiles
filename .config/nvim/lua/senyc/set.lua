@@ -39,7 +39,7 @@ vim.opt.conceallevel = 0 -- so that `` is visible in markdown files
 vim.opt.grepprg = 'rg --vimgrep'
 vim.opt.virtualedit = 'block' -- Allow cursor to move where there is no text in visual block mode
 -- Netrw config
-vim.g.netrw_banner = 1
+vim.g.netrw_banner = 0
 -- Hide ../ and ./  and .git/ from entries
 vim.g.netrw_list_hide = [[\.\./,\./,\.git/,__pycache__/]]
 --[[
@@ -55,3 +55,7 @@ vim.g.netrw_bufsettings = 'noma nomod nu bl nowrap ro'
 vim.g.netrw_preview = 1
 -- Human-readable file sizes
 vim.g.netrw_sizestyle = "H"
+-- Percent of new window size
+vim.g.netrw_winsize = 15
+-- When windowed will split on the right
+vim.g.netrw_altv = '1'
