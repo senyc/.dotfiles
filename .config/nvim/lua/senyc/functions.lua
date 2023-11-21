@@ -22,7 +22,7 @@ function M.toggle_windowed_netrw()
   end
 
   if not killed_netrw then
-    vim.cmd('Vex!')
+    vim.cmd 'Vex!'
   end
   pcall(vim.api.nvim_set_current_win, current_win)
 end
@@ -30,25 +30,32 @@ end
 function M.replace_word_in_project()
   -- Get word under cursor
   local current_word = vim.fn.expand '<cword>'
-  local err, gitdir = utils.get_git_dir()
   if current_word == nil then
-    vim.print 'Please place cursor on word you would like to replace'
+    vim.print 'Please place cursor on word to replace'
     return
   end
 
+  local err, gitdir = utils.get_git_dir()
   if err then
-    vim.print 'Not in a git repository'
+    vim.print 'Not a git repository'
     return
   end
 
-  vim.cmd('silent grep ' .. current_word .. ' ' .. gitdir)
+  -- Save current buffer as grep moves to most recent updated buffer
+  local current_buf = vim.api.nvim_get_current_buf()
+
+  local search_cmd = 'silent grep ' .. current_word .. ' ' .. gitdir
+  vim.cmd(search_cmd)
 
   vim.ui.input({ prompt = 'replace ' .. current_word .. ' with: ' }, function(input)
     -- Test for <C-c>
-    if not input:find("\3") or input:find("\x03") then
-      vim.cmd('silent cdo ' .. 's/' .. current_word .. '/' .. input .. '/')
+    if input ~= nil and not input:find "\3" and not input:find "\x03" then
+      local replace_cmd = 'silent cdo ' .. 's/' .. current_word .. '/' .. input .. '/'
+      pcall(function() vim.cmd(replace_cmd) end)
     end
   end)
+  -- Return to original buffer
+  vim.api.nvim_set_current_buf(current_buf)
 end
 
 return M
