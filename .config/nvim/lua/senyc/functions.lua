@@ -1,0 +1,61 @@
+local utils = require 'senyc.utils'
+
+local M = {}
+function M.toggle_netrw()
+  if vim.api.nvim_buf_get_option(0, 'filetype') ~= 'netrw' then
+    vim.cmd.Ex()
+  else
+    vim.cmd.bdelete()
+  end
+end
+
+function M.toggle_windowed_netrw()
+  local killed_netrw = false
+  local current_win = vim.api.nvim_get_current_win()
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    vim.api.nvim_set_current_win(win)
+    if vim.bo.filetype == 'netrw' then
+      vim.cmd.q()
+      killed_netrw = true
+      break
+    end
+  end
+
+  if not killed_netrw then
+    vim.cmd 'Vex!'
+  end
+  pcall(vim.api.nvim_set_current_win, current_win)
+end
+
+function M.replace_word_in_project()
+  -- Get word under cursor
+  local current_word = vim.fn.expand '<cword>'
+  if current_word == nil then
+    vim.print 'Please place cursor on word to replace'
+    return
+  end
+
+  local err, gitdir = utils.get_git_dir()
+  if err then
+    vim.print 'Not a git repository'
+    return
+  end
+
+  -- Save current buffer as grep moves to most recent updated buffer
+  local current_buf = vim.api.nvim_get_current_buf()
+
+  local search_cmd = 'silent grep ' .. current_word .. ' ' .. gitdir
+  vim.cmd(search_cmd)
+
+  vim.ui.input({ prompt = 'replace ' .. current_word .. ' with: ' }, function(input)
+    -- Test for <C-c>
+    if input ~= nil and not input:find "\3" and not input:find "\x03" then
+      local replace_cmd = 'silent cdo ' .. 's/' .. current_word .. '/' .. input .. '/'
+      pcall(function() vim.cmd(replace_cmd) end)
+    end
+  end)
+  -- Return to original buffer
+  vim.api.nvim_set_current_buf(current_buf)
+end
+
+return M

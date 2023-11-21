@@ -33,10 +33,12 @@ vim.opt.undodir = os.getenv('HOME') .. '/.vim/undodir'
 -- This allows for the color of the current line number to be different from others
 vim.opt.cursorline = true
 vim.opt.cursorlineopt = 'number'
-vim.opt.wrap = false     -- display lines as one long line
-vim.opt.conceallevel = 0 -- so that `` is visible in markdown files
--- Setting vimgrep to use ripgrep
-vim.opt.grepprg = 'rg --vimgrep'
+vim.opt.wrap = false     -- Display lines as one long line
+vim.opt.conceallevel = 0 -- So that `` is visible in markdown files
+-- Setting grep command within vim to use ripgrep
+-- allows for hidden files (like .dotfiles/**)
+-- hides any .git/ files
+vim.opt.grepprg = [[rg --hidden --iglob '!**/.git/**' --vimgrep]]
 vim.opt.virtualedit = 'block' -- Allow cursor to move where there is no text in visual block mode
 -- Netrw config
 vim.g.netrw_banner = 0
