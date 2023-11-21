@@ -109,3 +109,4 @@ lualine
 netrw
 bdelete
 wc
+gitsigns

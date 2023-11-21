@@ -60,3 +60,5 @@ map('n', '<leader>fe', functions.toggle_netrw)
 map('n', '<leader>ve', functions.toggle_windowed_netrw)
 -- Project replace
 map('n', '<leader>pr', functions.replace_word_in_project)
+-- Number toggle (toggles relative line numbers
+map('n', '<leader>nt', function() vim.cmd "set invrelativenumber" end)

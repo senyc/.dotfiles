@@ -8,7 +8,7 @@ return {
         'lsp',
         'treesitter',
       },
-      delay = 100,
+      delay = 50,
       filetype_overrides = {},
       -- filetypes_denylist: filetypes to not illuminate, this overrides filetypes_allowlist
       filetypes_denylist = {
