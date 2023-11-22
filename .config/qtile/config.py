@@ -78,7 +78,7 @@ groups = [
     Group(
         label="i",
         name="i",
-        spawn=f"{terminal} -e tmux",
+        spawn=f"{terminal} -e tmux new -s main",
     ),
     Group(
         label="r",

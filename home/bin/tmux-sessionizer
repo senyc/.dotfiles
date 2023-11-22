@@ -6,8 +6,8 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    # Reads from directories in projectdir (file), and adds "misc"
-    selected=$(cat ~/projectdir <(echo "misc") | fzf --cycle)
+    # Reads from directories in projectdir (file), and adds "main"
+    selected=$(cat ~/projectdir <(echo "main") | fzf --cycle)
 fi
 
 if [[ -z $selected ]]; then
