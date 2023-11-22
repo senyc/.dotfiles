@@ -12,10 +12,10 @@ from options import MOD_KEY
 from primary_bar import primary_bar
 from side_bars import left_bar, right_bar
 
-browser = 'firefox'
-drun = 'run_drun'
-powermenu = 'run_powermenu'
-terminal = 'alacritty'
+browser = "firefox"
+drun = "run_drun"
+powermenu = "run_powermenu"
+terminal = "alacritty"
 
 monitor_count = len(get_monitor_resolutions())
 
