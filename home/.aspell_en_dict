@@ -110,3 +110,6 @@ netrw
 bdelete
 wc
 gitsigns
+onramp
+rubocop
+yml
