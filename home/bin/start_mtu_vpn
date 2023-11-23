@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+echo "Enter MTU password" 
+f5fpc --start --host https://vpn.mtu.edu --user kdbomhof -x
