@@ -58,7 +58,7 @@ map('n', '<leader>co', vim.cmd.copen)
 map('n', '<leader>fe', functions.toggle_netrw)
 -- Netrw side window
 map('n', '<leader>ve', functions.toggle_windowed_netrw)
--- Project replace
-map('n', '<leader>pr', functions.replace_word_in_project)
+-- global replace
+map('n', '<leader>gr', functions.replace_word_in_project)
 -- Number toggle (toggles relative line numbers
 map('n', '<leader>nt', function() vim.cmd "set invrelativenumber" end)
