@@ -114,3 +114,6 @@ onramp
 rubocop
 yml
 sessionizer
+keybinds
+zsh
+zcompdump
