@@ -4,6 +4,16 @@ if [[ -d "$HOME/tmp/" ]]; then
 	mkdir -p "$HOME/tmp"
 fi
 
+setup_zsh() {
+    if ! which zsh &> /dev/null; then
+        if [[ $SHELL != "/usr/bin/zsh" ]]; then
+            echo "Changing shell to zsh"
+            chsh -s /usr/bin/zsh
+            echo "Please relogin to use zsh as default shell"
+        fi
+    fi
+}
+
 check_and_install() {
     if ! pacman -Q "$1" &> /dev/null; then
         echo "$1 not installed"
@@ -46,3 +56,5 @@ if ! which conda &> /dev/null; then
     echo "Creating python 3.11 environment, this will take a while"
     conda install -c conda-forge python=3.11
 fi
+
+setup_zsh

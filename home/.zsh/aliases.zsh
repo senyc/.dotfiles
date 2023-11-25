@@ -1,15 +1,20 @@
+# ************************
+# * Add colors to output *
+# ************************
+
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias ls='ls --color=auto'
+
 # **************************
 # * Common typing mistakes *
 # **************************
 
-alias sl='ls'
-alias sls='ls'
 alias v='nvim'
 alias nv='nvim'
 alias vim='nvim'
-alias clera='clear'
 alias code='nvim'
-alias nivm='nvim'
 alias py='python3'
 alias clr='clear'
 alias tumx='tmux'
@@ -23,10 +28,13 @@ alias nvim..='nvim ..'
 alias cd-='cd -'
 alias cd..-='cd ..'
 
-# **********************
-# ** Common shortcuts **
-# **********************
+# ********************
+# * Common shortcuts *
+# ********************
 
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
 alias ta='tmux a'
 alias t='tmux'
 alias s='sudo'
@@ -48,3 +56,12 @@ alias gap='git add -p'
 alias gaa='git add --all'
 
 alias aspell='aspell --lang=en_US --personal=$HOME/.aspell_en_dict'
+
+# ******************
+# * Global aliases *
+# ******************
+
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -g .....='../../../..'
+alias -g ......='../../../../..'
