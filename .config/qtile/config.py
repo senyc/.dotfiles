@@ -13,8 +13,9 @@ from primary_bar import primary_bar
 from side_bars import left_bar, right_bar
 
 browser = "firefox"
-drun = "run_drun"
-powermenu = "run_powermenu"
+drun = f"{os.path.expanduser('~')}/bin/run_drun"
+powermenu = f"{os.path.expanduser('~')}/bin/run_powermenu"
+lock_screen = f"{os.path.expanduser('~')}/bin/lock_screen"
 terminal = "alacritty"
 
 monitor_count = len(get_monitor_resolutions())
@@ -54,7 +55,7 @@ keys = [
     ),
     # Toggle between different layouts as defined below
     Key([MOD_KEY, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([MOD_KEY], "Delete", lazy.spawn("lock_screen"), desc="lock the screen"),
+    Key([MOD_KEY], "Delete", lazy.spawn(lock_screen), desc="lock the screen"),
     Key([MOD_KEY, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([MOD_KEY], "d", minimize_all(), desc="Toggle minimization on all window"),
     Key([MOD_KEY], "p", lazy.spawn(drun), desc="Spawn a command using rofi"),
