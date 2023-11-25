@@ -48,3 +48,5 @@ xclip
 xorg-apps
 xorg-server 
 xorg-xinit 
+fzf
+zsh

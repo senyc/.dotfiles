@@ -3,3 +3,4 @@ packer_compiled.lua
 *.pyc
 .config/tmux/plugins/*
 *.spl
+.zcompdump

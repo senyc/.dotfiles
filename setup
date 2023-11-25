@@ -23,7 +23,7 @@ print_help() {
 path_exists() { [ -L "$1" ] || [ -f "$1" ] || [ -d "$1" ]; }
 
 # This exists because bash includes '..' and '.' in the `in` keyword
-valid_basename() { [ "$1" != "." ] && [ "$1" != ".." ]; }
+valid_basename() { [ "$1" != "." ] && [ "$1" != ".." ] && [ "$1" != '.*' ]; }
 
 setup_configuration() {
     local source_target_root=$1
