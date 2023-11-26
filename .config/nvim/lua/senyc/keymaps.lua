@@ -1,7 +1,7 @@
 local map = require 'senyc.utils'.default_map
 local functions = require 'senyc.functions'
 
--- exit insert mode
+-- Exit insert mode
 map('i', 'jj', '<Esc>')
 map('i', 'jJ', '<Esc>')
 -- Buffer deletion and traversal
@@ -16,10 +16,11 @@ map('n', 'N', 'Nzzzv')
 -- Allow for easy empty line adjustments
 map('n', 'go', 'o<Esc>')
 map('n', 'gO', 'O<Esc>')
+-- Y yanks to the end of the line
 map('n', 'Y', 'y$')
 -- Allow for visual mode to move lines
-map('v', 'J', ":m '>+1<cr>gv=gv")
-map('v', 'K', ":m '<-2<CR>gv=gv")
+map('v', 'J', [[:m '>+1<cr>gv=gv]])
+map('v', 'K', [[:m '<-2<CR>gv=gv]])
 -- Adjustment of cursor location in J and inverse addition for <c-j>
 map('n', '<C-j>', 'a<cr><Esc>')
 map('n', 'J', 'mzJ`z')
@@ -34,15 +35,19 @@ map({ 'n', 'v' }, '<leader>d', [["+d]])
 map({ 'n', 'v' }, '<leader>x', [["_d]])
 -- Allow for replacing word at cursor location
 map('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
--- Removes trailing white spaces keeps cursor in the same place
+-- White space remove
 map('n', '<leader>wr', [[m`:%s/\s\+$//e<cr>``]])
--- Save and quit on <leader>wq
+-- Write quit
 map('n', '<leader>wq', ':wa <cr> :qa!<cr>')
--- Resize windows w/ control and arrows
-map('n', '<C-Up>', ':resize -2<CR>')
-map('n', '<C-Down>', ':resize +2<CR>')
-map('n', '<C-Left>', ':vertical resize -2<CR>')
-map('n', '<C-Right>', ':vertical resize +2<CR>')
+-- Word swap (does not replace unnamed register)
+map('n', '<leader>ww', 'viwP')
+-- Word swap (replaces unnamed register)
+map('n', '<leader>wW', 'viwp')
+-- Resize windows w/ arrows
+map('n', '<Up>', ':resize -2<CR>')
+map('n', '<Down>', ':resize +2<CR>')
+map('n', '<Left>', ':vertical resize -2<CR>')
+map('n', '<Right>', ':vertical resize +2<CR>')
 -- Add space after cursor
 map('n', 'gl', 'a <Esc>h')
 -- Show current directory
@@ -54,9 +59,9 @@ map('n', '<leader>;', ':cprev<cr>zz')
 map('n', '<leader>cc', vim.cmd.cclose)
 -- QuickFix open
 map('n', '<leader>co', vim.cmd.copen)
--- Netrw toggle
+-- Netrw toggle (file explorer)
 map('n', '<leader>fe', functions.toggle_netrw)
--- Netrw side window
+-- Netrw side window (view explorer)
 map('n', '<leader>ve', functions.toggle_windowed_netrw)
 -- global replace
 map('n', '<leader>gr', functions.replace_word_in_project)
