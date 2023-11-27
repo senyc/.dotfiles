@@ -1,13 +1,24 @@
 #!/usr/bin/env bash
 
-# This stems from ThePrimeagen's script here:
+# This stems from ThePrimeagen's script:
 # https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/scripts/tmux-sessionizer
 
+# Reads from directories in projectdir (file), and adds "main"
+fuzzy_find_projects() { cat ~/projectdir <(echo "main") | fzf --cycle; }
+
 if [[ $# -eq 1 ]]; then
-    selected=$1
+    if [[ "$1" == "-" ]]; then
+        if [[ -n $TMUX ]]; then
+            # Gets the most recently used tmux session
+            selected=$(tmux list-sessions -F "#{session_name}:#{session_activity}" | sort -t':' -k2r | head -n2 | tail -n1 | cut -d: -f1)
+        else
+            selected=$(fuzzy_find_projects)
+        fi
+    else
+        selected=$1
+    fi
 else
-    # Reads from directories in projectdir (file), and adds "main"
-    selected=$(cat ~/projectdir <(echo "main") | fzf --cycle)
+    selected=$(fuzzy_find_projects)
 fi
 
 if [[ -z $selected ]]; then
@@ -16,9 +27,8 @@ fi
 
 # If there is a period in the name, remove it
 selected_name=$(basename "$selected" | tr -d .)
-tmux_running=$(pgrep tmux)
 
-if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+if [[ -z $TMUX ]] && [[ -z $(pgrep tmux) ]]; then
     tmux new-session -s "$selected_name" -c "$selected"
     exit 0
 fi

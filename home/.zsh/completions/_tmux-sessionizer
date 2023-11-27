@@ -2,6 +2,8 @@
 
 _tmux-sessionizer() {
     local options
-    options=$(tmux ls | cut -d':' -f1)
-    _arguments "1: :($options)"
+    if [[ -n $TMUX ]]; then
+        options=$(tmux ls | cut -d':' -f1)
+        _arguments "1: :($options)"
+    fi
 }
