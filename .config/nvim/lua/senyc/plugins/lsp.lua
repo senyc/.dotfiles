@@ -1,3 +1,5 @@
+local map = require('senyc.utils').default_map
+
 return {
   'neovim/nvim-lspconfig',
   dependencies = { 'hrsh7th/cmp-nvim-lsp' },
@@ -13,29 +15,29 @@ return {
     local function on_attach(client, bufnr)
       local opts = { buffer = bufnr, remap = false, silent = true }
       -- Inspect cursor token
-      vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+      map('n', 'K', vim.lsp.buf.hover, opts)
       -- Get definition
-      vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+      map('n', 'gd', vim.lsp.buf.definition, opts)
       -- Get declaration
-      vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+      map('n', 'gD', vim.lsp.buf.declaration, opts)
       -- Get symbol
-      vim.keymap.set('n', '<leader>gs', vim.lsp.buf.workspace_symbol, opts)
+      map('n', '<leader>gs', vim.lsp.buf.workspace_symbol, opts)
       -- Diagnostic QuickFix
-      vim.keymap.set('n', '<leader>dq', vim.diagnostic.setqflist, opts)
+      map('n', '<leader>dq', vim.diagnostic.setqflist, opts)
       -- Diagnostic open
-      vim.keymap.set('n', '<leader>do', vim.diagnostic.open_float, opts)
+      map('n', '<leader>do', vim.diagnostic.open_float, opts)
       -- Diagnostic previous
-      vim.keymap.set('n', '<leader>dp', vim.diagnostic.goto_prev, opts)
+      map('n', '<leader>dp', vim.diagnostic.goto_prev, opts)
       -- Diagnostic next
-      vim.keymap.set('n', '<leader>dn', vim.diagnostic.goto_next, opts)
+      map('n', '<leader>dn', vim.diagnostic.goto_next, opts)
       -- Code action
-      vim.keymap.set('n', '<leader>.', vim.lsp.buf.code_action, opts)
+      map('n', '<leader>.', vim.lsp.buf.code_action, opts)
       -- Rename
-      vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, opts)
+      map('n', '<leader>r', vim.lsp.buf.rename, opts)
       -- Get references
-      vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+      map('n', 'gr', vim.lsp.buf.references, opts)
       -- Get implementation
-      vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation, opts)
+      map('n', '<leader>gi', vim.lsp.buf.implementation, opts)
 
       -- Format
       if (function()
@@ -47,8 +49,8 @@ return {
             return true
           end)()
       then
-        vim.keymap.set('n', '<leader>=', vim.lsp.buf.format, opts)
-        vim.keymap.set('v', '<leader>=', function()
+        map('n', '<leader>=', vim.lsp.buf.format, opts)
+        map('v', '<leader>=', function()
             vim.lsp.buf.format()
             -- Escape visual mode
             vim.api.nvim_input('<esc>')
@@ -56,7 +58,7 @@ return {
           opts
         )
       else
-        vim.keymap.set('n', '<leader>=', vim.cmd.Format, { remap = false, silent = true })
+        map('n', '<leader>=', vim.cmd.Format)
       end
     end
 
@@ -99,7 +101,7 @@ return {
 
     vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' })
     vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded' })
-    require('lspconfig.ui.windows').default_options.border = 'rounded'
+    require 'lspconfig.ui.windows'.default_options.border = 'rounded'
 
     for type, icon in pairs({
       Error = '>>',

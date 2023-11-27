@@ -1,6 +1,6 @@
 local M = {}
 
---- Returns the base git directory from CWD else return error code
+--- Returns the base git directory from `CWD` else return error code
 --- in string format
 ---
 ---@return string? err_msg
@@ -19,19 +19,25 @@ function M.get_git_dir()
   return 'No valid return file', nil
 end
 
---- Uses default opts param with given vim.keymap.set options
+--- If no `options` are given, then precedes with default (noreamp and silent) for the given keymaps/actions.
+---
+--- If given a table of `lhs` then the `rhs` will be applied to all possible inputs
 ---
 ---@param mode table|string
 ---@param lhs table|string
 ---@param rhs string|function
-function M.default_map(mode, lhs, rhs)
+---@param options? table
+function M.default_map(mode, lhs, rhs, options)
   local default_options = { noremap = true, silent = true }
+  if options ~= nil then
+    options = default_options
+  end
 
   if type(lhs) == 'string' then
-    vim.keymap.set(mode, lhs, rhs, default_options)
+    vim.keymap.set(mode, lhs, rhs, options)
   elseif type(lhs) == 'table' then
     for _, possible_input in pairs(lhs) do
-      vim.keymap.set(mode, possible_input, rhs, default_options)
+      vim.keymap.set(mode, possible_input, rhs, options)
     end
   end
 end

@@ -27,6 +27,8 @@ function M.toggle_windowed_netrw()
   pcall(vim.api.nvim_set_current_win, current_win)
 end
 
+--- Gets word under cursor and executes replacement
+--- action across the entire project (based on root git dir)
 function M.replace_word_in_project()
   -- Get word under cursor
   local current_word = vim.fn.expand '<cword>'
