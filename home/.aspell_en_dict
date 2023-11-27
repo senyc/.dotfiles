@@ -117,3 +117,6 @@ sessionizer
 keybinds
 zsh
 zcompdump
+currentTrip
+isDone
+bool

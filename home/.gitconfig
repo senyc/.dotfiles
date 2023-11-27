@@ -3,7 +3,8 @@
     name = senyc
 [core]
     editor = nvim
-	hooksPath = /home/senyc/.git_hooks
+    hooksPath = /home/senyc/.git_hooks
+	pager = less
 [color]
     diff = auto
     status = auto
@@ -35,7 +36,6 @@
 [pull]
     rebase = false
 [init]
-	defaultBranch = main
-[safe]
-	directory = /usr/lib/ruby/gems/3.0.0/bundler/gems/active_merchant-bceda09c4ee5
-	directory = *
+    defaultBranch = main
+[pager]
+    log = false
