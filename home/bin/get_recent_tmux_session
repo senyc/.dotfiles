@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+tmux list-sessions -F "#{session_name}:#{session_activity}" | sort -t':' -k2r | head -n2 | tail -n1|  cut -d: -f1
+
