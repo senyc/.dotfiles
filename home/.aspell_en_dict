@@ -120,3 +120,4 @@ zcompdump
 currentTrip
 isDone
 bool
+toml

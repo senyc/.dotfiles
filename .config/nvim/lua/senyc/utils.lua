@@ -20,10 +20,20 @@ function M.get_git_dir()
 end
 
 --- Uses default opts param with given vim.keymap.set options
-function M.default_map(...)
-  local args = { ... }
-  table.insert(args, { noremap = true, silent = true })
-  vim.keymap.set(unpack(args))
+---
+---@param mode table|string
+---@param lhs table|string
+---@param rhs string|function
+function M.default_map(mode, lhs, rhs)
+  local default_options = { noremap = true, silent = true }
+
+  if type(lhs) == 'string' then
+    vim.keymap.set(mode, lhs, rhs, default_options)
+  elseif type(lhs) == 'table' then
+    for _, possible_input in pairs(lhs) do
+      vim.keymap.set(mode, possible_input, rhs, default_options)
+    end
+  end
 end
 
 return M

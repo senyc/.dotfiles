@@ -101,7 +101,7 @@ return {
     map('n', '<leader>tr', builtin.resume)
     -- find word
     map('n', '<leader>fw', grep_string)
-    -- files old
-    map('n', '<leader>fo', builtin.oldfiles)
+    -- old files
+    map('n', { '<leader>fo', '<leader>of' }, builtin.oldfiles)
   end
 }
