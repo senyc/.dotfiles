@@ -28,9 +28,12 @@ fi
 # If there is a period in the name, remove it
 selected_name=$(basename "$selected" | tr -d .)
 
+
 if [[ -z $TMUX ]] && [[ -z $(pgrep tmux) ]]; then
     tmux new-session -s "$selected_name" -c "$selected"
     exit 0
+elif [[ -z $TMUX ]]; then
+    tmux attach
 fi
 
 if ! tmux has-session -t="$selected_name" 2> /dev/null; then
