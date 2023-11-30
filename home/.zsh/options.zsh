@@ -1,4 +1,5 @@
 setopt histappend
+setopt correct
 
 ## jobs
 setopt long_list_jobs
