@@ -10,3 +10,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 
 export PNPM_HOME="/home/senyc/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH" 
+
+# Stops less from clearing the screen and will cause
+# less to exit if the contents can fit on the screen
+export LESS="-FXR"
