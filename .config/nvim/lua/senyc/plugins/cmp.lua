@@ -36,6 +36,9 @@ return {
         ['<CR>'] = cmp.mapping.confirm {
           select = false, -- On new line doesn't prefill first item
         },
+        ['<S-CR>'] = cmp.mapping.confirm {
+          select = true,
+        },
         ['<tab>'] = cmp.mapping.confirm {
           select = true,
         },

@@ -32,3 +32,6 @@ font:
   offset:
     x: -1
     y: -1
+
+key_bindings:
+  - { key: Return, mods: Shift, chars: "\x1b[13;2u" }
