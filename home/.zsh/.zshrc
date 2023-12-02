@@ -1,4 +1,3 @@
-[[ -d ~/bin ]] && export PATH=$PATH:"$HOME/bin"
 [[ -f "$ZDOTDIR/aliases.zsh" ]] && . "$ZDOTDIR/aliases.zsh"
 [[ -f "$ZDOTDIR/functions.zsh" ]] && . "$ZDOTDIR/functions.zsh"
 [[ -f "$ZDOTDIR/options.zsh" ]] && . "$ZDOTDIR/options.zsh"
