@@ -94,8 +94,8 @@ return {
       val = {
         button('<leader>ff', '󰈞  Find file'),
         button('<leader>fg', '󰈬  Find word'),
+        button('<leader>fe', '󱏒  File explorer'),
         button('<leader>fc', '  Find commit'),
-        button('<leader>fh', '󰋖  Find help'),
       },
       opts = {
         spacing = 1,
@@ -110,9 +110,9 @@ return {
     }
 
     theme.layout = {
-      { type = 'padding', val = 2 },
+      { type = 'padding', val = 1 },
       section.header,
-      { type = 'padding', val = 2 },
+      { type = 'padding', val = 1 },
       section.buttons,
       section.footer,
     }
