@@ -1,3 +1,4 @@
+which 
 alacritty 
 alsa-utils 
 aspell-en
@@ -42,7 +43,6 @@ texlive-latexrecommended
 texlive-pictures 
 unclutter 
 wget 
-which 
 xbindkeys 
 xclip 
 xorg-apps
