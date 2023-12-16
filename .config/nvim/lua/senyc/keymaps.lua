@@ -67,3 +67,5 @@ map('n', '<leader>ve', functions.toggle_windowed_netrw)
 map('n', '<leader>gr', functions.replace_word_in_project)
 -- Number toggle (toggles relative line numbers
 map('n', '<leader>nt', function() vim.cmd "set invrelativenumber" end)
+-- Renames the current file
+map('n', '<leader>rn', functions.rename_current_file)

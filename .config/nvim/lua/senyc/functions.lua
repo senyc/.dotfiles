@@ -60,4 +60,16 @@ function M.replace_word_in_project()
   vim.api.nvim_set_current_buf(current_buf)
 end
 
+function M.rename_current_file()
+  local filename = vim.api.nvim_buf_get_name(0)
+  local basename = filename:match("^.+/(.+)$")
+
+  vim.ui.input({ prompt = 'replace ' .. basename .. ' with: ' }, function(input)
+    local newname = basename:gsub(basename, input)
+    vim.cmd("file " .. newname)
+    vim.cmd.w()
+    vim.cmd("!rm " .. filename)
+
+  end)
+end
 return M
