@@ -11,7 +11,10 @@ cd .dotfiles
 
 ## Photos
 ![2023-12-02-16-1701569796_screenshot](https://github.com/senyc/.dotfiles/assets/95313103/2bed2672-3e54-4d44-827c-851ac91bd57f)
-![2023-07-13-24-1689294261_screenshot](https://github.com/senyc/.dotfiles/assets/95313103/bf924eb3-4900-4933-b490-7019e9a11fae)
+![2023-12-03-06-1701633982_screenshot](https://github.com/senyc/.dotfiles/assets/95313103/8a6e3c46-1690-495d-84ec-05aaac5b5e42)
+![2023-12-03-08-1701634133_screenshot](https://github.com/senyc/.dotfiles/assets/95313103/8ed9e3d1-c08a-490a-bc39-f9b151d6938e)
+![2023-12-03-14-1701634470_screenshot](https://github.com/senyc/.dotfiles/assets/95313103/9e6cb35d-c1c9-48de-92cc-98258716a342)
+
 ![2023-07-27-18-1690474714_screenshot](https://github.com/senyc/.dotfiles/assets/95313103/f3cdcc4f-0ac1-45c6-806f-ef3aa6ab6af9)
 
 ## Usage 

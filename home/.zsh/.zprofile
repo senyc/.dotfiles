@@ -5,7 +5,6 @@ export VISUAL='nvim'
 export TZ='America/Detroit'
 
 export PNPM_HOME="$HOME/.local/share/pnpm"
-export RACKET_HOME="$HOME/racket/bin"
 export PATH="$PATH:$RACKET_HOME:$PNPM_HOME"
 
 export HISTSIZE=1000
