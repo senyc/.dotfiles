@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Find and run main.go in the current directory
+find . -name "main.go" -exec go run {} \;

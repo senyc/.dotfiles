@@ -9,6 +9,7 @@ export PATH="$PATH:$RACKET_HOME:$PNPM_HOME"
 
 export HISTSIZE=1000
 export HISTFILESIZE=2000
+export GOPRIVATE=github.com/senyc/jason
 
 # Stops less from clearing the screen and will cause
 # less to exit if the contents can fit on the screen

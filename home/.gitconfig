@@ -33,6 +33,8 @@
     whitespace = nowarn
 [url "git@github.com:"]
     insteadOf = "gh:"
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
 [pull]
     rebase = false
 [init]
