@@ -13,7 +13,7 @@ return {
 
       require 'zen-mode'.setup {
         window = {
-          width = 90,
+          width = 80,
           backdrop = 0.6
         },
       }
