@@ -127,3 +127,8 @@ msg
 env
 href
 tty
+middleware
+divs
+UUID
+ints
+alacritty

@@ -17,3 +17,6 @@ fi
 unset __conda_setup
 
 eval "$(starship init zsh)"
+
+# bun completions
+[ -s "/home/senyc/.bun/_bun" ] && source "/home/senyc/.bun/_bun"
