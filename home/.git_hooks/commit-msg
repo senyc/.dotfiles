@@ -18,7 +18,7 @@ fi
 misspelled_words=$(cat "$1" | aspell --lang=en_US --personal="$HOME"/.aspell_en_dict --list | tr '\n' ' ')
 if [ -n "$misspelled_words" ]; then
     echo "Found misspelled words: $misspelled_words" >&2
-    echo "Would you like to add these to the dictionary? [y|n]" 
+    echo "Would you like to add these to the dictionary? [y|n|s]" 
     read -r < /dev/tty
     if [ "$REPLY" = 'y' ] || [ "$REPLY" = 'Y' ]; then
         if ! which aspelladd > /dev/null; then
@@ -28,8 +28,9 @@ if [ -n "$misspelled_words" ]; then
         # **The lack of quotes is intentional**
         aspelladd $misspelled_words
         echo
-    else
+    elif [ "$REPLY" = 's' ] || [ "$REPLY" = 'S' ]; then
+        echo "Skipping..." 
+    else 
         echo "Please fix the spelling mistakes and commit your changes again" 
-        exit 1
     fi
 fi
