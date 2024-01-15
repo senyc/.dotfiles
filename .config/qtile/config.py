@@ -2,7 +2,7 @@ import os
 import subprocess
 from typing import Any, List
 
-from libqtile import hook, layout
+from libqtile import hook, layout, qtile
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 
@@ -224,6 +224,13 @@ auto_minimize = True
 focus_on_window_activation = "smart"
 reconfigure_screens = True
 wl_input_rules = None
+
+
+# Calls before suspending
+@hook.subscribe.suspend
+def lock_on_sleep():
+    # Run screen locker
+    qtile.spawn("/home/senyc/bin/lock_screen")
 
 
 @hook.subscribe.startup_once
