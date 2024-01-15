@@ -54,8 +54,10 @@ alias gcae='git commit --amend --no-edit'
 alias gcm='git commit -m'
 alias gap='git add -p'
 alias gaa='git add --all'
+alias gcpm='git cherry-pick -e -x -m 1'
 
 alias aspell='aspell --lang=en_US --personal=$HOME/.aspell_en_dict'
+
 
 # ******************
 # * Global aliases *
