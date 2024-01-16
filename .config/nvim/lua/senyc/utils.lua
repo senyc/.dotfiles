@@ -19,6 +19,31 @@ function M.get_git_dir()
   return 'No valid return file', nil
 end
 
+--- Returns the project name, based on the directory
+---
+--- Essentially just the git directory name without the path that precedes it
+---
+---@return string? err_msg
+---@return string? git_dir
+function M.get_project_name()
+  local handler = io.popen 'git rev-parse --show-toplevel 2>/dev/null'
+  if not handler then
+    return "Failed to execute 'git'", nil
+  end
+
+  local result = handler:read('*l')
+  -- Because stderr redirected to null assumes any stdout response due to validity of call
+  if not result then
+    return 'No valid return file', nil
+  end
+
+  local basename = result:match("^.+/(.+)$")
+  if not basename then
+    return 'No valid return file', nil
+  end
+  return nil, basename
+end
+
 --- If no `options` are given, then precedes with default (noreamp and silent) for the given keymaps/actions.
 ---
 --- If given a table of `lhs` then the `rhs` will be applied to all possible inputs

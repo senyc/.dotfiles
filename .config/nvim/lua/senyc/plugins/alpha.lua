@@ -1,6 +1,7 @@
+local get_project_name = require 'senyc.utils'.get_project_name
 return {
   'goolord/alpha-nvim',
-  lazy = false,
+  event = 'VimEnter',
   config = function()
     local theme = {}
 
@@ -45,9 +46,21 @@ return {
       },
     }
 
+    local function get_home_dir()
+      return os.getenv("HOME") or os.getenv("USERPROFILE") or ""
+    end
+
+    local err, git_dir = get_project_name()
+    if err then
+      git_dir = vim.fn.getcwd()
+      local home_dir = get_home_dir()
+      if home_dir ~= "" then
+        git_dir = git_dir:gsub(home_dir, "~")
+      end
+    end
     local footer = {
       type = 'text',
-      val = '',
+      val = '-- ' .. git_dir:gsub('%.', '') .. ' --',
       opts = {
         position = 'center',
         hl = 'Number',
@@ -114,6 +127,7 @@ return {
       section.header,
       { type = 'padding', val = 1 },
       section.buttons,
+      { type = 'padding', val = 2 },
       section.footer,
     }
     theme.opts = {
