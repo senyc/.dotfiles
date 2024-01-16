@@ -109,6 +109,7 @@ return {
         button('<leader>fg', '󰈬  Find word'),
         button('<leader>fe', '󱏒  File explorer'),
         button('<leader>fc', '  Find commit'),
+        button('<leader>fo', '  Old files'),
       },
       opts = {
         spacing = 1,
