@@ -69,7 +69,7 @@ function M.rename_current_file()
     vim.cmd("file " .. newname)
     vim.cmd.w()
     vim.cmd("!rm " .. filename)
-
   end)
 end
+
 return M

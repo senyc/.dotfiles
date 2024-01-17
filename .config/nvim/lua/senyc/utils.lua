@@ -67,4 +67,8 @@ function M.default_map(mode, lhs, rhs, options)
   end
 end
 
+function M.get_home_dir()
+  return os.getenv("HOME") or os.getenv("USERPROFILE") or ""
+end
+
 return M

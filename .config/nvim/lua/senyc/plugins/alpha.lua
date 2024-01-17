@@ -1,4 +1,4 @@
-local get_project_name = require 'senyc.utils'.get_project_name
+local utils = require 'senyc.utils'
 return {
   'goolord/alpha-nvim',
   event = 'VimEnter',
@@ -46,14 +46,10 @@ return {
       },
     }
 
-    local function get_home_dir()
-      return os.getenv("HOME") or os.getenv("USERPROFILE") or ""
-    end
-
-    local err, git_dir = get_project_name()
+    local err, git_dir = utils.get_project_name()
     if err then
       git_dir = vim.fn.getcwd()
-      local home_dir = get_home_dir()
+      local home_dir = utils.get_home_dir()
       if home_dir ~= "" then
         git_dir = git_dir:gsub(home_dir, "~")
       end

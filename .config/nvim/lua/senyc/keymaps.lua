@@ -1,4 +1,5 @@
 local map = require 'senyc.utils'.default_map
+local get_home_dir = require 'senyc.utils'.get_home_dir
 local functions = require 'senyc.functions'
 
 -- Exit insert mode
@@ -69,3 +70,14 @@ map('n', '<leader>gr', functions.replace_word_in_project)
 map('n', '<leader>nt', function() vim.cmd "set invrelativenumber" end)
 -- Renames the current file
 map('n', '<leader>rn', functions.rename_current_file)
+
+local function get_cwd()
+  local home_dir = get_home_dir()
+  local filename = vim.api.nvim_buf_get_name(0)
+  if home_dir == "" then
+    return filename
+  end
+  return filename:gsub(home_dir, "~")
+end
+
+map('n', '<leader>cy', function() vim.cmd('let @+ = "' .. get_cwd() .. '"') end)
