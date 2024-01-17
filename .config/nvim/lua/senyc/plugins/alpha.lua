@@ -106,10 +106,10 @@ return {
       type = 'group',
       val = {
         button('<leader>ff', '󰈞  Find file'),
-        button('<leader>fg', '󰈬  Find word'),
+        button('<leader>fg', '󰈬  Find grep'),
         button('<leader>fe', '󱏒  File explorer'),
-        button('<leader>fc', '  Find commit'),
         button('<leader>fo', '  Old files'),
+        button('<leader>fc', '  Find commit'),
       },
       opts = {
         spacing = 1,
