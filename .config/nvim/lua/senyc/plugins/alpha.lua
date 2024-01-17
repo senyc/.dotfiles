@@ -46,31 +46,32 @@ return {
       },
     }
 
-    local err, git_dir = utils.get_project_name()
+    local err, displayed_text = utils.get_project_name()
+    -- If not in a project show the current directory 
     if err then
-      git_dir = vim.fn.getcwd()
+      displayed_text = vim.fn.getcwd()
       local home_dir = utils.get_home_dir()
       if home_dir ~= "" then
-        git_dir = git_dir:gsub(home_dir, "~")
+        -- Show tilde instead of $HOME
+        displayed_text = displayed_text:gsub(home_dir, "~")
       end
     end
     local footer = {
       type = 'text',
-      val = '-- ' .. git_dir:gsub('%.', '') .. ' --',
+      -- Remove periods e.g. .dotfiles -> dotfiles
+      val = '-- ' .. displayed_text:gsub('%.', '') .. ' --',
       opts = {
         position = 'center',
         hl = 'Number',
       },
     }
 
-    local leader = '<leader>'
-
     --- @param sc string
     --- @param txt string
     --- @param keybind string? optional
     --- @param keybind_opts table? optional
     local function button(sc, txt, keybind, keybind_opts)
-      local sc_ = sc:gsub('%s', ''):gsub(leader, '<leader>')
+      local sc_ = sc:gsub('%s', '')
 
       local opts = {
         position = 'center',
@@ -104,8 +105,8 @@ return {
         button('<leader>ff', '󰈞  Find file'),
         button('<leader>fg', '󰈬  Find grep'),
         button('<leader>fe', '󱏒  File explorer'),
-        button('<leader>fc', '  Find commit'),
         button('<leader>fo', '  Old files'),
+        button('<leader>fc', '  Find commit'),
       },
       opts = {
         spacing = 1,
