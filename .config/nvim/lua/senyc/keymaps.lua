@@ -52,7 +52,7 @@ map('n', '<Right>', ':vertical resize +2<CR>')
 -- Add space after cursor
 map('n', 'gl', 'a <Esc>h')
 -- Show current directory
-map('n', '<leader>cd', vim.cmd.pwd)
+map('n', '<leader>cd', function() vim.print(vim.api.nvim_buf_get_name(0)) end)
 -- QuickFix navigation
 map('n', '<leader>,', ':cnext<cr>zz')
 map('n', '<leader>;', ':cprev<cr>zz')

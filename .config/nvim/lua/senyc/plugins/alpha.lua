@@ -104,8 +104,8 @@ return {
         button('<leader>ff', '󰈞  Find file'),
         button('<leader>fg', '󰈬  Find grep'),
         button('<leader>fe', '󱏒  File explorer'),
-        button('<leader>fo', '  Old files'),
         button('<leader>fc', '  Find commit'),
+        button('<leader>fo', '  Old files'),
       },
       opts = {
         spacing = 1,
