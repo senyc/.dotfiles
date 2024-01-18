@@ -18,7 +18,6 @@ noto-fonts-cjk
 npm 
 openssh 
 pamixer 
-pandoc
 pavucontrol 
 picom 
 playerctl 
@@ -30,17 +29,10 @@ python-pip
 python-xlib 
 qtile 
 ripgrep 
-rofi 
 scrot 
 speedtest-cli 
 spotify-launcher 
 starship 
-texlive-basic 
-texlive-fontsrecommended
-texlive-latex 
-texlive-latexextra 
-texlive-latexrecommended 
-texlive-pictures 
 unclutter 
 wget 
 xbindkeys 
