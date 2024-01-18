@@ -80,27 +80,29 @@ return {
       end
     end
 
-    -- find file
+    -- Find file
     map('n', '<leader>ff', defaut_search)
-    -- find vim help
+    -- Find vim help
     map('n', '<leader>fh', builtin.help_tags)
-    -- find live git grep
+    -- Find live git grep
     map('n', '<leader>fg', live_git_grep)
-    -- find commits in repo
+    -- Find commits in repo
     map('n', '<leader>fc', git_commits)
-    -- find man page entries
+    -- Find man page entries
     map('n', '<leader>fm', builtin.man_pages)
-    -- find git buffer commit diff
+    -- Find git buffer commit diff
     map('n', '<leader>fd', git_buffer_commit_diff)
-    -- find references
+    -- Find references
     map('n', '<leader>fr', builtin.lsp_references)
-    -- find buffer
+    -- Find buffer
     map('n', '<leader>fb', builtin.buffers)
     -- telescope resume
     map('n', '<leader>tr', builtin.resume)
-    -- find word
+    -- Find word
     map('n', '<leader>fw', grep_string)
-    -- old files
+    -- Find keymaps
+    map('n', '<leader>fk', builtin.keymaps)
+    -- Old files
     map('n', { '<leader>fo', '<leader>of' }, builtin.oldfiles)
   end
 }
