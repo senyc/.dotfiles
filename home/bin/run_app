@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+apps=(
+    alacritty 
+    discord 
+    firefox 
+    flameshot 
+    inkscape 
+    obs 
+    obsidian 
+    slack 
+    spotify 
+    zoom
+)
+available_apps=$(printf "%s\n" "${apps[@]}")
+
+selected_app="$(echo -e "$available_apps" | dmenu -c -l 10 -bw 2)"
+
+case "$selected_app" in
+    "firefox")
+        firefox &
+        ;;
+    "slack")
+        slack &
+        ;;
+    "spotify")
+        spotify-launcher &
+        ;;
+    "obsidian")
+        obsidian &
+        ;;
+    "flameshot")
+        flameshot &
+        ;;
+    "inkscape")
+        inkscape &
+        ;;
+    "discord")
+       discord &
+        ;;
+    "obs")
+       obs &
+        ;;
+    "alacritty")
+       alacritty &
+        ;;
+    "zoom")
+       zoom &
+        ;;
+esac

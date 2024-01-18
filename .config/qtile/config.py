@@ -13,7 +13,7 @@ from primary_bar import primary_bar
 from side_bars import left_bar, right_bar
 
 browser = "firefox"
-drun = f"{os.path.expanduser('~')}/bin/run_drun"
+app_selection = f"{os.path.expanduser('~')}/bin/run_app"
 powermenu = f"{os.path.expanduser('~')}/bin/run_powermenu"
 lock_screen = f"{os.path.expanduser('~')}/bin/lock_screen"
 terminal = "alacritty"
@@ -58,7 +58,7 @@ keys = [
     Key([MOD_KEY], "Delete", lazy.spawn(lock_screen), desc="lock the screen"),
     Key([MOD_KEY, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([MOD_KEY], "d", minimize_all(), desc="Toggle minimization on all window"),
-    Key([MOD_KEY], "p", lazy.spawn(drun), desc="Spawn a command using rofi"),
+    Key([MOD_KEY], "p", lazy.spawn(app_selection), desc="Spawn a command using rofi"),
     Key([MOD_KEY], "w", lazy.window.kill(), desc="Kill focused window"),
     Key([MOD_KEY], "x", lazy.spawn(powermenu), desc="Spawn a command using powermenu"),
     Key([MOD_KEY], "y", lazy.next_layout(), desc="Toggle between layouts"),

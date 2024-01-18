@@ -1,22 +1,14 @@
 #!/usr/bin/env bash
 
-file_name="powermenu_theme.rasi"
+commands=(
+    reboot
+    shutdown
+    lock
+    suspend
+)
+available_commands=$(printf "%s\n" "${commands[@]}")
 
-if [[ -n $XDG_CONFIG_HOME ]]; then
-    dir="/$XDG_CONFIG_HOME/rofi/themes/$file_name"
-else
-    dir="/$HOME/.config/rofi/themes/$file_name"
-fi
-
-uptime="$(uptime -p | sed -e 's/up //g')"
-
-shutdown=''
-reboot=''
-lock=''
-suspend=''
-
-rofi_cmd() { rofi -dmenu -p "I'm sorry ${USER}..." -mesg "Uptime: $uptime" -theme "$dir"; }
-run_rofi() { echo -e "$shutdown\n$reboot\n$suspend\n$lock" | rofi_cmd; }
+selected_command="$(echo -e "$available_commands" | dmenu -c -l 4 -bw 2)"
 
 run_cmd() {
     if [[ $1 == '--shutdown' ]]; then
@@ -32,21 +24,17 @@ run_cmd() {
     fi
 }
 
-case "$(run_rofi)" in
-    "$shutdown")
+case "$selected_command" in
+    "shutdown")
 		run_cmd --shutdown
         ;;
-    "$reboot")
+    "reboot"|"restart")
 		run_cmd --reboot
         ;;
-    "$lock")
+    "lock")
         run_cmd --lock
         ;;
-    "$suspend")
+    "suspend")
 		run_cmd --suspend
         ;;
-    /?)
-        exit 1
-        ;;
 esac
-
