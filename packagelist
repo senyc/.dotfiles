@@ -1,9 +1,10 @@
-which 
 alacritty 
 alsa-utils 
 aspell-en
 base-devel
 docker
+flameshot
+fzf
 github-cli
 go
 i3lock
@@ -14,6 +15,7 @@ luarocks
 man-db 
 neofetch 
 nodejs 
+noto-fonts
 noto-fonts-cjk 
 npm 
 openssh 
@@ -35,11 +37,10 @@ spotify-launcher
 starship 
 unclutter 
 wget 
+which 
 xbindkeys 
 xclip 
 xorg-apps
 xorg-server 
 xorg-xinit 
-fzf
 zsh
-noto-fonts

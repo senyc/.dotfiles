@@ -6,19 +6,19 @@ check_and_launch() {
 
 apps=(
     alacritty 
-    discord 
     firefox 
-    flameshot 
-    inkscape 
-    studioobs
-    obsidian 
     slack 
     spotify 
+    flameshot 
+    obsidian 
+    discord 
+    inkscape 
     zoom
+    openbroadcastsoftware
 )
 available_apps=$(printf "%s\n" "${apps[@]}")
 
-selected_app="$(echo -e "$available_apps" | dmenu -c -l 10 -bw 2)"
+selected_app="$(echo -e "$available_apps" | dmenu -c -l 7 -bw 2)"
 
 case "$selected_app" in
     "firefox")
@@ -38,7 +38,7 @@ case "$selected_app" in
         qtile cmd-obj -o group n -f toscreen
         ;;
     "flameshot")
-        flameshot &
+        check_and_launch flameshot flameshot
         ;;
     "inkscape")
         inkscape &
@@ -47,7 +47,7 @@ case "$selected_app" in
         check_and_launch discord discord
         qtile cmd-obj -o group o -f toscreen
         ;;
-    "studioobs")
+    "openbroadcastsoftware")
        obs & # this is longer than the app so obsidian can be prioritized
         ;;
     "alacritty")
