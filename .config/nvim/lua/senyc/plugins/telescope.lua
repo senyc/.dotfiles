@@ -28,14 +28,13 @@ return {
         },
         mappings = {
           i = {
-            ['<esc>'] = actions.close,
-            ['<c-c>'] = actions.close,
+            ["<C-c>"] = false,
             ['ZZ'] = actions.close,
+            ['<Esc>'] = actions.close,
           },
           n = {
-            ['<esc>'] = actions.close,
-            ['<c-c>'] = actions.close,
             ['ZZ'] = actions.close,
+            ['<Esc>'] = actions.close,
           },
         },
       }
