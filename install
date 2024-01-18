@@ -5,7 +5,7 @@ if [[ -d "$HOME/tmp/" ]]; then
 fi
 
 setup_zsh() {
-    if which zsh &> /dev/null; then
+    if ! which zsh &> /dev/null; then
         if [[ $SHELL != "/usr/bin/zsh" ]]; then
             echo "Changing shell to zsh"
             chsh -s /usr/bin/zsh
