@@ -10,8 +10,8 @@ map('n', '<leader>l', vim.cmd.bnext)
 map('n', '<leader>h', vim.cmd.bprevious)
 map('n', '<leader>bd', vim.cmd.bdelete)
 -- Centralized navigation for search and <c-d/u>
-map('n', '<c-d>', '<c-d>zz')
-map('n', '<c-u>', '<c-u>zz')
+map('n', '<C-d>', '<c-d>zz')
+map('n', '<C-u>', '<c-u>zz')
 map('n', 'n', 'nzzzv')
 map('n', 'N', 'Nzzzv')
 -- Allow for easy empty line adjustments
@@ -70,14 +70,18 @@ map('n', '<leader>gr', functions.replace_word_in_project)
 map('n', '<leader>nt', function() vim.cmd "set invrelativenumber" end)
 -- Renames the current file
 map('n', '<leader>rn', functions.rename_current_file)
+-- Tmux-sessionizer
+map("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 
-local function get_cwd()
-  local home_dir = get_home_dir()
-  local filename = vim.api.nvim_buf_get_name(0)
-  if home_dir == "" then
-    return filename
-  end
-  return filename:gsub(home_dir, "~")
-end
-
-map('n', '<leader>cy', function() vim.cmd('let @+ = "' .. get_cwd() .. '"') end)
+-- Copies buffer directory to system clipboard
+map('n', '<leader>cy', function()
+  vim.cmd('let @+ = "' .. (function()
+    local home_dir = get_home_dir()
+    local result = vim.api.nvim_buf_get_name(0)
+    if home_dir ~= "" then
+      result = result:gsub(home_dir, "~")
+    end
+    vim.print("Copied " .. result .. " to clipboard")
+    return result
+  end)() .. '"')
+end)
