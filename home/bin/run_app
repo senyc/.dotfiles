@@ -1,12 +1,16 @@
 #!/usr/bin/env bash
 
+check_and_launch() {
+    [ -z "$(pgrep -f "$1" )" ] && "$2" &
+}
+
 apps=(
     alacritty 
     discord 
     firefox 
     flameshot 
     inkscape 
-    obs 
+    studioobs
     obsidian 
     slack 
     spotify 
@@ -18,16 +22,20 @@ selected_app="$(echo -e "$available_apps" | dmenu -c -l 10 -bw 2)"
 
 case "$selected_app" in
     "firefox")
-        firefox &
+        check_and_launch firefox firefox
+        qtile cmd-obj -o group r -f toscreen
         ;;
     "slack")
-        slack &
+        check_and_launch slack slack
+        qtile cmd-obj -o group o -f toscreen
         ;;
     "spotify")
-        spotify-launcher &
+        check_and_launch spotify-launcher spotify-launcher
+        qtile cmd-obj -o group v -f toscreen
         ;;
     "obsidian")
-        obsidian &
+        check_and_launch obsidian obsidian
+        qtile cmd-obj -o group n -f toscreen
         ;;
     "flameshot")
         flameshot &
@@ -36,15 +44,18 @@ case "$selected_app" in
         inkscape &
         ;;
     "discord")
-       discord &
+        check_and_launch discord discord
+        qtile cmd-obj -o group o -f toscreen
         ;;
-    "obs")
-       obs &
+    "studioobs")
+       obs & # this is longer than the app so obsidian can be prioritized
         ;;
     "alacritty")
-       alacritty &
+        check_and_launch alacritty alacritty
+       qtile cmd-obj -o group i -f toscreen
         ;;
     "zoom")
        zoom &
+       qtile cmd-obj -o group o -f toscreen
         ;;
 esac
