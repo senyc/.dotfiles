@@ -3,8 +3,8 @@ local get_home_dir = require 'senyc.utils'.get_home_dir
 local functions = require 'senyc.functions'
 
 -- Exit insert mode
-map('i', 'jj', '<Esc>')
-map('i', 'jJ', '<Esc>')
+-- This allows <C-c> in visual block mode to work as expected
+map("i", "<C-c>", "<Esc>")
 -- Buffer deletion and traversal
 map('n', '<leader>l', vim.cmd.bnext)
 map('n', '<leader>h', vim.cmd.bprevious)
