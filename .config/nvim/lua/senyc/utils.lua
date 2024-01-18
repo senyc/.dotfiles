@@ -67,6 +67,10 @@ function M.default_map(mode, lhs, rhs, options)
   end
 end
 
+--- Gets the users home directory or returns "" if failure
+--- Generally used to be replaced with "~"
+---
+---@return string
 function M.get_home_dir()
   return os.getenv("HOME") or os.getenv("USERPROFILE") or ""
 end
