@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 commands=(
-    reboot
     shutdown
+    reboot
     lock
     suspend
 )
