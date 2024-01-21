@@ -7,6 +7,7 @@ check_and_launch() {
 apps=(
     alacritty 
     firefox 
+    sfirefox 
     slack 
     spotify 
     flameshot 
@@ -16,26 +17,31 @@ apps=(
     zoom
     openbroadcastsoftware
 )
+
 available_apps=$(printf "%s\n" "${apps[@]}")
 
 selected_app="$(echo -e "$available_apps" | dmenu -c -l 7 -bw 2)"
 
 case "$selected_app" in
     "firefox")
-        check_and_launch firefox firefox
         qtile cmd-obj -o group r -f toscreen
+        firefox
+        ;;
+    "sfirefox")
+        qtile cmd-obj -o group s -f toscreen
+        firefox
         ;;
     "slack")
-        check_and_launch slack slack
         qtile cmd-obj -o group o -f toscreen
+        check_and_launch slack slack
         ;;
     "spotify")
-        check_and_launch spotify-launcher spotify-launcher
         qtile cmd-obj -o group v -f toscreen
+        check_and_launch spotify-launcher spotify-launcher
         ;;
     "obsidian")
-        check_and_launch obsidian obsidian
         qtile cmd-obj -o group n -f toscreen
+        check_and_launch obsidian obsidian
         ;;
     "flameshot")
         check_and_launch flameshot flameshot
@@ -44,18 +50,18 @@ case "$selected_app" in
         inkscape &
         ;;
     "discord")
-        check_and_launch discord discord
         qtile cmd-obj -o group o -f toscreen
+        check_and_launch discord discord
         ;;
     "openbroadcastsoftware")
-       obs & # this is longer than the app so obsidian can be prioritized
+        obs & # this is longer than the app so obsidian can be prioritized
         ;;
     "alacritty")
-        check_and_launch alacritty alacritty
-       qtile cmd-obj -o group i -f toscreen
+        qtile cmd-obj -o group i -f toscreen
+        alacritty
         ;;
     "zoom")
-       zoom &
-       qtile cmd-obj -o group o -f toscreen
+        qtile cmd-obj -o group o -f toscreen
+        zoom &
         ;;
 esac

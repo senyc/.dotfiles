@@ -15,6 +15,7 @@ from side_bars import left_bar, right_bar
 browser = "firefox"
 app_selection = f"{os.path.expanduser('~')}/bin/run_app"
 powermenu = f"{os.path.expanduser('~')}/bin/run_powermenu"
+pick_app = f"{os.path.expanduser('~')}/bin/pick_app"
 lock_screen = f"{os.path.expanduser('~')}/bin/lock_screen"
 terminal = "alacritty"
 
@@ -33,7 +34,6 @@ keys = [
     Key([MOD_KEY], "j", lazy.layout.down(), desc="Move focus down"),
     Key([MOD_KEY], "k", lazy.layout.up(), desc="Move focus up"),
     Key([MOD_KEY], "l", lazy.layout.right(), desc="Move focus to right"),
-    Key([MOD_KEY], "space", lazy.layout.next(), desc="Move window focus to other window"),
     # Move windows between left/right columns or move up/down in current stack.
     Key([MOD_KEY, "shift"], "h", lazy.layout.shuffle_left(), desc="Move window to the left"),
     Key([MOD_KEY, "shift"], "j", lazy.layout.shuffle_down(), desc="Move window down"),
@@ -58,6 +58,7 @@ keys = [
     Key([MOD_KEY], "Delete", lazy.spawn(lock_screen), desc="lock the screen"),
     Key([MOD_KEY, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([MOD_KEY], "d", minimize_all(), desc="Toggle minimization on all window"),
+    Key([MOD_KEY], "o", lazy.spawn(pick_app), desc="Run app picker"),
     Key([MOD_KEY], "p", lazy.spawn(app_selection), desc="Spawn a command using rofi"),
     Key([MOD_KEY], "w", lazy.window.kill(), desc="Kill focused window"),
     Key([MOD_KEY], "x", lazy.spawn(powermenu), desc="Spawn a command using powermenu"),
@@ -117,12 +118,12 @@ groups = [
 for name in "virsno":
     keys.extend(
         [
-            Key(
-                [MOD_KEY],
-                name,
-                lazy.group[name].toscreen(),
-                desc="Switch to group {}".format(name),
-            ),
+            # Key(
+            #     [MOD_KEY],
+            #     name,
+            #     lazy.group[name].toscreen(),
+            #     desc="Switch to group {}".format(name),
+            # ),
             Key(
                 [MOD_KEY, "control"],
                 name,

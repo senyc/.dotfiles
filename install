@@ -59,7 +59,7 @@ fi
 
 if ! which dmenu &> /dev/null; then
 	cd "$HOME/tmp" || return
-	git clone git@github.com:senyc/senyc_dmenu
+	git clone git@github.com:senyc/dmenu-flexipatch
     cd senyc_dmenu || return
     sudo make install
     echo "Added dmenu"

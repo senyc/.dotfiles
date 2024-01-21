@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+
+check_if_running() { 
+    [ -n "$(pgrep -f "$1" )" ] 
+}
+
+check_if_running_in_group() { 
+    # Checks if running then checks if in group
+    check_if_running "$2" && qtile cmd-obj -o group "$1" -f info | rg -i "$2" 
+}
+
+running_apps=()
+
+if check_if_running_in_group "r" "firefox"; then
+    running_apps+=("firefox")
+fi
+
+if check_if_running_in_group "s" "firefox"; then
+    running_apps+=("sfirefox")
+fi
+
+if check_if_running "alacritty"; then
+    running_apps+=("alacritty")
+fi
+
+if check_if_running "slack"; then
+    running_apps+=("slack")
+fi
+
+if check_if_running "spotify"; then
+    running_apps+=("spotify")
+fi
+
+if check_if_running "obsidian"; then
+    running_apps+=("obsidian")
+fi
+
+if check_if_running "discord"; then
+    running_apps+=("discord")
+fi
+
+available_apps=$(printf "%s\n" "${running_apps[@]}")
+
+selected_app="$(echo -e "$available_apps" | dmenu -c -l 7 -bw 2)"
+
+case "$selected_app" in
+    "firefox")
+        qtile cmd-obj -o group r -f toscreen
+        ;;
+    "sfirefox") # This contains the s group firefox
+        qtile cmd-obj -o group s -f toscreen
+        ;;
+    "slack")
+        qtile cmd-obj -o group o -f toscreen
+        ;;
+    "spotify")
+        qtile cmd-obj -o group v -f toscreen
+        ;;
+    "obsidian")
+        qtile cmd-obj -o group n -f toscreen
+        ;;
+    "discord")
+        qtile cmd-obj -o group o -f toscreen
+        ;;
+    "alacritty")
+        qtile cmd-obj -o group i -f toscreen
+        ;;
+esac
