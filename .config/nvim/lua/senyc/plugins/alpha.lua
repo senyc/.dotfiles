@@ -1,7 +1,7 @@
 local utils = require 'senyc.utils'
 return {
   'goolord/alpha-nvim',
-  event = 'VimEnter',
+  lazy=false,
   config = function()
     local theme = {}
 

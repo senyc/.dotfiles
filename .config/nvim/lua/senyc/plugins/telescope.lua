@@ -104,5 +104,10 @@ return {
     map('n', '<leader>fk', builtin.keymaps)
     -- Old files
     map('n', { '<leader>fo', '<leader>of' }, builtin.oldfiles)
+
+    -- Adding default search lua command, user commands must start with capital letter
+    vim.api.nvim_create_user_command('Search', function()
+      pcall(defaut_search)
+    end, {})
   end
 }

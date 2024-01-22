@@ -1,5 +1,6 @@
-[[ -f "$ZDOTDIR/aliases.zsh" ]] && . "$ZDOTDIR/aliases.zsh"
+# Runs functions first so that aliases can include them
 [[ -f "$ZDOTDIR/functions.zsh" ]] && . "$ZDOTDIR/functions.zsh"
+[[ -f "$ZDOTDIR/aliases.zsh" ]] && . "$ZDOTDIR/aliases.zsh"
 [[ -f "$ZDOTDIR/options.zsh" ]] && . "$ZDOTDIR/options.zsh"
 [[ -f "$ZDOTDIR/completions.zsh" ]] && . "$ZDOTDIR/completions.zsh"
 [[ -f "$ZDOTDIR/keymaps.zsh" ]] && . "$ZDOTDIR/keymaps.zsh"
