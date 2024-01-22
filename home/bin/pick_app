@@ -11,16 +11,16 @@ check_if_running_in_group() {
 
 running_apps=()
 
+if check_if_running "alacritty"; then
+    running_apps+=("alacritty")
+fi
+
 if check_if_running_in_group "r" "firefox"; then
     running_apps+=("firefox")
 fi
 
 if check_if_running_in_group "s" "firefox"; then
     running_apps+=("sfirefox")
-fi
-
-if check_if_running "alacritty"; then
-    running_apps+=("alacritty")
 fi
 
 if check_if_running "slack"; then
