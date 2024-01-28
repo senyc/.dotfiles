@@ -1,35 +1,39 @@
 #!/usr/bin/env bash
 
+
 check_and_launch() {
     [ -z "$(pgrep -f "$1" )" ] && "$2" &
 }
 
-apps=(
-    alacritty 
-    firefox 
-    sfirefox 
-    slack 
-    spotify 
-    flameshot 
-    obsidian 
-    discord 
-    inkscape 
-    zoom
-    openbroadcastsoftware
-)
+if [ -z "$1" ]; then
+    apps=(
+        alacritty 
+        firefox 
+        sfirefox 
+        slack 
+        spotify 
+        flameshot 
+        obsidian 
+        discord 
+        inkscape 
+        zoom
+        openbroadcastsoftware
+    )
 
-available_apps=$(printf "%s\n" "${apps[@]}")
-
-selected_app="$(echo -e "$available_apps" | dmenu -c -l 7 -bw 2)"
+    available_apps=$(printf "%s\n" "${apps[@]}")
+    selected_app="$(echo -e "$available_apps" | dmenu -c -l 7 -bw 2)"
+else
+    selected_app="$1"
+fi
 
 case "$selected_app" in
     "firefox")
         qtile cmd-obj -o group r -f toscreen
-        firefox
+        firefox &
         ;;
     "sfirefox")
         qtile cmd-obj -o group s -f toscreen
-        firefox
+        firefox &
         ;;
     "slack")
         qtile cmd-obj -o group o -f toscreen

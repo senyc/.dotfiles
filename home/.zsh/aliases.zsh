@@ -58,6 +58,8 @@ alias gcpm='git cherry-pick -e -x -m 1'
 
 alias aspell='aspell --lang=en_US --personal=$HOME/.aspell_en_dict'
 
+alias k='kubectl'
+alias kgp='kubectl get pods'
 
 # ******************
 # * Global aliases *

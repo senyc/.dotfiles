@@ -4,24 +4,20 @@ check_if_running() {
     [ -n "$(pgrep -f "$1" )" ] 
 }
 
+# This function runs very slow for some reason (qtile)
 check_if_running_in_group() { 
-    # Checks if running then checks if in group
     check_if_running "$2" && qtile cmd-obj -o group "$1" -f info | rg -i "$2" 
 }
 
 running_apps=()
 
-if check_if_running "alacritty"; then
-    running_apps+=("alacritty")
-fi
+# Don't check if running for these apps because they are likely to be running
+# or checking is slow
+running_apps+=("alacritty")
 
-if check_if_running_in_group "r" "firefox"; then
-    running_apps+=("firefox")
-fi
+running_apps+=("firefox")
 
-if check_if_running_in_group "s" "firefox"; then
-    running_apps+=("sfirefox")
-fi
+running_apps+=("sfirefox")
 
 if check_if_running "slack"; then
     running_apps+=("slack")
