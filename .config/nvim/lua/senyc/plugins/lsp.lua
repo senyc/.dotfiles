@@ -1,5 +1,4 @@
-local map = require('senyc.utils').default_map
-
+local default_on_attach = require 'senyc.lspsettings.default_on_attach'
 return {
   'neovim/nvim-lspconfig',
   dependencies = { 'hrsh7th/cmp-nvim-lsp' },
@@ -7,60 +6,6 @@ return {
   config = function()
     local lspconfig = require 'lspconfig'
     local cmp = require 'cmp_nvim_lsp'
-
-    local no_formatting = {
-      'pyright'
-    }
-
-    local function on_attach(client, bufnr)
-      local opts = { buffer = bufnr, remap = false, silent = true }
-      -- Inspect cursor token
-      map('n', 'K', vim.lsp.buf.hover, opts)
-      -- Get definition
-      map('n', 'gd', vim.lsp.buf.definition, opts)
-      -- Get declaration
-      map('n', 'gD', vim.lsp.buf.declaration, opts)
-      -- Get symbol
-      map('n', '<leader>gs', vim.lsp.buf.workspace_symbol, opts)
-      -- Diagnostic QuickFix
-      map('n', '<leader>dq', vim.diagnostic.setqflist, opts)
-      -- Diagnostic open
-      map('n', '<leader>do', vim.diagnostic.open_float, opts)
-      -- Diagnostic previous
-      map('n', '<leader>dp', vim.diagnostic.goto_prev, opts)
-      -- Diagnostic next
-      map('n', '<leader>dn', vim.diagnostic.goto_next, opts)
-      -- Code action
-      map('n', '<leader>.', vim.lsp.buf.code_action, opts)
-      -- Rename
-      map('n', '<leader>r', vim.lsp.buf.rename, opts)
-      -- Get references
-      map('n', 'gr', vim.lsp.buf.references, opts)
-      -- Get implementation
-      map('n', '<leader>gi', vim.lsp.buf.implementation, opts)
-
-      -- Format
-      if (function()
-            for _, val in pairs(no_formatting) do
-              if val == client.name then
-                return false
-              end
-            end
-            return true
-          end)()
-      then
-        map('n', '<leader>=', vim.lsp.buf.format, opts)
-        map('v', '<leader>=', function()
-            vim.lsp.buf.format()
-            -- Escape visual mode
-            vim.api.nvim_input('<esc>')
-          end,
-          opts
-        )
-      else
-        map('n', '<leader>=', vim.cmd.Format)
-      end
-    end
 
     local servers = {
       'bashls',
@@ -75,18 +20,21 @@ return {
       'gopls',
       'cssls',
       'sqlls',
-      'solargraph'
+      'solargraph',
+      'ruby_ls'
     }
 
-    for _, server in pairs(servers) do
+    for _, server in ipairs(servers) do
       local config = {
-        on_attach = on_attach,
+        -- on_attach contains all lsp-specific key mappings
+        on_attach = default_on_attach,
         capabilities = cmp.default_capabilities(),
       }
 
       local ok, settings = pcall(require, 'senyc.lspsettings.' .. server)
       if ok then
-        config = vim.tbl_deep_extend('force', settings, config)
+        -- Config in file will override local initial config
+        config = vim.tbl_deep_extend('keep', settings, config)
       end
       lspconfig[server].setup(config)
     end

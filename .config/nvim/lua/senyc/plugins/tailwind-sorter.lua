@@ -9,7 +9,7 @@ return {
 
       on_save_enabled = true,
       -- The config.js pattern may lead to bugs
-      on_save_pattern = { "!(*.config).js", '*.html', '*.jsx', '*.tsx', '*.astro'}, -- The file patterns to watch and sort.
+      on_save_pattern = { "!(*.config).js", '*.html', '*.jsx', '*.tsx', '*.astro', '*.html.erb'}, -- The file patterns to watch and sort.
       node_path = 'node',
     })
   end
