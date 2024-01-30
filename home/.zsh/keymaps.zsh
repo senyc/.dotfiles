@@ -1,4 +1,5 @@
 bindkey -s ^f "tmux-sessionizer\n"
+bindkey -s ^g "file_find\n"
 
 # [Ctrl-Delete] - delete whole forward-word
 bindkey -M emacs '^[[3;5~' kill-word

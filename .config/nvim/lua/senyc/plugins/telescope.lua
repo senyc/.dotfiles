@@ -81,7 +81,7 @@ return {
     end
 
     -- Find file
-    map('n', '<leader>ff', defaut_search)
+    map('n', {'<leader>ff', '<c-g>'}, defaut_search)
     -- Find vim help
     map('n', '<leader>fh', builtin.help_tags)
     -- Find live git grep
