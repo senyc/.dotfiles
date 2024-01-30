@@ -60,8 +60,8 @@ check_prev_and_add() {
 [ -n "$second_value" ] && [ "$first_value" != "$second_value" ] && running_apps+=("$second_value")
 [ -n "$third_value" ] && [ "$second_value" != "$third_value" ] && [ "$first_value" != "$third_value" ] && running_apps+=("$third_value")
 
-check_prev_and_add "alacritty"
 check_prev_and_add "firefox"
+check_prev_and_add "alacritty"
 check_prev_and_add "sfirefox"
 check_prev_and_add "slack"
 check_prev_and_add "spotify"
