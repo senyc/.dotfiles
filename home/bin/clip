@@ -1,2 +1,8 @@
 #!/usr/bin/env bash
+
+if [ -n "$1" ]; then
+    [ -f "$PWD/$1" ] && xclip -selection c < "$PWD/$1"
+    exit
+fi
+
 xclip -selection c
