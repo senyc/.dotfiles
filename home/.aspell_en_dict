@@ -159,3 +159,5 @@ uuid
 dockerhub
 dockerfile
 repo
+rbenv
+zshrc

@@ -2,7 +2,7 @@
 
 commands=(
     shutdown
-    reboot
+    restart
     lock
     suspend
 )

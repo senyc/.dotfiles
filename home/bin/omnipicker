@@ -1,0 +1,111 @@
+#!/usr/bin/env bash
+
+check_if_running() { 
+    [ -n "$(pgrep -f "$1" )" ] 
+}
+
+add_history() {
+    cat /tmp/pick-app-cache-2 > "/tmp/pick-app-cache-3"
+    cat /tmp/pick-app-cache-1 > "/tmp/pick-app-cache-2"
+    echo "$1" > "/tmp/pick-app-cache-1"
+}
+
+display_help() {
+    echo "Usage: ./omnipicker OPTION"
+    echo "Utility for swapping and starting applications"
+    echo
+    echo "Program when run will give the option to swap to an application"
+    echo "When selected program will run application if it is not already running*"
+    echo "If it is running it will just switch to the application**"
+    echo
+    echo "*Will not run second instance of browser"
+    echo "**assumes that application is on correct group"
+    echo
+    echo "options"
+    echo "  -h --help          Displays this help and exits"
+    echo "  -c --clean         Cleans up temp files and exits"
+}
+
+clean_temp_files() {
+    [ -f "/tmp/pick-app-cache-1" ] && rm /tmp/pick-app-cache-1
+    [ -f "/tmp/pick-app-cache-2" ] && rm /tmp/pick-app-cache-2
+    [ -f "/tmp/pick-app-cache-3" ] && rm /tmp/pick-app-cache-3
+    echo "Removed temporary files"
+}
+
+if [ "$1" == "-h" ] || [ "$1" == "--help" ]; then
+    display_help
+    exit
+fi
+
+if [ "$1" == "-c" ] || [ "$1" == "--clean" ]; then
+    clean_temp_files
+    exit
+fi
+
+first_value=$(cat /tmp/pick-app-cache-2)
+second_value=$(cat /tmp/pick-app-cache-3)
+third_value=$(cat /tmp/pick-app-cache-1)
+running_apps=()
+
+# Don't add things twice
+check_prev_and_add() {
+    if [ "$1" != "$first_value" ] && [ "$1" != "$second_value" ] && [ "$1" != "$third_value" ]; then
+        running_apps+=("$1")
+    fi
+}
+
+# Add most recently used items first with no duplicates
+[ -n "$first_value" ] && running_apps+=("$first_value")
+[ -n "$second_value" ] && [ "$first_value" != "$second_value" ] && running_apps+=("$second_value")
+[ -n "$third_value" ] && [ "$second_value" != "$third_value" ] && [ "$first_value" != "$third_value" ] && running_apps+=("$third_value")
+
+check_prev_and_add "alacritty"
+check_prev_and_add "firefox"
+check_prev_and_add "sfirefox"
+check_prev_and_add "slack"
+check_prev_and_add "spotify"
+check_prev_and_add "obsidian"
+check_prev_and_add "discord"
+
+available_apps=$(printf "%s\n" "${running_apps[@]}")
+
+selected_app="$(echo -e "$available_apps" | dmenu -c -l 4 -bw 2)"
+
+case "$selected_app" in
+    "firefox")
+        qtile cmd-obj -o group r -f toscreen
+        add_history "firefox"
+        check_if_running "firefox" || firefox &
+        ;;
+    "sfirefox") # This contains the s group firefox
+        qtile cmd-obj -o group s -f toscreen
+        # Will not run since this is a second instance
+        add_history "sfirefox"
+        ;;
+    "slack")
+        qtile cmd-obj -o group o -f toscreen
+        add_history "slack"
+        check_if_running "slack" || slack &
+        ;;
+    "spotify")
+        qtile cmd-obj -o group v -f toscreen
+        add_history "spotify"
+        check_if_running "spotify" || spotify-launcher &
+        ;;
+    "obsidian")
+        qtile cmd-obj -o group n -f toscreen
+        add_history "obsidian"
+        check_if_running "obsidian" || obsidian &
+        ;;
+    "discord")
+        qtile cmd-obj -o group o -f toscreen
+        add_history "discord"
+        check_if_running "discord" || discord &
+        ;;
+    "alacritty")
+        qtile cmd-obj -o group i -f toscreen
+        # Assumes terminal is already running
+        add_history "alacritty"
+        ;;
+esac

@@ -1,25 +1,18 @@
 import os
-import subprocess
 from typing import Any, List
 
 from libqtile import hook, layout, qtile
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 
-from functions import get_monitor_resolutions
 from laptop_bar import laptop_bar
 from options import MOD_KEY
 from primary_bar import primary_bar
-from side_bars import left_bar, right_bar
 
-browser = "firefox"
-app_selection = f"{os.path.expanduser('~')}/bin/run_app"
 powermenu = f"{os.path.expanduser('~')}/bin/run_powermenu"
-pick_app = f"{os.path.expanduser('~')}/bin/pick_app"
+omnipicker = f"{os.path.expanduser('~')}/bin/omnipicker"
 lock_screen = f"{os.path.expanduser('~')}/bin/lock_screen"
 terminal = "alacritty"
-
-monitor_count = len(get_monitor_resolutions())
 
 
 @lazy.function
@@ -55,25 +48,15 @@ keys = [
     ),
     # Toggle between different layouts as defined below
     Key([MOD_KEY, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([MOD_KEY], "Delete", lazy.spawn(lock_screen), desc="lock the screen"),
     Key([MOD_KEY, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([MOD_KEY], "d", minimize_all(), desc="Toggle minimization on all window"),
-    Key([MOD_KEY], "o", lazy.spawn(pick_app), desc="Run app picker"),
-    Key([MOD_KEY], "p", lazy.spawn(app_selection), desc="Spawn a command using rofi"),
     Key([MOD_KEY], "w", lazy.window.kill(), desc="Kill focused window"),
+    Key([MOD_KEY], "Delete", lazy.spawn(lock_screen), desc="lock the screen"),
+    Key([MOD_KEY], "o", lazy.spawn(omnipicker), desc="Run omnipicker"),
+    Key([MOD_KEY], "r", lazy.spawn("dmenu_run -c -l 10 -bw 2"), desc="Runs any binary on system"),
     Key([MOD_KEY], "x", lazy.spawn(powermenu), desc="Spawn a command using powermenu"),
     Key([MOD_KEY], "y", lazy.next_layout(), desc="Toggle between layouts"),
-    # Launch applications
-    Key([MOD_KEY], "Return", lazy.spawn(terminal), desc="Launch terminal"),
-    Key([MOD_KEY], "b", lazy.spawn(browser), desc="Launch browser"),
     Key([MOD_KEY], "t", lazy.window.toggle_floating(), desc="Toggle floating"),
-    # Screens
-    Key([MOD_KEY, "control"], "comma", lazy.window.toscreen(2)),
-    Key([MOD_KEY, "control"], "period", lazy.window.toscreen(0)),
-    Key([MOD_KEY, "control"], "slash", lazy.window.toscreen(1)),
-    Key([MOD_KEY], "comma", lazy.to_screen(2)),
-    Key([MOD_KEY], "period", lazy.to_screen(0)),
-    Key([MOD_KEY], "slash", lazy.to_screen(1)),
 ]
 
 groups = [
@@ -117,13 +100,8 @@ groups = [
 # other
 for name in "virsno":
     keys.extend(
+        # Doesn't add switching keybinds, please use the omnipicker
         [
-            # Key(
-            #     [MOD_KEY],
-            #     name,
-            #     lazy.group[name].toscreen(),
-            #     desc="Switch to group {}".format(name),
-            # ),
             Key(
                 [MOD_KEY, "control"],
                 name,
@@ -145,51 +123,23 @@ widget_defaults = dict(
     padding=0,
 )
 
-vertical_background: str = "~/.dotfiles/backgrounds/vertical.jpeg"
 horizontal_background: str = "~/.dotfiles/backgrounds/horizontal.jpeg"
 
-# 0 is always primary monitor
-# Assumes that one monitor is going to use the vertical monitor background
-if monitor_count == 3:
-    screens = [
-        Screen(
-            top=primary_bar,
-            wallpaper=horizontal_background,
-            wallpaper_mode="fill",
-        ),
-        Screen(
-            top=left_bar,
-            wallpaper=vertical_background,
-            wallpaper_mode="fill",
-        ),
-        Screen(
-            top=right_bar,
-            wallpaper=horizontal_background,
-            wallpaper_mode="fill",
-        ),
-    ]
-
-elif monitor_count == 2:
-    screens = [
-        Screen(
-            top=primary_bar,
-            wallpaper=horizontal_background,
-            wallpaper_mode="fill",
-        ),
-        Screen(
-            top=left_bar,
-            wallpaper=vertical_background,
-            wallpaper_mode="fill",
-        ),
-    ]
-
-elif monitor_count == 1:
+if os.getenv("IS_LAPTOP") == "true":
     screens = [
         Screen(
             top=laptop_bar,
             wallpaper=horizontal_background,
             wallpaper_mode="fill",
-        ),
+        )
+    ]
+else:
+    screens = [
+        Screen(
+            top=primary_bar,
+            wallpaper=horizontal_background,
+            wallpaper_mode="fill",
+        )
     ]
 
 # Drag floating layouts.
@@ -232,16 +182,6 @@ wl_input_rules = None
 def lock_on_sleep():
     # Run screen locker
     qtile.spawn("/home/senyc/bin/lock_screen")
-
-
-@hook.subscribe.startup_once
-def autostart():
-    if monitor_count == 3:
-        file_dir = os.path.expanduser("~/.config/qtile/three_monitor_mappings")
-        subprocess.run([file_dir])
-    elif monitor_count == 2:
-        file_dir = os.path.expanduser("~/.config/qtile/two_monitor_mappings")
-        subprocess.run([file_dir])
 
 
 wmname = "qtile"

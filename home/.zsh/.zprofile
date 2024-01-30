@@ -11,6 +11,9 @@ export HISTSIZE=1000
 export HISTFILESIZE=2000
 export GOPRIVATE=github.com/senyc/jason
 
+# This is meant to determine whether or not to include battery icon in top bar
+[[ -f ~/.is_laptop ]] && export IS_LAPTOP=true
+
 # Stops less from clearing the screen and will cause
 # less to exit if the contents can fit on the screen
 export LESS="-FXR"
