@@ -70,4 +70,21 @@ function M.rename_current_file()
   end)
 end
 
+function M.pwd_popup()
+  local borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" };
+  local popup = require "plenary.popup"
+  local win_id = popup.create(utils.get_formatted_path(), {
+    title = "PWD",
+    enter = false,
+    padding = { 0, 3, 0, 3 },
+    borderchars = borderchars
+  })
+  -- This adds temporary key mappings that will kill the window, then remove themselves
+  -- I'm not sure that vim has a native way to just detect a keypress
+  vim.api.nvim_buf_set_keymap(0, "n", "j",
+    'j<cmd>lua vim.api.nvim_win_close(' .. win_id .. ", true); vim.cmd('unmap <buffer> j'); vim.cmd('unmap <buffer> k')<CR>", { noremap = true })
+  vim.api.nvim_buf_set_keymap(0, "n", "k",
+    'k<cmd>lua vim.api.nvim_win_close(' .. win_id .. ", true); vim.cmd('unmap <buffer> k'); vim.cmd('unmap <buffer> j')<CR>", { noremap = true })
+end
+
 return M
