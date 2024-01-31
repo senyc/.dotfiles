@@ -1,5 +1,5 @@
 local map = require 'senyc.utils'.default_map
-local get_home_dir = require 'senyc.utils'.get_home_dir
+local utils = require 'senyc.utils'
 local functions = require 'senyc.functions'
 
 -- Exit insert mode
@@ -51,8 +51,6 @@ map('n', '<Left>', ':vertical resize -2<CR>')
 map('n', '<Right>', ':vertical resize +2<CR>')
 -- Add space after cursor
 map('n', 'gl', 'a <Esc>h')
--- Show current directory
-map('n', '<leader>cd', function() vim.print(vim.api.nvim_buf_get_name(0)) end)
 -- QuickFix navigation
 map('n', '<leader>,', ':cnext<cr>zz')
 map('n', '<leader>;', ':cprev<cr>zz')
@@ -65,23 +63,19 @@ map('n', '<leader>fe', functions.toggle_netrw)
 -- Netrw side window (view explorer)
 map('n', '<leader>ve', functions.toggle_windowed_netrw)
 -- global replace
-map({'n', 'v'}, '<leader>gr', functions.replace_word_in_project)
+map({ 'n', 'v' }, '<leader>gr', functions.replace_word_in_project)
 -- Number toggle (toggles relative line numbers
 map('n', '<leader>nt', function() vim.cmd "set invrelativenumber" end)
 -- Renames the current file
 map('n', '<leader>rn', functions.rename_current_file)
 -- Tmux-sessionizer
 map("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
+-- Show current directory in popup
+map("n", "<leader>cd", functions.pwd_popup)
 
 -- Copies buffer directory to system clipboard
 map('n', '<leader>cy', function()
-  vim.cmd('let @+ = "' .. (function()
-    local home_dir = get_home_dir()
-    local result = vim.api.nvim_buf_get_name(0)
-    if home_dir ~= "" then
-      result = result:gsub(home_dir, "~")
-    end
-    vim.print("Copied " .. result .. " to clipboard")
-    return result
-  end)() .. '"')
+  local curr_dir = utils.get_formatted_path()
+  vim.cmd('let @+ = "' .. curr_dir .. '"')
+  vim.print("Copied " .. curr_dir .. " to clipboard")
 end)

@@ -46,14 +46,12 @@ function M.replace_word_in_project()
   -- Save current buffer as grep moves to most recent updated buffer
   local current_buf = vim.api.nvim_get_current_buf()
 
-  local search_cmd = 'silent grep ' .. current_word .. ' ' .. gitdir
-  vim.cmd(search_cmd)
+  vim.cmd('silent grep ' .. current_word .. ' ' .. gitdir)
 
   vim.ui.input({ prompt = 'replace ' .. current_word .. ' with: ' }, function(input)
     -- Test for <C-c>
     if input ~= nil and not input:find "\3" and not input:find "\x03" then
-      local replace_cmd = 'silent cdo ' .. 's/' .. current_word .. '/' .. input .. '/'
-      pcall(function() vim.cmd(replace_cmd) end)
+      pcall(function() vim.cmd('silent cdo ' .. 's/' .. current_word .. '/' .. input .. '/') end)
     end
   end)
   -- Return to original buffer

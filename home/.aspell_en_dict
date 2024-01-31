@@ -161,3 +161,7 @@ dockerfile
 repo
 rbenv
 zshrc
+omni
+omnipicker
+dns
+ssl

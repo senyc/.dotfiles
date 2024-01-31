@@ -75,4 +75,17 @@ function M.get_home_dir()
   return os.getenv("HOME") or os.getenv("USERPROFILE") or ""
 end
 
+--- Gets the buffer directory with properly substititued tilde for $HOME directory
+--- This may fail in certain buffers (where nvim_buf_get_name fails)
+---
+---@return string
+function M.get_formatted_path()
+  local home_dir = M.get_home_dir()
+  local result = vim.api.nvim_buf_get_name(0)
+  if home_dir ~= "" then
+    result = result:gsub(home_dir, "~")
+  end
+  return result
+end
+
 return M

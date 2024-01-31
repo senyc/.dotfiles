@@ -52,7 +52,7 @@ return {
       displayed_text = vim.fn.getcwd()
       local home_dir = utils.get_home_dir()
       if home_dir ~= "" then
-        -- Show tilde instead of $HOME
+        -- Show tilde instead of $HOME, can't use nvim_buf_get_name since this is home screen
         displayed_text = displayed_text:gsub(home_dir, "~")
       end
     end
