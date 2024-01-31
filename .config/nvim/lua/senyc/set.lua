@@ -61,3 +61,5 @@ vim.g.netrw_sizestyle = "H"
 vim.g.netrw_winsize = 15
 -- When windowed will split on the right
 vim.g.netrw_altv = '1'
+-- Default to tree view
+vim.g.netrw_liststyle = '3'

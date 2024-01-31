@@ -26,7 +26,7 @@ return {
         lualine_c = { {
           'filename',
           file_status = true,
-          path = 4
+          path = 0
         } },
         lualine_x = { 'encoding', 'fileformat', 'filetype' },
         lualine_y = { 'progress' },
@@ -36,8 +36,8 @@ return {
         lualine_a = {},
         lualine_b = {},
         lualine_c = { 'filename' },
-        lualine_x = { 'location' },
-        lualine_y = {},
+        lualine_x = { },
+        lualine_y = { 'filetype','location'  },
         lualine_z = {}
       },
       tabline = {},
