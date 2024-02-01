@@ -51,7 +51,7 @@ function M.replace_word_in_project()
 
   vim.ui.input({ prompt = 'replace ' .. current_word .. ' with: ' }, function(input)
     -- Test for <C-c>
-    if input ~= nil and not input:find "\3" and not input:find "\x03" then
+    if input ~= nil and not input:find '\3' and not input:find '\x03' then
       pcall(function() vim.cmd('silent cdo ' .. 's/' .. current_word .. '/' .. input .. '/') end)
     end
   end)
@@ -61,23 +61,24 @@ end
 
 function M.rename_current_file()
   local filename = vim.api.nvim_buf_get_name(0)
-  local basename = filename:match("^.+/(.+)$")
+  local basename = filename:match('^.+/(.+)$')
 
   vim.ui.input({ prompt = 'replace ' .. basename .. ' with: ' }, function(input)
     if input ~= nil and not input:find "\3" and not input:find "\x03" then
       local newname = basename:gsub(basename, input)
-      vim.cmd("file " .. newname)
+      vim.cmd('file ' .. newname)
       vim.cmd.w()
-      vim.cmd("!rm " .. filename)
+      vim.cmd('!rm ' .. filename)
     end
   end)
 end
 
 function M.pwd_popup()
-  local borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" };
-  local popup = require "plenary.popup"
+  local popup = require 'plenary.popup'
+
+  local borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' };
   local win_id = popup.create(utils.get_formatted_path(), {
-    title = "PWD",
+    title = 'PWD',
     enter = false,
     padding = { 0, 3, 0, 3 },
     borderchars = borderchars
@@ -92,11 +93,11 @@ function M.pwd_popup()
     vim.cmd('unmap h')
     vim.cmd('unmap l')
     -- Equivalent of unmapping for this function
-    map("n", "<leader>cd", M.pwd_popup)
+    map('n', '<leader>cd', M.pwd_popup)
   end
 
-  for _, lhs in pairs({ "j", "k", "h", "l", "<leader>cd" }) do
-    map("n", lhs, function()
+  for _, lhs in pairs({ 'j', 'k', 'h', 'l', '<leader>cd' }) do
+    map('n', lhs, function()
       if #lhs == 1 then
         vim.api.nvim_input(lhs)
       end
