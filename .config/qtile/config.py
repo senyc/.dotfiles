@@ -46,17 +46,20 @@ keys = [
         lazy.layout.toggle_split(),
         desc="Toggle between split and unsplit sides of stack",
     ),
-    # Toggle between different layouts as defined below
+    # Toggle between different layouts
     Key([MOD_KEY, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([MOD_KEY, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([MOD_KEY], "d", minimize_all(), desc="Toggle minimization on all window"),
     Key([MOD_KEY], "w", lazy.window.kill(), desc="Kill focused window"),
-    Key([MOD_KEY], "Delete", lazy.spawn(lock_screen), desc="lock the screen"),
-    Key([MOD_KEY], "o", lazy.spawn(omnipicker), desc="Run omnipicker"),
-    Key([MOD_KEY], "r", lazy.spawn("dmenu_run -c -l 10 -bw 2"), desc="Runs any binary on system"),
-    Key([MOD_KEY], "x", lazy.spawn(powermenu), desc="Spawn a command using powermenu"),
     Key([MOD_KEY], "y", lazy.next_layout(), desc="Toggle between layouts"),
     Key([MOD_KEY], "t", lazy.window.toggle_floating(), desc="Toggle floating"),
+
+    # Various pickers and commands
+    Key([MOD_KEY], "Delete", lazy.spawn(lock_screen), desc="lock the screen"),
+    Key([MOD_KEY], "o", lazy.spawn(omnipicker), desc="Run omnipicker"),
+    Key([MOD_KEY], "minus", lazy.spawn(f"{omnipicker} -"), desc="Run omnipicker previous application"),
+    Key([MOD_KEY], "r", lazy.spawn("dmenu_run -c -l 10 -bw 2"), desc="Runs any binary on system"),
+    Key([MOD_KEY], "x", lazy.spawn(powermenu), desc="Spawn a command using powermenu"),
 ]
 
 groups = [

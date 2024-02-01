@@ -63,7 +63,7 @@ function M.rename_current_file()
   local filename = vim.api.nvim_buf_get_name(0)
   local basename = filename:match('^.+/(.+)$')
 
-  vim.ui.input({ prompt = 'replace ' .. basename .. ' with: ' }, function(input)
+  vim.ui.input({ prompt = 'replace ' .. basename .. ' with: ', default = basename }, function(input)
     if input ~= nil and not input:find "\3" and not input:find "\x03" then
       local newname = basename:gsub(basename, input)
       vim.cmd('file ' .. newname)
