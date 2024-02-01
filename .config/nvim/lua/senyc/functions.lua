@@ -1,4 +1,5 @@
 local utils = require 'senyc.utils'
+local map = require 'senyc.utils'.default_map
 
 local M = {}
 function M.toggle_netrw()
@@ -63,10 +64,12 @@ function M.rename_current_file()
   local basename = filename:match("^.+/(.+)$")
 
   vim.ui.input({ prompt = 'replace ' .. basename .. ' with: ' }, function(input)
-    local newname = basename:gsub(basename, input)
-    vim.cmd("file " .. newname)
-    vim.cmd.w()
-    vim.cmd("!rm " .. filename)
+    if input ~= nil and not input:find "\3" and not input:find "\x03" then
+      local newname = basename:gsub(basename, input)
+      vim.cmd("file " .. newname)
+      vim.cmd.w()
+      vim.cmd("!rm " .. filename)
+    end
   end)
 end
 
@@ -79,12 +82,27 @@ function M.pwd_popup()
     padding = { 0, 3, 0, 3 },
     borderchars = borderchars
   })
+
   -- This adds temporary key mappings that will kill the window, then remove themselves
   -- I'm not sure that vim has a native way to just detect a keypress
-  vim.api.nvim_buf_set_keymap(0, "n", "j",
-    'j<cmd>lua vim.api.nvim_win_close(' .. win_id .. ", true); vim.cmd('unmap <buffer> j'); vim.cmd('unmap <buffer> k')<CR>", { noremap = true })
-  vim.api.nvim_buf_set_keymap(0, "n", "k",
-    'k<cmd>lua vim.api.nvim_win_close(' .. win_id .. ", true); vim.cmd('unmap <buffer> k'); vim.cmd('unmap <buffer> j')<CR>", { noremap = true })
+  local function popup_cleanup()
+    vim.api.nvim_win_close(win_id, true)
+    vim.cmd('unmap j')
+    vim.cmd('unmap k')
+    vim.cmd('unmap h')
+    vim.cmd('unmap l')
+    -- Equivalent of unmapping for this function
+    map("n", "<leader>cd", M.pwd_popup)
+  end
+
+  for _, lhs in pairs({ "j", "k", "h", "l", "<leader>cd" }) do
+    map("n", lhs, function()
+      if #lhs == 1 then
+        vim.api.nvim_input(lhs)
+      end
+      popup_cleanup()
+    end)
+  end
 end
 
 return M
