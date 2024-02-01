@@ -55,22 +55,37 @@ check_prev_and_add() {
     fi
 }
 
-# Add most recently used items first with no duplicates
-[ -n "$first_value" ] && running_apps+=("$first_value")
-[ -n "$second_value" ] && [ "$first_value" != "$second_value" ] && running_apps+=("$second_value")
-[ -n "$third_value" ] && [ "$second_value" != "$third_value" ] && [ "$first_value" != "$third_value" ] && running_apps+=("$third_value")
+# Allows for an easy way to 
+if [[ -n "$1" ]]; then
+    # This just goes to the previously used application, defaulting to alacritty (terminal) if no recently used apps
+    if [[ "$1" == "-" ]]; then
+        if [[ -z "$first_value" ]]; then
+            first_value="alacritty"
+        fi
+        selected_app="$first_value"
+    else
+        # If the user entered something that isn't a '-'
+        selected_app="$1"
+    fi
+fi
 
-check_prev_and_add "firefox"
-check_prev_and_add "alacritty"
-check_prev_and_add "sfirefox"
-check_prev_and_add "slack"
-check_prev_and_add "spotify"
-check_prev_and_add "obsidian"
-check_prev_and_add "discord"
 
-available_apps=$(printf "%s\n" "${running_apps[@]}")
+if [[ -z "$selected_app" ]]; then
+    # Add most recently used items first with no duplicates
+    [ -n "$first_value" ] && running_apps+=("$first_value")
+    [ -n "$second_value" ] && [ "$first_value" != "$second_value" ] && running_apps+=("$second_value")
+    [ -n "$third_value" ] && [ "$second_value" != "$third_value" ] && [ "$first_value" != "$third_value" ] && running_apps+=("$third_value")
 
-selected_app="$(echo -e "$available_apps" | dmenu -c -l 4 -bw 2)"
+    check_prev_and_add "firefox"
+    check_prev_and_add "alacritty"
+    check_prev_and_add "sfirefox"
+    check_prev_and_add "slack"
+    check_prev_and_add "spotify"
+    check_prev_and_add "obsidian"
+    check_prev_and_add "discord"
+
+    selected_app=$(echo -e "$(printf "%s\n" "${running_apps[@]}")" | dmenu -c -l 4 -bw 2)
+fi
 
 case "$selected_app" in
     "firefox")
