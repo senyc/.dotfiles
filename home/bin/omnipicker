@@ -50,7 +50,7 @@ running_apps=()
 
 # Don't add things twice
 check_prev_and_add() {
-    if [[ ! " $first_value $second_value $third_value " =~ $1 ]]; then
+    if [[ ! " ${running_apps[*]} " =~ " $1 " ]]; then
         running_apps+=("$1")
     fi
 }
