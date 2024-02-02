@@ -19,7 +19,6 @@ return {
       'yamlls',
       'gopls',
       'cssls',
-      'sqlls',
       'solargraph',
       'ruby_ls'
     }
