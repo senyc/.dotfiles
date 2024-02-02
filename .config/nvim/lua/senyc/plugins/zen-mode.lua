@@ -4,6 +4,10 @@ return {
   lazy = true,
   config = function()
     vim.keymap.set('n', '<leader>zm', function()
+      -- Toggles virtual text
+      vim.diagnostic.config({
+        virtual_text = not vim.diagnostic.config().virtual_text
+      })
       -- Toggles line blame
       require 'gitsigns'.toggle_current_line_blame()
       -- Toggles gitsigns
@@ -13,7 +17,7 @@ return {
 
       require 'zen-mode'.setup {
         window = {
-          width = 80,
+          width = 90,
           backdrop = 0.6
         },
       }
