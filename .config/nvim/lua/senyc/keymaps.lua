@@ -34,8 +34,8 @@ map({ 'n', 'v' }, '<leader>p', [["+p]])
 map({ 'n', 'v' }, '<leader>d', [["+d]])
 -- Deletion to the null buffer
 map({ 'n', 'v' }, '<leader>x', [["_d]])
--- Allow for replacing word at cursor location
-map('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+-- Rename word, performs local word replacement
+map('n', '<leader>rw', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 -- White space remove
 map('n', '<leader>wr', [[m`:%s/\s\+$//e<cr>``]])
 -- Write quit
@@ -72,6 +72,10 @@ map('n', '<leader>rn', functions.rename_current_file)
 map("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 -- Show current directory in popup
 map("n", "<leader>cd", functions.pwd_popup)
+-- Pastes current word in " buffer to word, moves pasted over word to " buffer
+map("n", "<leader>s", "viwP")
+-- Pastes current word in " buffer to word, which then overwrites the " buffer
+map("n", "<leader>S", "viwp")
 
 -- Copies buffer directory to system clipboard
 map('n', '<leader>cy', function()
