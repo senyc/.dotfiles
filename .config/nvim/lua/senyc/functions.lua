@@ -106,4 +106,20 @@ function M.pwd_popup()
   end
 end
 
+function M.delete_current_file()
+  local filename = vim.api.nvim_buf_get_name(0)
+  local basename = filename:match('^.+/(.+)$')
+
+  vim.ui.input({ prompt = 'delete ' .. basename .. '? ' }, function(input)
+    if input == nil or input:find "\3" or input:find "\x03" then
+      return
+    end
+    if input:lower():sub(1, 1) == 'y' then
+      vim.cmd.w()
+      vim.cmd('!rm ' .. '"' .. filename .. '"')
+      vim.cmd.bdelete()
+    end
+  end)
+end
+
 return M

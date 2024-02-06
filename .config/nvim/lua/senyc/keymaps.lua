@@ -72,6 +72,8 @@ map('n', '<leader>rn', functions.rename_current_file)
 map("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 -- Show current directory in popup
 map("n", "<leader>cd", functions.pwd_popup)
+-- "Replaces" with delete (removes file)
+map("n", "<leader>rd", functions.delete_current_file)
 -- Pastes current word in " buffer to word, moves pasted over word to " buffer
 map("n", "<leader>s", "viwP")
 -- Pastes current word in " buffer to word, which then overwrites the " buffer
