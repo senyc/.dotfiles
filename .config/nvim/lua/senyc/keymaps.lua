@@ -9,6 +9,8 @@ map("i", "<C-c>", "<Esc>")
 map('n', '<leader>l', vim.cmd.bnext)
 map('n', '<leader>h', vim.cmd.bprevious)
 map('n', '<leader>bd', vim.cmd.bdelete)
+map('n', '<leader>$', vim.cmd.blast)
+map('n', '<leader>0', vim.cmd.bfirst)
 -- Centralized navigation for search and <c-d/u>
 map('n', '<C-d>', '<c-d>zz')
 map('n', '<C-u>', '<c-u>zz')
@@ -38,12 +40,8 @@ map({ 'n', 'v' }, '<leader>x', [["_d]])
 map('n', '<leader>rw', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 -- White space remove
 map('n', '<leader>wr', [[m`:%s/\s\+$//e<cr>``]])
--- Write quit
-map('n', '<leader>wq', ':wa <cr> :qa!<cr>')
--- Word swap (does not replace unnamed register)
-map('n', '<leader>ww', 'viwP')
--- Word swap (replaces unnamed register)
-map('n', '<leader>wW', 'viwp')
+-- Similar to ZZ but saves all open buffers
+map('n', 'ZA', vim.cmd.wqall)
 -- Resize windows w/ arrows
 map('n', '<Up>', ':resize -2<CR>')
 map('n', '<Down>', ':resize +2<CR>')
@@ -78,7 +76,6 @@ map("n", "<leader>rd", functions.delete_current_file)
 map("n", "<leader>s", "viwP")
 -- Pastes current word in " buffer to word, which then overwrites the " buffer
 map("n", "<leader>S", "viwp")
-
 -- Copies buffer directory to system clipboard
 map('n', '<leader>cy', function()
   local curr_dir = utils.get_formatted_path()
