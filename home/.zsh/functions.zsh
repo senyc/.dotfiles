@@ -10,7 +10,7 @@ c() {
 }
 
 # Allows for a quick way to navigate to base project directory
-cdb() {
+cdp() {
     if [ -n "$1" ]; then
         case $1 in
             "--help")

@@ -50,6 +50,7 @@ keys = [
     Key([MOD_KEY, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([MOD_KEY, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([MOD_KEY], "d", minimize_all(), desc="Toggle minimization on all window"),
+    Key([MOD_KEY], "b", lazy.hide_show_bar(), desc="Hide the top bar"),
     Key([MOD_KEY], "w", lazy.window.kill(), desc="Kill focused window"),
     Key([MOD_KEY], "y", lazy.next_layout(), desc="Toggle between layouts"),
     Key([MOD_KEY], "t", lazy.window.toggle_floating(), desc="Toggle floating"),
