@@ -19,13 +19,15 @@ check_and_install() {
         echo "$1 not installed"
         sudo pacman -S "$1"
     else
-        echo "$1 already installed"
+        echo "$1 is already installed"
     fi
 }
 
-for i in $(cat "$HOME/.dotfiles/packagelist"); do
-    check_and_install "$i"
-done
+# Install packages from packagelist file - handle comments
+while read -r line; do
+    package="$(echo "$line" | cut -d# -f1)"
+    check_and_install "$(echo "$package" | tr -d ' ')"
+done < "$HOME/.dotfiles/packagelist"
 
 if ! which nvim &> /dev/null; then
 	cd "$HOME/tmp" || return
@@ -40,7 +42,7 @@ if ! which nvim &> /dev/null; then
 	git clone --depth 1 https://github.com/wbthomason/packer.nvim\~/.local/share/nvim/site/pack/packer/start/packer.nvim
 	echo "Please go to $HOME/.config/nvim/lua/senyc/packer.lua and type :PackerInstall"
 else 
-    echo "nvim already installed"
+    echo "nvim is already installed"
 fi 
 
 if ! which tmux &> /dev/null; then
@@ -64,4 +66,5 @@ if ! which dmenu &> /dev/null; then
     sudo make install
     echo "Added dmenu"
 fi
+
 setup_zsh

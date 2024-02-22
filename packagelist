@@ -1,10 +1,11 @@
 alacritty 
-alsa-utils 
+alsa-utils
 aspell-en
 base-devel
 docker
 flameshot
 fzf
+git
 github-cli
 go
 i3lock
@@ -15,8 +16,6 @@ luarocks
 man-db 
 neofetch 
 nodejs 
-noto-fonts
-noto-fonts-cjk 
 npm 
 openssh 
 pamixer 
@@ -31,6 +30,7 @@ python-pip
 python-xlib 
 qtile 
 ripgrep 
+rust # This is a dependency for xidlehook
 scrot 
 speedtest-cli 
 spotify-launcher 
@@ -40,7 +40,7 @@ wget
 which 
 xbindkeys 
 xclip 
-xorg-apps
+xdotool
 xorg-server 
 xorg-xinit 
 zsh
