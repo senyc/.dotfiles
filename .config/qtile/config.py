@@ -2,11 +2,12 @@ import os
 from typing import Any, List
 
 from libqtile import hook, layout, qtile
+from libqtile.bar import Bar
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 
 from laptop_bar import laptop_bar
-from options import MOD_KEY
+from options import BAR_HEIGHT, MARGIN, MOD_KEY
 from primary_bar import primary_bar
 
 powermenu = f"{os.path.expanduser('~')}/bin/run_powermenu"
@@ -40,12 +41,7 @@ keys = [
     Key([MOD_KEY, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
     Key([MOD_KEY, "control"], "l", lazy.layout.grow_right(), desc="Grow window to the right"),
     Key([MOD_KEY], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
-    Key(
-        [MOD_KEY, "shift"],
-        "Return",
-        lazy.layout.toggle_split(),
-        desc="Toggle between split and unsplit sides of stack",
-    ),
+    Key([MOD_KEY, "shift"], "Return", lazy.layout.toggle_split(), desc="Toggle split"),
     # Toggle between different layouts
     Key([MOD_KEY, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([MOD_KEY, "control"], "r", lazy.reload_config(), desc="Reload the config"),
@@ -54,11 +50,9 @@ keys = [
     Key([MOD_KEY], "w", lazy.window.kill(), desc="Kill focused window"),
     Key([MOD_KEY], "y", lazy.next_layout(), desc="Toggle between layouts"),
     Key([MOD_KEY], "t", lazy.window.toggle_floating(), desc="Toggle floating"),
-
     # Various pickers and commands
-    Key([MOD_KEY], "Delete", lazy.spawn(lock_screen), desc="lock the screen"),
     Key([MOD_KEY], "o", lazy.spawn(omnipicker), desc="Run omnipicker"),
-    Key([MOD_KEY], "minus", lazy.spawn(f"{omnipicker} -"), desc="Run omnipicker previous application"),
+    Key([MOD_KEY], "minus", lazy.spawn(f"{omnipicker} -"), desc="Run previous application"),
     Key([MOD_KEY], "r", lazy.spawn("dmenu_run -c -l 10 -bw 2"), desc="Runs any binary on system"),
     Key([MOD_KEY], "x", lazy.spawn(powermenu), desc="Spawn a command using powermenu"),
 ]
@@ -104,13 +98,13 @@ groups = [
 # other
 for name in "virsno":
     keys.extend(
-        # Doesn't add switching keybinds, please use the omnipicker
+        # Intentionally doesn't add switching keybinds, please use the omnipicker
         [
             Key(
                 [MOD_KEY, "control"],
                 name,
                 lazy.window.togroup(name, switch_group=True),
-                desc="Switch to & move focused window to group {}".format(name),
+                desc="Switch to and move focused window to group {}".format(name),
             ),
         ]
     )
@@ -127,21 +121,27 @@ widget_defaults = dict(
     padding=0,
 )
 
-horizontal_background: str = "~/.dotfiles/backgrounds/horizontal.jpeg"
+background_image: str = "~/.dotfiles/backgrounds/primary_background.png"
 
 if os.getenv("IS_LAPTOP") == "true":
     screens = [
         Screen(
-            top=laptop_bar,
-            wallpaper=horizontal_background,
+            top=Bar(laptop_bar, size=BAR_HEIGHT, margin=MARGIN),
+            wallpaper=background_image,
             wallpaper_mode="fill",
         )
     ]
+
+    @hook.subscribe.suspend
+    def lock_on_sleep():
+        # Run screen locker
+        qtile.spawn(lock_screen)
+
 else:
     screens = [
         Screen(
-            top=primary_bar,
-            wallpaper=horizontal_background,
+            top=Bar(primary_bar, size=BAR_HEIGHT, margin=MARGIN),
+            wallpaper=background_image,
             wallpaper_mode="fill",
         )
     ]
@@ -179,13 +179,6 @@ auto_minimize = True
 focus_on_window_activation = "smart"
 reconfigure_screens = True
 wl_input_rules = None
-
-
-# Calls before suspending
-@hook.subscribe.suspend
-def lock_on_sleep():
-    # Run screen locker
-    qtile.spawn("/home/senyc/bin/lock_screen")
 
 
 wmname = "qtile"
