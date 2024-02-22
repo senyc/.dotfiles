@@ -122,4 +122,9 @@ function M.delete_current_file()
   end)
 end
 
+--- Highly environment specific function that will run the keybind to toggle the top qtile bar
+function M.toggle_top_bar()
+  vim.cmd('silent !xdotool key --clearmodifiers "Super_L+b"')
+end
+
 return M
