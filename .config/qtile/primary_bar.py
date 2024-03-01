@@ -13,13 +13,16 @@ from options import group_box_kwargs
 from unicodes import left_half_circle, right_half_circle
 
 
-def remove_tab_names(text: str) -> str:
+def window_name_parser(text: str) -> str:
     browsers = ["Chromium", "Firefox"]
+    # Trim the active tab out of the window name
     for browser in browsers:
         if browser in text:
             return browser
+    # Trim the current channel
+    if "Slack" in text:
+        return "Slack"
     return text
-
 
 primary_bar = [
     GroupBox(**group_box_kwargs),
