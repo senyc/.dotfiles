@@ -1,4 +1,5 @@
 setopt histappend
+setopt appendhistory
 setopt correct
 
 ## jobs

@@ -7,8 +7,10 @@ export TZ='America/Detroit'
 export PNPM_HOME="$HOME/.local/share/pnpm"
 export PATH="$PATH:$RACKET_HOME:$PNPM_HOME"
 
-export HISTSIZE=1000
-export HISTFILESIZE=2000
+export HISTFILE=~/.zsh_history
+export HISTSIZE=10000
+export SAVEHIST=10000
+export HISTFILESIZE=10000
 export GOPRIVATE=github.com/senyc/jason
 
 # This is meant to determine whether or not to include battery icon in top bar
