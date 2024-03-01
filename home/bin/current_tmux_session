@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+session=$(tmux display-message -p '#S')
+
+if [ -z $session ]; then 
+    echo "na"
+fi
+echo $session

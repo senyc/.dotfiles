@@ -1,5 +1,6 @@
 from libqtile.widget.clock import Clock
 from libqtile.widget.currentlayout import CurrentLayout
+from libqtile.widget.generic_poll_text import GenPollCommand
 from libqtile.widget.groupbox import GroupBox
 from libqtile.widget.load import Load
 from libqtile.widget.memory import Memory
@@ -29,12 +30,19 @@ primary_bar = [
         margin=10,
     ),
     right_half_circle(nord_fox["blue"], nord_fox["bg"]),
+    GenPollCommand(
+        cmd="current_tmux_session",
+        background=nord_fox["bg"],
+        foreground=nord_fox["fg"],
+        update_interval=1,
+        fmt=" {}"
+    ),
     WindowName(
         background=nord_fox["bg"],
         foreground=nord_fox["fg"],
-        format=" {name}",
+        format=" - {name}",
         max_chars=30,
-        parse_text=remove_tab_names,
+        parse_text=window_name_parser,
     ),
     left_half_circle(nord_fox["black"], nord_fox["bg"]),
     Clock(background=nord_fox["black"], foreground=nord_fox["fg"], format="%m/%d %H:%M"),
