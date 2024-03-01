@@ -22,6 +22,11 @@ eval "$(starship init zsh)"
 # bun completions
 [ -s "/home/senyc/.bun/_bun" ] && source "/home/senyc/.bun/_bun"
 
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory
+
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"

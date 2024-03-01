@@ -173,3 +173,4 @@ sms
 resque
 useEffect
 localstorage
+sendgrid
