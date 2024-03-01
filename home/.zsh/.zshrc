@@ -33,3 +33,6 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
 export PATH="$HOME/.rbenv/versions/3.2.2/bin:$PATH"
 eval "$($HOME/tmp/rbenv/src/bin/rbenv init - zsh)"
+
+export PATH="$HOME/google-cloud-sdk/bin:$PATH"
+export PATH="$HOME/google-cloud-sdk/completion.zsh.inc:$PATH"
