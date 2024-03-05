@@ -81,7 +81,6 @@ groups = [
         label="n",
         matches=[Match(wm_class="obsidian")],
         name="n",
-        spawn="obsidian",
     ),
     Group(
         label="o",
