@@ -32,5 +32,6 @@ if [ -n "$misspelled_words" ]; then
         echo "Skipping..." 
     else 
         echo "Please fix the spelling mistakes and commit your changes again" 
+        exit 1
     fi
 fi
