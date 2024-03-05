@@ -1,7 +1,7 @@
 "pamixer --toggle-mute"
     m:0x0 + c:121
     XF86AudioMute
-"pamixer --increase 5"
+"pamixer --increase 5 --allow-boost"
     m:0x0 + c:123
     XF86AudioRaiseVolume
 "pamixer --decrease 5"
