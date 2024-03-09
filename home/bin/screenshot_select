@@ -7,6 +7,6 @@ fi
 # kills unclutter so freeze works as expected
 pkill unclutter 
 
-scrot -s -i -z -p -f -q  100  '%Y-%m-%d-%M-%s_screenshot.png' -e 'mv $f ~/Pictures/screenshots/ && xclip -selection clipboard -target image/png -i ~/Pictures/screenshots/$f'
+scrot -s -i -z -p -f -q  20  '%Y-%m-%d-%M-%s_screenshot.png' -e 'mv $f ~/Pictures/screenshots/ && xclip -selection clipboard -target image/png -i ~/Pictures/screenshots/$f'
 
 unclutter --jitter 10 --start-hidden --fork
