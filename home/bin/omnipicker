@@ -78,7 +78,6 @@ if [[ -z "$selected_app" ]]; then
 
     check_prev_and_add "firefox"
     check_prev_and_add "alacritty"
-    check_prev_and_add "sfirefox"
     check_prev_and_add "slack"
     check_prev_and_add "spotify"
     check_prev_and_add "obsidian"
@@ -92,11 +91,6 @@ case "$selected_app" in
         qtile cmd-obj -o group r -f toscreen
         add_history "firefox"
         check_if_running "firefox" || firefox &
-        ;;
-    "sfirefox") # This contains the s group firefox
-        qtile cmd-obj -o group s -f toscreen
-        # Will not run since this is a second instance
-        add_history "sfirefox"
         ;;
     "slack")
         qtile cmd-obj -o group o -f toscreen
