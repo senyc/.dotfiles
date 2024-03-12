@@ -68,10 +68,6 @@ groups = [
         name="r",
     ),
     Group(
-        label="s",
-        name="s",
-    ),
-    Group(
         label="v",
         matches=[Match(wm_class="spotify")],
         name="v",
@@ -91,11 +87,10 @@ groups = [
 
 # interface
 # routing (browsing)
-# search (browsing)
 # volume
 # notes
 # other
-for name in "virsno":
+for name in "virno":
     keys.extend(
         # Intentionally doesn't add switching keybinds, please use the omnipicker
         [
