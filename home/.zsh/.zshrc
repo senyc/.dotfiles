@@ -29,5 +29,11 @@ export PATH="/usr/local/bin:$PATH"
 export PATH="$HOME/.rbenv/versions/3.2.2/bin:$PATH"
 eval "$($HOME/tmp/rbenv/src/bin/rbenv init - zsh)"
 
+# nvm
+[ -z "$NVM_DIR" ] && export NVM_DIR="$HOME/.nvm"
+source /usr/share/nvm/nvm.sh
+source /usr/share/nvm/bash_completion
+
 export PATH="$HOME/google-cloud-sdk/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/google-cloud-sdk/completion.zsh.inc:$PATH"
