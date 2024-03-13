@@ -12,6 +12,7 @@ from primary_bar import primary_bar
 
 powermenu = f"{os.path.expanduser('~')}/bin/run_powermenu"
 omnipicker = f"{os.path.expanduser('~')}/bin/omnipicker"
+cycle_volume_outputs = f"{os.path.expanduser('~')}/bin/cycle_pa_sinks"
 lock_screen = f"{os.path.expanduser('~')}/bin/lock_screen"
 terminal = "alacritty"
 
@@ -52,6 +53,7 @@ keys = [
     Key([MOD_KEY], "t", lazy.window.toggle_floating(), desc="Toggle floating"),
     # Various pickers and commands
     Key([MOD_KEY], "o", lazy.spawn(omnipicker), desc="Run omnipicker"),
+    Key([MOD_KEY], "s", lazy.spawn(cycle_volume_outputs), desc="Cycle the volume outputs"),
     Key([MOD_KEY], "b", lazy.spawn(f"{omnipicker} -"), desc="Go back to previous application"),
     Key([MOD_KEY], "r", lazy.spawn("dmenu_run -c -l 10 -bw 2"), desc="Runs any binary on system"),
     Key([MOD_KEY], "x", lazy.spawn(powermenu), desc="Spawn a command using powermenu"),

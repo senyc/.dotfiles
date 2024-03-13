@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# Get the current default sink
+CURRENT_SINK=$(pacmd list-sinks | awk '$1 == "*" && $2 == "index:" {print $3}')
+
+# Get all available sinks
+# There is an asterisk in front of the index for the one that is default the tr just removes it so awk works
+SINKS=($(pacmd list-sinks | tr -d '*' | awk '/index:/ {print $2}' | cut -d: -f2))
+
+# Find the index of the current sink in the array
+CURRENT_INDEX=0
+for i in "${!SINKS[@]}"; do
+    if [[ "${SINKS[$i]}" == "$CURRENT_SINK" ]]; then
+        CURRENT_INDEX=$i
+        break
+    fi
+done
+
+# Calculate the index of the next sink
+NEXT_INDEX=$(( (CURRENT_INDEX + 1) % ${#SINKS[@]} ))
+
+# If the current sink is 0 (the first sink), we need to handle it separately
+if [[ "$CURRENT_SINK" == "0" ]]; then
+    NEXT_INDEX=1
+fi
+
+# Set the default sink to the next one in the array
+pacmd set-default-sink "${SINKS[$NEXT_INDEX]}"
+
+# Move all playing streams to the new default sink
+pacmd list-sink-inputs | grep -e index: -e 'media.name' | \
+while read -r line; do
+    if [[ $line == *"index:"* ]]; then
+        INDEX=$(echo $line | awk '{print $2}')
+    elif [[ $line == *"media.name"* ]]; then
+        NAME=$(echo $line | cut -d'"' -f2)
+        echo "Moving stream '$NAME' to new sink"
+        pacmd move-sink-input "$INDEX" "${SINKS[$NEXT_INDEX]}"
+    fi
+done
+
+echo "Switched to sink ${SINKS[$NEXT_INDEX]}"
