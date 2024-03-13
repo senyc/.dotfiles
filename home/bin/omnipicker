@@ -80,6 +80,7 @@ if [[ -z "$selected_app" ]]; then
     check_prev_and_add "alacritty"
     check_prev_and_add "slack"
     check_prev_and_add "spotify"
+    check_prev_and_add "keepassxc"
     check_prev_and_add "obsidian"
     check_prev_and_add "discord"
 
@@ -101,6 +102,12 @@ case "$selected_app" in
         qtile cmd-obj -o group v -f toscreen
         add_history "spotify"
         check_if_running "spotify" || spotify-launcher &
+        ;;
+    "keepassxc")
+        qtile cmd-obj -o group o -f toscreen
+        add_history "keepassxc"
+        # Runs with the password db 
+        check_if_running "keepassxc" || keepassxc /mnt/pass/Passwords.kdbx &
         ;;
     "obsidian")
         qtile cmd-obj -o group n -f toscreen

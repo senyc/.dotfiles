@@ -82,8 +82,9 @@ groups = [
     ),
     Group(
         label="o",
-        matches=[Match(wm_class="slack"), Match(wm_class="discord"), Match(wm_class="zoom")],
+        matches=[Match(wm_class="slack"), Match(wm_class="discord"), Match(wm_class="zoom"), Match(wm_class="keepassxc")],
         name="o",
+        spawn="keepassxc /mnt/pass/Passwords.kdbx"
     ),
 ]
 
