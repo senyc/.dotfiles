@@ -37,3 +37,4 @@ source /usr/share/nvm/bash_completion
 export PATH="$HOME/google-cloud-sdk/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/google-cloud-sdk/completion.zsh.inc:$PATH"
+export PATH="$HOME/go/bin:$PATH"
