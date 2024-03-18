@@ -76,7 +76,7 @@ if [[ -z "$selected_app" ]]; then
     [ -n "$second_value" ] && [ "$first_value" != "$second_value" ] && running_apps+=("$second_value")
     [ -n "$third_value" ] && [ "$second_value" != "$third_value" ] && [ "$first_value" != "$third_value" ] && running_apps+=("$third_value")
 
-    check_prev_and_add "firefox"
+    check_prev_and_add "brave"
     check_prev_and_add "alacritty"
     check_prev_and_add "slack"
     check_prev_and_add "spotify"
@@ -88,10 +88,10 @@ if [[ -z "$selected_app" ]]; then
 fi
 
 case "$selected_app" in
-    "firefox")
+    "brave")
         qtile cmd-obj -o group r -f toscreen
-        add_history "firefox"
-        check_if_running "firefox" || firefox &
+        add_history "brave"
+        check_if_running "brave" || brave &
         ;;
     "slack")
         qtile cmd-obj -o group o -f toscreen

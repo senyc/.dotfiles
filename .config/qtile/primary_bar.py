@@ -14,14 +14,11 @@ from unicodes import left_half_circle, right_half_circle
 
 
 def window_name_parser(text: str) -> str:
-    browsers = ["Chromium", "Firefox"]
+    apps = ["Slack", "Chromium", "Firefox", "Brave"]
     # Trim the active tab out of the window name
-    for browser in browsers:
-        if browser in text:
-            return browser
-    # Trim the current channel
-    if "Slack" in text:
-        return "Slack"
+    for app in apps:
+        if app in text:
+            return app
     return text
 
 primary_bar = [
