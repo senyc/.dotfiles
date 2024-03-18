@@ -20,7 +20,8 @@ return {
       'gopls',
       'cssls',
       'solargraph',
-      'ruby_ls'
+      'ruby_ls',
+      'nil_ls'
     }
 
     for _, server in ipairs(servers) do
