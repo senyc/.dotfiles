@@ -55,7 +55,7 @@ check_prev_and_add() {
     fi
 }
 
-# Allows for an easy way to 
+# Allows user to just type a value instead of picking from the picker
 if [[ -n "$1" ]]; then
     # This just goes to the previously used application, defaulting to alacritty (terminal) if no recently used apps
     if [[ "$1" == "-" ]]; then
@@ -88,7 +88,7 @@ if [[ -z "$selected_app" ]]; then
 fi
 
 case "$selected_app" in
-    "brave")
+    "brave"|"browser")
         qtile cmd-obj -o group r -f toscreen
         add_history "brave"
         check_if_running "brave" || brave &
@@ -117,9 +117,9 @@ case "$selected_app" in
     "discord")
         qtile cmd-obj -o group o -f toscreen
         add_history "discord"
-        check_if_running "discord" || discord &
+        check_if_running "discord"
         ;;
-    "alacritty")
+    "alacritty"|"terminal")
         qtile cmd-obj -o group i -f toscreen
         # Assumes terminal is already running
         add_history "alacritty"

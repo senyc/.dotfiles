@@ -54,9 +54,11 @@ keys = [
     # Various pickers and commands
     Key([MOD_KEY], "o", lazy.spawn(omnipicker), desc="Run omnipicker"),
     Key([MOD_KEY], "s", lazy.spawn(cycle_volume_outputs), desc="Cycle the volume outputs"),
-    Key([MOD_KEY], "b", lazy.spawn(f"{omnipicker} -"), desc="Go back to previous application"),
     Key([MOD_KEY], "r", lazy.spawn("dmenu_run -c -l 10 -bw 2"), desc="Runs any binary on system"),
     Key([MOD_KEY], "x", lazy.spawn(powermenu), desc="Spawn a command using powermenu"),
+    # Some keybinds for switching to the most heavily used applications
+    Key([MOD_KEY], "b", lazy.spawn(f"{omnipicker} browser"), desc="Switch to browser"),
+    Key([MOD_KEY], "i", lazy.spawn(f"{omnipicker} terminal"), desc="Switch to terminal"),
 ]
 
 groups = [
