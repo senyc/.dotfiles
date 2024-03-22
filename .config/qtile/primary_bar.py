@@ -59,6 +59,7 @@ primary_bar = [
     Memory(
         background=nord_fox["black"],
         foreground=nord_fox["pink"],
-        format=" {MemUsed:.0f}{mm}B ",
+        measure_mem="G",
+        format=" {MemUsed:.2f}{mm}B ",
     ),
 ]
