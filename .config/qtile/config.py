@@ -68,8 +68,8 @@ groups = [
         spawn=f"{terminal} -e tmux new -s main",
     ),
     Group(
-        label="r",
-        name="r",
+        label="b",
+        name="b",
     ),
     Group(
         label="v",
@@ -91,11 +91,11 @@ groups = [
 ]
 
 # interface
-# routing (browsing)
-# volume
+# browsing
+# volume (music)
 # notes
 # other
-for name in "virno":
+for name in "ibvno":
     keys.extend(
         # Intentionally doesn't add switching keybinds, please use the omnipicker
         [

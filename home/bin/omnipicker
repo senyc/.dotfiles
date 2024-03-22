@@ -89,7 +89,7 @@ fi
 
 case "$selected_app" in
     "brave"|"browser")
-        qtile cmd-obj -o group r -f toscreen
+        qtile cmd-obj -o group b -f toscreen
         add_history "brave"
         check_if_running "brave" || brave &
         ;;
