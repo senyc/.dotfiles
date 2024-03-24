@@ -28,13 +28,17 @@ return {
         },
         mappings = {
           i = {
-            ["<C-c>"] = false,
+            ["<C-j>"] = actions.move_selection_next,
+            ["<C-k>"] = actions.move_selection_previous,
+            -- For now I would like to keep the default binding for this
+            -- however, this does lead to it being impossible to scroll the preview
+            -- up or down
+            -- ["<C-n>"] = actions.preview_scrolling_up,
+            -- ["<C-p>"] = actions.preview_scrolling_down,
             ['ZZ'] = actions.close,
-            ['<Esc>'] = actions.close,
           },
           n = {
             ['ZZ'] = actions.close,
-            ['<Esc>'] = actions.close,
           },
         },
       }
