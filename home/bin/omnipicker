@@ -84,6 +84,7 @@ if [[ -z "$selected_app" ]]; then
     check_prev_and_add "obsidian"
     check_prev_and_add "discord"
 
+    # Show dmenu
     selected_app=$(echo -e "$(printf "%s\n" "${running_apps[@]}")" | dmenu -c -l 4 -bw 2)
 fi
 
@@ -93,9 +94,14 @@ case "$selected_app" in
         add_history "brave"
         check_if_running "brave" || brave &
         ;;
+    "other")
+        qtile cmd-obj -o group o -f toscreen
+        add_history "other"
+        # Doesn't launch anything
+        ;;
     "slack")
         qtile cmd-obj -o group o -f toscreen
-        add_history "slack"
+        add_history "other"
         check_if_running "slack" || slack &
         ;;
     "spotify")
@@ -105,7 +111,7 @@ case "$selected_app" in
         ;;
     "keepassxc")
         qtile cmd-obj -o group o -f toscreen
-        add_history "keepassxc"
+        add_history "other"
         # Runs with the password db 
         check_if_running "keepassxc" || keepassxc /mnt/pass/Passwords.kdbx &
         ;;
@@ -116,8 +122,8 @@ case "$selected_app" in
         ;;
     "discord")
         qtile cmd-obj -o group o -f toscreen
-        add_history "discord"
-        check_if_running "discord"
+        add_history "other"
+        check_if_running "discord" || discord &
         ;;
     "alacritty"|"terminal")
         qtile cmd-obj -o group i -f toscreen
